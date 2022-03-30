@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 import { createMint } from '../../actions/mints'
 import FileBase from 'react-file-base64';
 import TextField from '@mui/material/TextField';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+//import DatePicker from "react-datepicker";
+//import "react-datepicker/dist/react-datepicker.css";
 
 
 const Form = () => {
@@ -77,6 +77,7 @@ const Form = () => {
                 onChange ={(e) => setMintData({ ...mintData, twitter: e.target.value })}
             />
             <div>
+            {/*
             <DatePicker
                 selected={mintData.mintDate}
                 value={mintData.mintDate}
@@ -84,7 +85,7 @@ const Form = () => {
                 showTimeSelect
                 dateFormat="Pp"
             />
-
+            */}
             </div>
 
             <div><FileBase type="file" multiple={false} onDone={({ base64 }) => setMintData({ ...mintData, selectedFile: base64 })} />
