@@ -60,7 +60,7 @@ const App = () => {
   useEffect(() => {
     dispatch(getMints());
 
-  }, [currentMintId, dispatch]);
+  }, []);
 
 
   const renderConnectedContainer = () => (
@@ -114,11 +114,11 @@ const App = () => {
 							<div className={walletAddress ? 'authed-container' : 'container'}>
 						<div className="header-container">
             <div>
-            <img src={brandLogo} width='100' height='100'></img>
+            <img alt="CyberApeImg" src={brandLogo} width='100' height='100'></img>
 						<p className="header main-text-logo">CyberApeMints</p>
 						</div>
             <p className="sub-text">
-							View upcoming mints, and vote on your favourites ✨
+							View upcoming mints, and vote on your favourites
 						</p>
             <PrintPubKey setPublicKey={setWalletAddress} />
 
