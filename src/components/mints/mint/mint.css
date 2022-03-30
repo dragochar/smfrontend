@@ -1,0 +1,26 @@
+.votes-block {
+    display: inline-flex;
+    padding-bottom: 10px;
+
+}
+
+.mint-card {
+    margin-bottom: 30px;
+    border-radius: 10px 10px 10px 10px;
+    border-color: rgb(41, 53, 76);
+}
+
+.card-content {
+    background-color: #2b384e;
+    color: rgba(0, 0, 0, 0);
+
+}
+
+.vote-bar {
+    color:aqua;
+}
+
+.inline-logo {
+    position: relative;
+    top: 3px;
+}

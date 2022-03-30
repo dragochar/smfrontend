@@ -1,0 +1,14 @@
+.detail-title {
+    font-weight: 700;
+}
+
+.votes-block {
+    display: inline-flex;
+    padding-bottom: 10px;
+
+}
+
+.dialog {
+    background-color: #1a202c;
+
+}

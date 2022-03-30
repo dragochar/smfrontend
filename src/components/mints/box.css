@@ -1,0 +1,14 @@
+.grid{
+    min-height: 100%;
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+.box{
+    margin: 20px
+}
+
+.grid > div {
+    flex-basis: calc(20% - 40px)
+}

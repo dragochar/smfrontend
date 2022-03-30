@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'Lady-Radical';
+    src: url("../../fonts/Lady-Radical.ttf") format('trueType');
+
+  }
+
+.sol-mints-logo {
+    font-family: Lady-Radical;
+}
+
+
+.wallet-connected-button {
+    background: -webkit-linear-gradient(left, #00FFA3, #DC1FFF);
+    background-size: 200% 200%;
+    animation: gradient-animation 4s ease infinite;
+    margin-bottom: 20px;
+  }
+
+  .button-container {
+    display: flex;
+  }
+
+.navbar {
+    background: -webkit-linear-gradient(left, #14F195, #9945FF);
+    background-size: 200% 200%;
+    animation: gradient-animation 4s ease infinite;
+  }

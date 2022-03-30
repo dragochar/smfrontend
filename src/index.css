@@ -1,0 +1,69 @@
+body {
+  background-color: #00FFA3;
+
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+.top-bar {
+	/* background-color: #0d141f; */
+	background: -webkit-linear-gradient(left, #9945FF, #14F195);
+	padding: 0.5rem 1rem;
+
+	align-items: center;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+}
+.top-bar button.wallet-adapter-button-trigger.wallet-adapter-button {
+	background-color: #c5ed4b;
+	border-radius: 1rem;
+    border: none;
+    padding: 0.2rem 1rem;
+}
+.top-bar button.wallet-adapter-button-trigger i {
+	padding-right: 1rem;
+}
+.top-bar button.wallet-adapter-button-trigger img {
+	width: 1.5rem;
+}
+.header-left img {
+	height: 2rem;
+}
+
+header > .top-bar > div {
+    align-items: center;
+    display: flex;
+}
+
+.modal-content .modal-body {
+    background-color: #1d1832;
+    color: white;
+    padding: 1rem 0;
+} 
+
+.footer {
+  /* background-color: #0d141f; */
+  background: -webkit-linear-gradient(left, #9945FF, #14F195);
+  padding: 0.5rem 1rem;
+
+  align-items: center;
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer {
+  background-color: azure;
+}
