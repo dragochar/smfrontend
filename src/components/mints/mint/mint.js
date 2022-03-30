@@ -53,7 +53,7 @@ const Mint = ({ mint, setCurrentMintId }) => {
         //hi there
     };
 
-    useEffect(() => {
+    useEffect((mint) => {
         checkIfWalletIsConnected();
         setProgressNow(((mint.likes.length)/((mint.likes.length)+(mint.dislikes.length))*100));
 
