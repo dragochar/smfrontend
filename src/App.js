@@ -60,7 +60,7 @@ const App = () => {
   useEffect(() => {
     dispatch(getMints());
 
-  }, []);
+  }, [dispatch]);
 
 
   const renderConnectedContainer = () => (
