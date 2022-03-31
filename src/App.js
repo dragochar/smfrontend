@@ -129,7 +129,7 @@ const App = () => {
 						<div className="header-container">
             <div>
             <img alt="CyberApeImg" src={brandLogo} width='100' height='100'></img>
-						<p className="header main-text-logo">CyberApeMints</p>
+						<p className="header main-text-logo">SolMints</p>
 						</div>
             <p className="sub-text">
 							View upcoming mints, and vote on your favourites
