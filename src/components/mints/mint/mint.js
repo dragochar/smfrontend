@@ -17,13 +17,14 @@ import { useBouncyShadowStyles } from '@mui-treasury/styles/shadow/bouncy';
 import cx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import DetailContent from '../MintDetail/mintdetail';
+import CircularProgress from '@mui/material/CircularProgress';
 import Dialog from '@mui/material/Dialog';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { format, compareAsc } from 'date-fns'
 
 const family = 'Rubik';
 
-const Mint = ({ mint, setCurrentMintId }) => {
+const Mint = ({ mint }) => {
     const dispatch = useDispatch();
     const [walletAddress, setWalletAddress] = useState(null);
     const [progressNow, setProgressNow] = useState(null);
@@ -32,6 +33,8 @@ const Mint = ({ mint, setCurrentMintId }) => {
     const [youLiked, setYouLiked] = React.useState(false);
 
     const day = Date.parse(mint.mintDate);
+
+    const [likeLoading, setLikeLoading] = useState(false);
 
 
     const checkIfWalletIsConnected = async () => {
@@ -66,25 +69,7 @@ const Mint = ({ mint, setCurrentMintId }) => {
     }
     
     
-    const Likes = () => {
-      return mint.likes.find((like) => like === (walletAddress))
 
-        ? (
-          <><HandThumbsUpFill />&nbsp;{mint.likes.length}</>
-        ) : (
-          <><HandThumbsUp />&nbsp;{mint.likes.length}</>
-        );
-    }
-
-    const Dislikes = () => {
-      return mint.dislikes.find((dislike) => dislike === (walletAddress))
-
-        ? (
-          <><HandThumbsDownFill />&nbsp;{mint.dislikes.length}</>
-        ) : (
-          <><HandThumbsDown />&nbsp;{mint.dislikes.length}</>
-        );
-    }
 
 
 
@@ -128,6 +113,26 @@ const Mint = ({ mint, setCurrentMintId }) => {
   )
   
 
+  const Likes = ({ setYouLiked }) => {
+    return mint.likes.find((like) => like === (walletAddress))
+      ? (
+
+        <><HandThumbsUpFill />&nbsp;{mint.likes.length}</>
+      ) : (
+        <><HandThumbsUp />&nbsp;{mint.likes.length}</>
+      );
+  }
+
+  const Dislikes = () => {
+    return mint.dislikes.find((dislike) => dislike === (walletAddress))
+
+      ? (
+        <><HandThumbsDownFill />&nbsp;{mint.dislikes.length}</>
+      ) : (
+        <><HandThumbsDown />&nbsp;{mint.dislikes.length}</>
+      );
+  }
+
     return (
         <Card sx={{ maxWidth: 345, borderColor: '#2b384e', borderRadius: 5, backgroundColor: 'rgba(240, 248, 255, 0)' }} variant="outlined">
           <CardActionArea onClick={handleDialogOpen}>
@@ -148,7 +153,6 @@ const Mint = ({ mint, setCurrentMintId }) => {
                 <div className="votes-block">
                 <IconButton size='small' color='primary' onClick={() => {
                   dispatch(likeMint(mint._id, walletAddress));
-                  setTimeout(() => setCurrentMintId(Math.floor(Math.random() * (10000 - 5 + 1)) + 5), 200);
                   setProgressNow(((mint.likes.length)/((mint.likes.length)+(mint.dislikes.length))*100));
                   }}>
                   <Likes />
@@ -157,7 +161,6 @@ const Mint = ({ mint, setCurrentMintId }) => {
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 <IconButton color="warning" size='small' onClick={() => {
                   dispatch(dislikeMint(mint._id, walletAddress));
-                  setTimeout(() => setCurrentMintId(Math.floor(Math.random() * (10000 - 5 + 1)) + 5), 200);
                   setProgressNow(((mint.likes.length)/((mint.likes.length)+(mint.dislikes.length))*100));
                   }}>
                   <Dislikes />

@@ -6,7 +6,6 @@ import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch } from 'react-redux';
 import Mints from './components/mints/mints';
-import { PrintPubKey } from './components/mints/authview';
 import AdminWallets from './wallets/adminwallets';
 import CyberWallets from './wallets/cyberapeWallets';
 import brandLogo from './assets/caa.gif'
@@ -42,7 +41,6 @@ const App = () => {
   // State
   const [walletAddress, setWalletAddress] = useState(null);
   const [isAdminWallet, setIsAdminWallet] = useState(null);
-  const [currentMintId, setCurrentMintId] = useState(0);
   const dispatch = useDispatch();
 
   const walletContext = useWallet();
@@ -59,13 +57,14 @@ const App = () => {
 
   useEffect(() => {
     dispatch(getMints());
+    console.log('got new mints');
 
-  }, [currentMintId, dispatch]);
+  }, [dispatch]);
 
 
   const renderConnectedContainer = () => (
     <div>
-        <Mints setCurrentMintId={setCurrentMintId} />
+        <Mints />
         <br></br>
     </div>
   );
@@ -101,6 +100,21 @@ const App = () => {
     window.addEventListener('load', onLoad);
     return () => window.removeEventListener('load', onLoad);
   }, []);
+
+  const PrintPubKey = ({ setPublicKey }) => {
+    const wallet = useWallet();
+    //if (!publicKey) throw new WalletNotConnectedError();
+    if (wallet.publicKey) {
+    setPublicKey(wallet.publicKey.toBase58())
+    }
+    if (!wallet.publicKey) {
+        setPublicKey(null);
+    }
+
+    return (
+        <div></div>
+    );
+};
 
 
   return (

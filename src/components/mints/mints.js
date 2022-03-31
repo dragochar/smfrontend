@@ -18,7 +18,7 @@ import CalendarTodayIcon from '@mui/icons-material/AccessAlarm';
 
 
 
-const Mints = ({ setCurrentMintId }) => {
+const Mints = () => {
     const mints = useSelector((state) => state.mints);
     const firstFourMints = mints.slice(0, 4);
     const secondFourMints = mints.slice(4, 20);
@@ -40,7 +40,7 @@ const Mints = ({ setCurrentMintId }) => {
                     <Grid container spacing={3}>
                     {firstFourMints.map((mint) => (
                         <Grid item xs={6} sm={3} key={mint._id}>
-                            <Mint mint={mint} setCurrentMintId={setCurrentMintId} />
+                            <Mint mint={mint} />
                         </Grid>
                     ))}
                     </Grid>
@@ -49,7 +49,7 @@ const Mints = ({ setCurrentMintId }) => {
                     <Grid container spacing={3}>
                     {secondFourMints.map((mint) => (
                         <Grid item xs={6} sm={3} key={mint._id}>
-                            <Mint mint={mint} setCurrentMintId={setCurrentMintId} />
+                            <Mint mint={mint} />
                         </Grid>
                     ))}
                     

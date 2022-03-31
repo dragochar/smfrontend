@@ -29,7 +29,7 @@ export const likeMint = (id, wallet) => async (dispatch) => {
     try {
         const { data } = await api.likeMint(id, wallet);
 
-        dispatch({ type: 'UPDATE', payload: data });
+        dispatch({ type: 'LIKE', payload: data });
 
 
     } catch (error) {
@@ -42,7 +42,7 @@ export const dislikeMint = (id, wallet) => async (dispatch) => {
     try {
         const { data } = await api.dislikeMint(id, wallet);
 
-        dispatch({ type: 'UPDATE', payload: data });
+        dispatch({ type: 'DISLIKE', payload: data });
 
 
     } catch (error) {

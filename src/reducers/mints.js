@@ -8,13 +8,13 @@ export default (mints = [], action) => {
             return [ ...mints, action.payload];
         
         case 'LIKE':
-            return mints.map((mint) => mint._id === action.payload._id ? action.payload : mint);
+            return mints.map((mint) => (mint._id === action.payload._id ? action.payload : mint));
 
         case 'DISLIKE':
-            return mints.map((mint) => mint._id === action.payload._id ? action.payload : mint);
+            return mints.map((mint) => (mint._id === action.payload._id ? action.payload : mint));
         
         default:
             return mints;
     }
-}
+};
 
