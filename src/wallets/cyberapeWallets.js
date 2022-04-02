@@ -995,7 +995,26 @@ var cyberWallets = [
     "CeVXxgDm6MR5biBzRqLW7U9uv47nfrZMYJ5BtTbGLPY3",
     "7SrYEtLPHC3etrkzncFEeooesKRpjHiMJEUSQDMYxEvN",
     "C9tu3mHobNu1evvnQfSXViiKaSexaTT8izQLXJApro8S",
-    "AoNVE2rKCE2YNA44V7NQt8N73JdPM7b6acZ2vzSpyPyi"
+    "AoNVE2rKCE2YNA44V7NQt8N73JdPM7b6acZ2vzSpyPyi",
+    "J5mTdTkDgphCPwJ1Lqp3M3yHqEFYncejNoa4G8bgF3gR",
+    "31H6QpeCTMS5f9x8aWKnJ7TrZnTtfRsCCAs1JMbbNgeE",
+    "7SVnzJ1k8vwYZWFmpjBY3vxmTK67v7VvnDpbjLnXTToA",
+    "GFvUPxqzcQG6ey6XamqMZe7f4BeP3ewwCiQfx2kkEP7p",
+    "DM4CQDEaSpEc42ZnUc3uKgdSpWWdPyRYFh8tZds3WyG4",
+    "FSZWq16695s5M7FAgVRkJPgqfAAxKbrPoWKEWTWPMeAK",
+    "Had4jPhQaKY3h72s4DeLeJ8TQE4zbGWHwCUrkPyTcWee",
+    "9uPa2NfhEMHjPRHned7pDrt2nj5c1L516nnbWavGbTNf",
+    "FNL6f1iypo34WDMyD28zR6v4KheRm1n1NSSnHiSZAxL2",
+    "FHkwvwNC3uY9zcWRtn9vyNjiH9jgRq7c1aiLCKmusYFq",
+    "9s9dVptS56Zgco42JozrhRt64YC8gAdT3scmx4y7cPHn",
+    "8FNLtJSxNb3xgCeNpKscMHUizPFVDwngEwTW4xYRDbPK",
+    "GNZRH3viBF4SxUiB2QdLyL3QCGxnXpqpz5DLwCih5B9d",
+    "5Q6j3KPRWYzkb9RehaQv8qkhtJeQt7fRgahSNGsVJ66Z",
+    "ANcTCUzsAAdNMWENBPRnhstq7hcZBDejcMwrnmYsp8xP",
+    "GMekZPvgbkcFGGSMNkn2X4LT6iYxsbzotPSwDAyNyGJr",
+    "Eed4K3erAXrx2xpEPaVy7w4Vr47D3STiAffRWwV44dWG",
+    "7Ea1QwPjpFGgEcRrVCemEaPgr2s6KZu9YARQed7zXCFv",
+    "Ea2yrUL4c2cHn6g4ku7qtkxetEF4DoDCgwsS8o8SPhdE",
     ]
 
 export default cyberWallets;
