@@ -21,7 +21,7 @@ import CalendarTodayIcon from '@mui/icons-material/AccessAlarm';
 const Mints = () => {
     const mints = useSelector((state) => state.mints);
     const firstFourMints = mints.slice(0, 4);
-    const secondFourMints = mints.slice(4, 20);
+    const secondFourMints = mints.slice(4, 200);
     let newDate = new Date();
     let today = newDate.getDate();
     let month = newDate.getMonth();
