@@ -141,7 +141,7 @@ const App = () => {
 					</div>
 					</div>
 				</BasicLayout>
-
+ 
 			</WalletModalProvider>
 		</WalletProvider>
 	</ConnectionProvider>
