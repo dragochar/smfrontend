@@ -1016,6 +1016,18 @@ var cyberWallets = [
     "7Ea1QwPjpFGgEcRrVCemEaPgr2s6KZu9YARQed7zXCFv",
     "Ea2yrUL4c2cHn6g4ku7qtkxetEF4DoDCgwsS8o8SPhdE",
     "HrLyvPZxgaxX9HR5GUbN7ZydF1KPAfhywx1f3oaTaMyb",
+    "5N25K2qDwWEbdzS8pR4Kz9KEDgrSaHpgkLA5AmhudrJq",
+    "8FNLtJSxNb3xgCeNpKscMHUizPFVDwngEwTW4xYRDbPK",
+    "9s9dVptS56Zgco42JozrhRt64YC8gAdT3scmx4y7cPHn",
+    "GNZRH3viBF4SxUiB2QdLyL3QCGxnXpqpz5DLwCih5B9d",
+    "3DwkL7C1qXfKjw2mvQr5xkLyYrFLqyX3JmWbUYUB7954",
+    "5Q6j3KPRWYzkb9RehaQv8qkhtJeQt7fRgahSNGsVJ66Z",
+    "ANcTCUzsAAdNMWENBPRnhstq7hcZBDejcMwrnmYsp8xP",
+    "GMekZPvgbkcFGGSMNkn2X4LT6iYxsbzotPSwDAyNyGJr",
+    "D97VR7ds8U23pdWCn9AKkPMq1g6bjo8eEShfQxe3LLe9",
+    "Eed4K3erAXrx2xpEPaVy7w4Vr47D3STiAffRWwV44dWG",
+    "7Ea1QwPjpFGgEcRrVCemEaPgr2s6KZu9YARQed7zXCFv",
+    "Ea2yrUL4c2cHn6g4ku7qtkxetEF4DoDCgwsS8o8SPhdE"
     ]
 
 export default cyberWallets;
