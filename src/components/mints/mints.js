@@ -13,6 +13,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
+import Paper from '@mui/material/Paper';
+import Pagination from '../pagination/Pagination';
 import Footer from '../common/footer';
 import CalendarTodayIcon from '@mui/icons-material/AccessAlarm';
 
@@ -54,6 +56,10 @@ const Mints = () => {
                     ))}
                     
                     </Grid>
+                    <br></br>
+                    <Paper elevation={6}>
+                        <Pagination />
+                    </Paper>
                     
                 </div>
 
