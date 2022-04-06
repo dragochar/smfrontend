@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 import { createMint } from '../../actions/mints'
 import FileBase from 'react-file-base64';
 import TextField from '@mui/material/TextField';
-//import DatePicker from "react-datepicker";
-//import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 const Form = () => {
@@ -51,14 +51,14 @@ const Form = () => {
             <BSForm.Control 
                 type="text" 
                 size="sm"
-                placeholder="Project price (in Sol)"
+                placeholder="Project price (in Sol, if unknown please skip)"
                 value={mintData.price}
                 onChange={(e) => setMintData({ ...mintData, price: e.target.value })}
             />
             <BSForm.Control 
                 type="text" 
                 size="sm"
-                placeholder="Project supply"
+                placeholder="Project supply (if unknown please skip)"
                 value={mintData.supply}
                 onChange ={(e) => setMintData({ ...mintData, supply: e.target.value })}
             />
@@ -77,7 +77,7 @@ const Form = () => {
                 onChange ={(e) => setMintData({ ...mintData, twitter: e.target.value })}
             />
             <div>
-            {/*
+            <h4 style={{ color:'azure' }}>Enter Date/Time Of Mint by clicking below</h4>
             <DatePicker
                 selected={mintData.mintDate}
                 value={mintData.mintDate}
@@ -85,10 +85,11 @@ const Form = () => {
                 showTimeSelect
                 dateFormat="Pp"
             />
-            */}
             </div>
 
-            <div><FileBase type="file" multiple={false} onDone={({ base64 }) => setMintData({ ...mintData, selectedFile: base64 })} />
+            <div>
+            <h4 style={{ color:'azure' }}>Upload mint image (png/jpg only) below</h4>
+            <FileBase type="file" multiple={false} onDone={({ base64 }) => setMintData({ ...mintData, selectedFile: base64 })} />
             </div>
 
 
