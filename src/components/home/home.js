@@ -138,7 +138,7 @@ const Home = () => {
                     {!AdminWallets.includes(walletAddress) && walletAddress && renderConnectedContainer()}
                     {AdminWallets.includes(walletAddress) && renderAdminContainer()}
                     
-                    
+                     
                 </div>
             </div>
         </div>
