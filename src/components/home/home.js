@@ -1,21 +1,18 @@
-import React from 'react';
 import React, { useEffect, useState } from 'react';
-import twitterLogo from './assets/twitter-logo.svg';
-import './App.css';
-import { getMints } from './actions/mints';
+import { getMints } from '../../actions/mints';
 import { Container, Row, Col } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Mints from './components/mints/mints';
-import AdminWallets from './wallets/adminwallets';
-import CyberWallets from './wallets/cyberapeWallets';
-import brandLogo from './assets/caa.gif'
-import Footer from './components/common/footer';
+import Mints from '../mints/mints';
+import AdminWallets from '../../wallets/adminwallets';
+import CyberWallets from '../../wallets/cyberapeWallets';
+import brandLogo from '../../assets/caa.gif'
+import Footer from '../common/footer';
 import Card from '@mui/material/Card';
+import { Grow, Grid, Paper, AppBar, TextField, Button } from '@material-ui/core';
+import { useHistory, useLocation } from 'react-router-dom';
 
-import Form from './components/form/form';
-import MintNavbar from './components/navbar/navbar';
+import Form from '../form/form';
 //Kellen Imports
 
 import { account, Mint, util, Wallet, WalletI } from "easy-spl";
@@ -24,7 +21,6 @@ import { getPhantomWallet, getLedgerWallet } from '@solana/wallet-adapter-wallet
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
 import {clusterApiUrl, Connection, PublicKey} from '@solana/web3.js';
 import {BN, Provider, web3} from '@project-serum/anchor';
-import BasicLayout from './components/common/basiclayout';
 
 // Constants
 const TWITTER_HANDLE = 'realsolmints';
@@ -37,12 +33,20 @@ const opts = {
 
 const wallets = [getPhantomWallet(), getLedgerWallet()]
 
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
 const Home = () => {
 
       // State
   const [walletAddress, setWalletAddress] = useState(null);
   const [isAdminWallet, setIsAdminWallet] = useState(null);
   const dispatch = useDispatch();
+  const query = useQuery();
+  const history = useHistory();
+  const page = query.get('page') || 1;
+  const searchQuery = query.get('searchQuery');
 
   const walletContext = useWallet();
 
@@ -56,16 +60,11 @@ const Home = () => {
     console.log(walletContext.publicKey.toBase58());
   }
 
-  useEffect(() => {
-    dispatch(getMints());
-    console.log('got new mints');
-
-  }, [dispatch]);
 
 
   const renderConnectedContainer = () => (
     <div>
-        <Mints />
+        <Mints page={page} />
         <br></br>
     </div>
   );
@@ -98,7 +97,9 @@ const Home = () => {
     const onLoad = async () => {
       //await checkIfWalletIsConnected();
     };
+    const firstPage = 1;
     window.addEventListener('load', onLoad);
+    dispatch(getMints(firstPage))
     return () => window.removeEventListener('load', onLoad);
   }, []);
 
@@ -119,7 +120,6 @@ const Home = () => {
 
 
     return (
-    <BasicLayout>
         <div className="App">
             <div className={walletAddress ? 'authed-container' : 'container'}>
                 <div className="header-container">
@@ -137,7 +137,6 @@ const Home = () => {
                 </div>
             </div>
         </div>
-    </BasicLayout>
     )
 
 }

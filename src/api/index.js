@@ -1,10 +1,11 @@
 import axios from 'axios';
 
-//const url = 'http://localhost:5000';
-const url = 'https://daospot.herokuapp.com/mints';
+const API = axios.create({ baseURL: 'https://daospot.herokuapp.com' })
 
-export const fetchMints = () => axios.get(url);
-export const createMint = (newMint) => axios.post(url, newMint);
-export const likeMint = (id, walletId) => axios.patch(`${url}/${id}/${walletId}/likeMint`);
-export const dislikeMint = (id, walletId) => axios.patch(`${url}/${id}/${walletId}/dislikeMint`);
-export const deleteMint = (id) => axios.delete(`${url}/${id}`);
+
+
+export const fetchMints = (page) => API.get(`/mints?page=${page}`);
+export const createMint = (newMint) => API.get('/mints', newMint);
+export const likeMint = (id, walletId) => API.patch(`/mints/${id}/${walletId}/likeMint`);
+export const dislikeMint = (id, walletId) => API.patch(`/mints/${id}/${walletId}/dislikeMint`);
+export const deleteMint = (id) => API.delete(`/mints/${id}`);

@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Pagination, PaginationItem } from '@mui/material';
 import { Link, BrowserRouter } from 'react-router-dom';
+import { getMints } from '../../actions/mints';
 
 import useStyles from './styles';
 
-const Paginate = () => {
+const Paginate = ({ page }) => {
     const classes = useStyles();
+    const dispatch = useDispatch();
 
 
     return (
