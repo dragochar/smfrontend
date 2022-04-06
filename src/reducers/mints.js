@@ -1,13 +1,13 @@
 import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, DISLIKE } from '../constants/actionTypes';
 
-export default (state = [], action) => {
+export default (state = { mints: [] }, action) => {
     switch (action.type) {
         case FETCH_ALL:
             return {
                 ...state,
                 mints: action.payload.data,
                 currentPage: action.payload.currentPage,
-                numerOfPages: action.payload.numberOfPages,
+                numberOfPages: action.payload.numberOfPages,
             };
         case CREATE:
             return [ ...state, action.payload];

@@ -4,8 +4,8 @@ import { useState } from 'react';
 //Action Creators
 export const getMints = (page) => async (dispatch) => {
     try {
-        const { data } = await api.fetchMints(page);
-        dispatch({ type: 'FETCH_ALL', payload: data });
+        const { data: { data, currentPage, numberOfPages } } = await api.fetchMints(page);
+        dispatch({ type: 'FETCH_ALL', payload: { data, currentPage, numberOfPages } });
 
     } catch (error) {
         console.log(error.message);

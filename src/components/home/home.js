@@ -11,6 +11,7 @@ import Footer from '../common/footer';
 import Card from '@mui/material/Card';
 import { Grow, Grid, Paper, AppBar, TextField, Button } from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router-dom';
+import Pagination from '../pagination/Pagination';
 
 import Form from '../form/form';
 //Kellen Imports
@@ -65,6 +66,9 @@ const Home = () => {
   const renderConnectedContainer = () => (
     <div>
         <Mints page={page} />
+        <Paper elevation={6}>
+            <Pagination page={page} />
+        </Paper>
         <br></br>
     </div>
   );
@@ -97,9 +101,7 @@ const Home = () => {
     const onLoad = async () => {
       //await checkIfWalletIsConnected();
     };
-    const firstPage = 1;
     window.addEventListener('load', onLoad);
-    dispatch(getMints(firstPage))
     return () => window.removeEventListener('load', onLoad);
   }, []);
 
@@ -133,7 +135,9 @@ const Home = () => {
                     <PrintPubKey setPublicKey={setWalletAddress} />
                     {!AdminWallets.includes(walletAddress) && CyberWallets.includes(walletAddress) && walletAddress && renderConnectedContainer()}
                     {!CyberWallets.includes(walletAddress) && !AdminWallets.includes(walletAddress) && walletAddress && renderUnauthenticatedContainer()}
-                    {AdminWallets.includes(walletAddress) && renderAdminContainer()} 
+                    {AdminWallets.includes(walletAddress) && renderAdminContainer()}
+                    
+                    
                 </div>
             </div>
         </div>
