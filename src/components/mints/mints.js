@@ -20,7 +20,7 @@ import CalendarTodayIcon from '@mui/icons-material/AccessAlarm';
 
 
 const Mints = ({ page }) => {
-    const { mints } = useSelector((state) => state.mints);
+    const { mints, isLoading } = useSelector((state) => state.mints);
     console.log("testingg", mints);
     const firstFourMints = mints.slice(0, 4);
     const secondFourMints = mints.slice(4, 200);
@@ -28,12 +28,12 @@ const Mints = ({ page }) => {
     let today = newDate.getDate();
     let month = newDate.getMonth();
 
-
+    if (!mints.length && !isLoading) return 'No mints';
 
     return (
 
             
-            !mints?.length ? <Spinner animation="border" variant="info" /> : (
+            isLoading ? <Spinner animation="border" variant="info" /> : (
                 <div className="mints-container">
                     <div className="button-container">
                     </div>

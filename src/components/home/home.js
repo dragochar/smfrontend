@@ -66,9 +66,9 @@ const Home = () => {
   const renderConnectedContainer = () => (
     <div>
         <Mints page={page} />
-        <Paper elevation={6}>
+            <div className="paginationContainer">
             <Pagination page={page} />
-        </Paper>
+            </div>
         <br></br>
     </div>
   );
@@ -85,6 +85,9 @@ const Home = () => {
   const renderAdminContainer = () => (
     <div>
       <Mints />
+      <div className="paginationContainer">
+        <Pagination page={page} />
+      </div>
       <br></br>
       <br></br>
       <Form />

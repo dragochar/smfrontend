@@ -1,7 +1,11 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, DISLIKE } from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, DISLIKE, START_LOADING, END_LOADING } from '../constants/actionTypes';
 
-export default (state = { mints: [] }, action) => {
+export default (state = { isLoading: true, mints: [] }, action) => {
     switch (action.type) {
+        case START_LOADING:
+            return { ...state, isLoading: true };
+        case END_LOADING:
+            return { ...state, isLoading: false };
         case FETCH_ALL:
             return {
                 ...state,
@@ -10,15 +14,14 @@ export default (state = { mints: [] }, action) => {
                 numberOfPages: action.payload.numberOfPages,
             };
         case CREATE:
-            return [ ...state, action.payload];
+            return { ... state, mints: [ ...state.mints, action.payload] };
         
         case LIKE:
-            return state.map((mint) => (mint._id === action.payload._id ? action.payload : mint));
-
+            return { ...state, mints: state.mints.map((mint) => (mint._id === action.payload._id ? action.payload : mint)) };
         case DISLIKE:
-            return state.map((mint) => (mint._id === action.payload._id ? action.payload : mint));
+            return { ...state, mints: state.mints.map((mint) => (mint._id === action.payload._id ? action.payload : mint)) };
         case DELETE:
-            return state.filter((mint) => mint._id !== action.payload);
+            return { ...state, mints: state.mints.filter((mint) => mint._id !== action.payload) };
         default:
             return state;
     }
