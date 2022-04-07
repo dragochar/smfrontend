@@ -14,6 +14,7 @@ import Link from '@mui/material/Link';
 import solanaLogo from '../../../assets/sol.svg';
 import Divider from '@mui/material/Divider';
 import discordLogo from '../../../assets/discord.svg';
+import twitterLogo from '../../../assets/twitter.svg';
 import IconButton from '@mui/material/IconButton';
 import DeleteOutlineIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
@@ -47,11 +48,15 @@ const DetailContent = ({ mint, walletAddress }) => {
 
         <div className="links">
           <div className="votes-block">
-            <img className="inline-logo" src={discordLogo} alt="Discord" width="12" height="12"></img>
-            <Link href={mint.discord}>&nbsp;Discord</Link>
+            <img className="discord-inline-logo" src={discordLogo} alt="Discord" width="12" height="12"></img>
+            <Link href={mint.discord} target="_blank">&nbsp;Discord</Link>
           </div>
-          
+          <div className="votes-block">
+            <img className="twitter-inline-logo" src={twitterLogo} alt="Twitter" width="12" height="12"></img>
+            <Link href={mint.twitter} target="_blank">&nbsp;Twitter</Link>
+          </div>
         </div>
+      
 
 
         <div className="votes-block">

@@ -63,7 +63,6 @@ const Mint = ({ mint }) => {
       }, []);
 
     const getLiked = () => {
-      console.log(mint.likes);
       return mint.likes.includes(walletAddress)
 
     }
@@ -133,6 +132,21 @@ const Mint = ({ mint }) => {
       );
   }
 
+  const renderMintDate = () => {
+    let date = new Date(mint.mintDate.toString());
+    let day = date.getDay();
+    let formatDate = new Intl.DateTimeFormat("en-GB", {
+      month: "long",
+      day: "2-digit"
+    }).format(date)
+
+
+
+    return (
+    <Typography variant="h6" color="gray" sx={{fontWeight: 700}} >{formatDate}</Typography>
+    )
+  }
+
     return (
         <Card sx={{ maxWidth: 345, borderColor: '#2b384e', borderRadius: 5, backgroundColor: 'rgba(240, 248, 255, 0)' }} variant="outlined">
           <CardActionArea onClick={handleDialogOpen}>
@@ -140,6 +154,7 @@ const Mint = ({ mint }) => {
             <CardMedia sx={{ borderRadius: 5 }}component="img" height="200" image={mint.selectedFile} alt="mint" />
             <CardContent className="card-content" sx={{ backgroundColor: 'rgba(240, 248, 255, 0)' }}>
                 <Typography variant="h5" color="white" sx={{fontWeight: 700}} >{mint.name}</Typography>
+                {mint.mintDate && renderMintDate()}
                 {/*<Typography variant="h5" color="white" sx={{fontWeight: 400}} >{mint.mintDate}</Typography>*/}
                 {mint.price!=null && renderPrice(mint)} 
                 {mint.price==null && renderNullPrice()} 
@@ -159,7 +174,7 @@ const Mint = ({ mint }) => {
                 </IconButton>
 
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <IconButton color="warning" size='small' onClick={() => {
+                <IconButton color="error" size='small' onClick={() => {
                   dispatch(dislikeMint(mint._id, walletAddress));
                   setProgressNow(((mint.likes.length)/((mint.likes.length)+(mint.dislikes.length))*100));
                   }}>
@@ -180,4 +195,3 @@ const Mint = ({ mint }) => {
 }
 
 export default Mint;
-

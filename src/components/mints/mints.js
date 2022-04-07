@@ -21,7 +21,6 @@ import CalendarTodayIcon from '@mui/icons-material/AccessAlarm';
 
 const Mints = ({ page }) => {
     const { mints, isLoading } = useSelector((state) => state.mints);
-    console.log("testingg", mints);
     const firstFourMints = mints.slice(0, 4);
     const secondFourMints = mints.slice(4, 200);
     let newDate = new Date();
@@ -40,7 +39,6 @@ const Mints = ({ page }) => {
                     <Chip sx={{ marginBottom: '25px' }}label=" TOP UPCOMING MINTS " color="secondary" icon={<CalendarTodayIcon />} />
                     <div>
                     <Grid container spacing={3}>
-                    {console.log("f4m", firstFourMints)}
                     {firstFourMints.map((mint) => (
                         <Grid item xs={6} sm={3} key={mint._id}>
                             <Mint mint={mint} />

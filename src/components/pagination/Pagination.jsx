@@ -3,33 +3,54 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Pagination, PaginationItem } from '@mui/material';
 import { Link, BrowserRouter } from 'react-router-dom';
 import { getMints } from '../../actions/mints';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import useStyles from './styles';
 
+
+const theme = createTheme({
+    palette: {
+      primary: {
+          main: '#14F195'
+      },
+    },
+});
+
 const Paginate = ({ page }) => {
-    const { numberOfPages } = useSelector((state) => state.mints);
+    const { numberOfPages, isLoading } = useSelector((state) => state.mints);
     const classes = useStyles();
     const dispatch = useDispatch();
     useEffect(() => {
         if (page) {
             dispatch(getMints(page));
-            console.log("got mints");
         }
     }, [dispatch, page]);
 
+    if (isLoading) return (<div></div>);
+
     return (
         <div>
+        <ThemeProvider theme={theme}>
         <Pagination 
             classes={{ ul: classes.ul }}
             count={numberOfPages}
             page={Number(page) || 1}
-            variant="outlined"
+            showFirstButton 
+            showLastButton
+            sx= {{
+                borderColor: 'rgb(41, 53, 76)',
+            }}
             color="primary"
             renderItem={(item) => (
-                <PaginationItem {...item} component={Link} to={`/mints?page=${item.page}`} color="secondary" />
+                <PaginationItem {...item} color='primary' component={Link} to={`/mints?page=${item.page}`} sx= {{
+                    color: 'white',
+                    borderColor: 'rgb(41, 53, 76)',
+                }}
+
+                />
             )}
         />
-
+        </ThemeProvider>
         </div>
     );
 };

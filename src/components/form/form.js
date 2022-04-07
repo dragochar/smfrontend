@@ -4,8 +4,12 @@ import { useDispatch } from 'react-redux';
 import { createMint } from '../../actions/mints'
 import FileBase from 'react-file-base64';
 import TextField from '@mui/material/TextField';
-//import DatePicker from "react-datepicker";
-//import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DateTimePicker from '@mui/lab/DateTimePicker';
+import Compress from "react-image-file-resizer";
 
 
 const Form = () => {
@@ -14,17 +18,23 @@ const Form = () => {
     });
     const dispatch = useDispatch();
     const [value, onChange] = useState(new Date());
+    const [value1, setValue] = React.useState(new Date());
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
+        
         dispatch(createMint(mintData));
+        setMintData({
+            creator: '', name: '', description: '', DAO: 'caaDAO', 'selectedFile': '', mintDate: new Date(),
+        });
     }
 
     const [startDate, setStartDate] = useState(new Date());
 
     return (
         <div>
+            <h2 style={{ color:'azure' }}>Admin Zone</h2>
+
             <BSForm onSubmit={handleSubmit}>
             <BSForm.Group className="mb-3" controlId="formBasicEmail">
             <BSForm.Control 
@@ -77,7 +87,7 @@ const Form = () => {
                 onChange ={(e) => setMintData({ ...mintData, twitter: e.target.value })}
             />
             <div>
-            {/*
+
             <h4 style={{ color:'azure' }}>Enter Date/Time Of Mint by clicking below</h4>
             <DatePicker
                 selected={mintData.mintDate}
@@ -86,12 +96,16 @@ const Form = () => {
                 showTimeSelect
                 dateFormat="Pp"
             />
-            */}
             </div>
 
             <div>
             <h4 style={{ color:'azure' }}>Upload mint image (png/jpg only) below</h4>
-            <FileBase type="file" multiple={false} onDone={({ base64 }) => setMintData({ ...mintData, selectedFile: base64 })} />
+            <FileBase type="file" multiple={false}
+            onDone={
+            ({ base64 }) => {setMintData({ ...mintData, selectedFile: base64 })}
+            } 
+
+            />
             </div>
 
 

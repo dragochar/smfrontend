@@ -382,9 +382,9 @@
 
 .paginationContainer {
   padding-top: 3px;
+  border-width: 5px;
   padding-bottom: 3px;
-  background-color: #2b384e;
-  color: rgba(0, 0, 0, 0);
+  background-color: rgba(0, 0, 0, 0);
   border-radius: 10px 10px 10px 10px;
   border-color: rgb(41, 53, 76);
 }
