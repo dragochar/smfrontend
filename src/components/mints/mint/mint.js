@@ -24,10 +24,27 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { format, compareAsc } from 'date-fns'
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
+const useStyles = makeStyles(() => ({
+  root: {
+    maxWidth: 304,
+    margin: 'auto',
+    boxShadow: 'none',
+    borderRadius: 0,
+  },
+  content: {
+    padding: 24,
+  },
+  cta: {
+    marginTop: 24,
+    textTransform: 'initial',
+  },
+}));
+
 
 const family = 'Rubik';
 
 const Mint = ({ mint }) => {
+    const shadowStyles = useBouncyShadowStyles();
     const dispatch = useDispatch();
     const [walletAddress, setWalletAddress] = useState(null);
     const [progressNow, setProgressNow] = useState(null);
@@ -81,7 +98,6 @@ const Mint = ({ mint }) => {
     });
 
   const styles = useStyles();
-  const shadowStyles = useBouncyShadowStyles();
 
   const handleDialogOpen = () => {
     setDialogOpen(true);
@@ -151,7 +167,7 @@ const Mint = ({ mint }) => {
   }
 
     return (
-        <Card sx={{ maxWidth: 345, borderColor: '#2b384e', borderRadius: 5, backgroundColor: 'rgba(240, 248, 255, 0)' }} variant="outlined">
+        <Card className={cx(styles.root, shadowStyles.root)} sx={{ maxWidth: 345, borderColor: '#2b384e', borderRadius: 5, backgroundColor: 'rgba(240, 248, 255, 0)' }} variant="outlined">
           <CardActionArea onClick={handleDialogOpen}>
           
             <CardMedia sx={{ borderRadius: 5 }}component="img" height="200" image={mint.selectedFile} alt="mint" />
