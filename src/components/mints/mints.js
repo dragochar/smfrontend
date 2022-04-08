@@ -13,6 +13,8 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
+import CircularProgress from '@mui/material/CircularProgress';
+
 
 import Footer from '../common/footer';
 import CalendarTodayIcon from '@mui/icons-material/AccessAlarm';
@@ -30,9 +32,8 @@ const Mints = ({ page }) => {
     if (!mints.length && !isLoading) return 'No mints';
 
     return (
-
-            
-            isLoading ? <Spinner animation="border" variant="info" /> : (
+        
+            isLoading ? <CircularProgress sx={{ color: '#14F195' }} /> : (
                 <div className="mints-container">
                     <div className="button-container">
                     </div>

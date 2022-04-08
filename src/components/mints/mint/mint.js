@@ -18,9 +18,12 @@ import cx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import DetailContent from '../MintDetail/mintdetail';
 import CircularProgress from '@mui/material/CircularProgress';
+import Chip from '@mui/material/Chip';
 import Dialog from '@mui/material/Dialog';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { format, compareAsc } from 'date-fns'
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+
 
 const family = 'Rubik';
 
@@ -143,7 +146,7 @@ const Mint = ({ mint }) => {
 
 
     return (
-    <Typography variant="h6" color="gray" sx={{fontWeight: 700}} >{formatDate}</Typography>
+    <Chip label={formatDate} icon={<CalendarMonthIcon />} variant="outlined" />
     )
   }
 
@@ -154,12 +157,13 @@ const Mint = ({ mint }) => {
             <CardMedia sx={{ borderRadius: 5 }}component="img" height="200" image={mint.selectedFile} alt="mint" />
             <CardContent className="card-content" sx={{ backgroundColor: 'rgba(240, 248, 255, 0)' }}>
                 <Typography variant="h5" color="white" sx={{fontWeight: 700}} >{mint.name}</Typography>
-                {mint.mintDate && renderMintDate()}
                 {/*<Typography variant="h5" color="white" sx={{fontWeight: 400}} >{mint.mintDate}</Typography>*/}
                 {mint.price!=null && renderPrice(mint)} 
                 {mint.price==null && renderNullPrice()} 
                 {mint.supply!=null && renderSupply(mint)}
                 {mint.supply==null && renderNullSupply()}
+                {/*mint.mintDate && renderMintDate()*/}
+
 
 
                 </CardContent>

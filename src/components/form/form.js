@@ -4,11 +4,11 @@ import { useDispatch } from 'react-redux';
 import { createMint } from '../../actions/mints'
 import FileBase from 'react-file-base64';
 import TextField from '@mui/material/TextField';
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DateTimePicker from '@mui/lab/DateTimePicker';
+//import DatePicker from "react-datepicker";
+//import "react-datepicker/dist/react-datepicker.css";
+//import AdapterDateFns from '@mui/lab/AdapterDateFns';
+//import LocalizationProvider from '@mui/lab/LocalizationProvider';
+//import DateTimePicker from '@mui/lab/DateTimePicker';
 import Compress from "react-image-file-resizer";
 
 
@@ -99,6 +99,7 @@ const Form = () => {
             </div>
 
             <div>
+            {/*
             <h4 style={{ color:'azure' }}>Upload mint image (png/jpg only) below</h4>
             <FileBase type="file" multiple={false}
             onDone={
@@ -107,6 +108,7 @@ const Form = () => {
 
             />
             </div>
+            */}
 
 
 
