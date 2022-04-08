@@ -86,9 +86,11 @@ const Form = () => {
                 value={mintData.twitter}
                 onChange ={(e) => setMintData({ ...mintData, twitter: e.target.value })}
             />
+            {/*
             <div>
 
             <h4 style={{ color:'azure' }}>Enter Date/Time Of Mint by clicking below</h4>
+            
             <DatePicker
                 selected={mintData.mintDate}
                 value={mintData.mintDate}
@@ -97,9 +99,10 @@ const Form = () => {
                 dateFormat="Pp"
             />
             </div>
+            */}
 
             <div>
-            {/*
+            
             <h4 style={{ color:'azure' }}>Upload mint image (png/jpg only) below</h4>
             <FileBase type="file" multiple={false}
             onDone={
@@ -108,7 +111,6 @@ const Form = () => {
 
             />
             </div>
-            */}
 
 
 
