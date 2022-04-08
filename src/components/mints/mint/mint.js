@@ -22,6 +22,7 @@ import Chip from '@mui/material/Chip';
 import Dialog from '@mui/material/Dialog';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { format, compareAsc } from 'date-fns'
+import { useSoftRiseShadowStyles } from '@mui-treasury/styles/shadow/softRise';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 
 const useStyles = makeStyles(() => ({
@@ -44,7 +45,7 @@ const useStyles = makeStyles(() => ({
 const family = 'Rubik';
 
 const Mint = ({ mint }) => {
-    const shadowStyles = useBouncyShadowStyles();
+    const shadowStyles = useSoftRiseShadowStyles();
     const dispatch = useDispatch();
     const [walletAddress, setWalletAddress] = useState(null);
     const [progressNow, setProgressNow] = useState(null);
