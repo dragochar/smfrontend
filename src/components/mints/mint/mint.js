@@ -132,7 +132,7 @@ const Mint = ({ mint }) => {
   )
   
 
-  const Likes = ({ setYouLiked }) => {
+  const Likes = () => {
     return mint.likes.find((like) => like === (walletAddress))
       ? (
 
@@ -151,6 +151,28 @@ const Mint = ({ mint }) => {
         <><HandThumbsDown />&nbsp;{mint.dislikes.length}</>
       );
   }
+
+  const changeRatioLike = () => {
+
+    return mint.likes.find((like) => like === (walletAddress))
+      ? (
+
+        <>{setProgressNow(((mint.likes.length-1)/((mint.likes.length-1)+(mint.dislikes.length))*100))}</>
+      ) : (
+        <>{setProgressNow(((mint.likes.length+1)/((mint.likes.length+1)+(mint.dislikes.length))*100))}</>
+      );
+  }
+
+  const changeRatioDislike = () => {
+    return mint.dislikes.find((dislike) => dislike === (walletAddress))
+
+      ? (
+        <>{setProgressNow(((mint.likes.length)/((mint.likes.length)+(mint.dislikes.length-1))*100))}</>
+      ) : (
+        <>{setProgressNow(((mint.likes.length)/((mint.likes.length)+(mint.dislikes.length+1))*100))}</>
+      );
+  }
+
 
   const renderMintDate = () => {
     let date = new Date(mint.mintDate.toString());
@@ -189,7 +211,7 @@ const Mint = ({ mint }) => {
                 <div className="votes-block">
                 <IconButton size='small' color='primary' onClick={() => {
                   dispatch(likeMint(mint._id, walletAddress));
-                  setProgressNow(((mint.likes.length)/((mint.likes.length)+(mint.dislikes.length))*100));
+                  changeRatioLike();
                   }}>
                   <Likes />
                 </IconButton>
@@ -197,7 +219,7 @@ const Mint = ({ mint }) => {
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 <IconButton color="error" size='small' onClick={() => {
                   dispatch(dislikeMint(mint._id, walletAddress));
-                  setProgressNow(((mint.likes.length)/((mint.likes.length)+(mint.dislikes.length))*100));
+                  changeRatioDislike();
                   }}>
                   <Dislikes />
                 </IconButton>
