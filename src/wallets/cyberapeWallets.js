@@ -1027,7 +1027,8 @@ var cyberWallets = [
     "D97VR7ds8U23pdWCn9AKkPMq1g6bjo8eEShfQxe3LLe9",
     "Eed4K3erAXrx2xpEPaVy7w4Vr47D3STiAffRWwV44dWG",
     "7Ea1QwPjpFGgEcRrVCemEaPgr2s6KZu9YARQed7zXCFv",
-    "Ea2yrUL4c2cHn6g4ku7qtkxetEF4DoDCgwsS8o8SPhdE"
+    "Ea2yrUL4c2cHn6g4ku7qtkxetEF4DoDCgwsS8o8SPhdE",
+    "CCsTco5qzfUos7NRLKoDhUAiShv8iFvWgehGPNrweGuD"
     ]
 
 export default cyberWallets;
