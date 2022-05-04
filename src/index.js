@@ -13,7 +13,7 @@ import reducers from './reducers';
 
 const store = createStore(reducers, compose(applyMiddleware(thunk)));
 
-const ga4react = new GA4React("G-XXXXXXXXXX");
+const ga4react = new GA4React("G-9EKCL3T07T");
 
 
 (async _ => {
