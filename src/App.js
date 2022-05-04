@@ -10,7 +10,7 @@ import Home from './components/home/home';
 import CAA from './components/daopages/caa';
 import MintNavbar from './components/navbar/navbar';
 import BasicLayout from './components/common/basiclayout';
-import ReactGA from 'react-ga';
+import GA4React from "ga-4-react";
 
 //Kellen Imports
 import { account, Mint, util, Wallet, WalletI } from "easy-spl";
@@ -22,8 +22,14 @@ import {BN, Provider, web3} from '@project-serum/anchor';
 
 const wallets = [getPhantomWallet(), getLedgerWallet()]
 
-const TRACKING_ID = "UA-218912528-2"; // OUR_TRACKING_ID
-ReactGA.initialize(TRACKING_ID);
+try {
+  setTimeout(_ => {
+    const ga4react = new GA4React("G-9EKCL3T07T");
+    ga4react.initialize().catch(err => console.error(err));
+  }, 4000);
+} catch (err) {
+      console.error(err);
+}
 
 const opts = {
 	preflightCommitment: "processed"
