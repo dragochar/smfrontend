@@ -7,6 +7,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Home from './components/home/home';
+import CAA from './components/daopages/caa';
+
+
 import MintNavbar from './components/navbar/navbar';
 import BasicLayout from './components/common/basiclayout';
 
@@ -45,8 +48,9 @@ const App = () => {
 			<WalletModalProvider>
         <BasicLayout>
         <Switch>
-          <Route path="/" exact component={() => <Redirect to="/mints" />} />
-          <Route path="/mints" exact component={Home}/>
+          {/*<Route path="/" exact component={() => <Redirect to="/mints" />} /> */}
+          <Route path="/" exact component={Home}/>
+          <Route path="/caa" exact component={CAA}/>
           <Route path="/mints/search" exact component={Home}/>
 
         </Switch>

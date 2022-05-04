@@ -15,7 +15,8 @@ export default (state = { isLoading: true, mints: [] }, action) => {
             };
         case CREATE:
             return { ... state, mints: [ ...state.mints, action.payload] };
-        
+        case UPDATE:
+            return { ...state, mints: state.mints.map((mint) => (mint._id === action.payload._id ? action.payload : mint)) };
         case LIKE:
             return { ...state, mints: state.mints.map((mint) => (mint._id === action.payload._id ? action.payload : mint)) };
         case DISLIKE:

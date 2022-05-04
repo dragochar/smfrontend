@@ -14,6 +14,16 @@ export const getMints = (page) => async (dispatch) => {
 
 }
 
+export const getMintsBySort = (sortQuery) => async (dispatch) => {
+    try {
+        const { data } = await api.fetchMintsBySort(sortQuery);
+
+        console.log(data);
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 export const createMint = (mint) => async (dispatch) => {
     try {
         const { data } = await api.createMint(mint);
@@ -24,6 +34,17 @@ export const createMint = (mint) => async (dispatch) => {
     }
 }
 
+export const updateMint = (id, mint) => async (dispatch) => {
+    try {
+
+        const { data } = await api.updateMint(id, mint);
+        dispatch({ type: 'UPDATE', payload: data });
+
+    } catch (error) {
+        console.log(error.message);
+    }
+
+}
 
 export const likeMint = (id, wallet) => async (dispatch) => {
 
@@ -61,3 +82,4 @@ export const deleteMint = (id) => async (dispatch) => {
         console.log(error);
     }
 }
+

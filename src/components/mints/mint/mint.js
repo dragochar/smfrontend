@@ -17,6 +17,7 @@ import { useBouncyShadowStyles } from '@mui-treasury/styles/shadow/bouncy';
 import cx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import DetailContent from '../MintDetail/mintdetail';
+import EditContent from '../MintEdit/mintedit';
 import CircularProgress from '@mui/material/CircularProgress';
 import Chip from '@mui/material/Chip';
 import Dialog from '@mui/material/Dialog';
@@ -24,6 +25,9 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { format, compareAsc } from 'date-fns'
 import { useSoftRiseShadowStyles } from '@mui-treasury/styles/shadow/softRise';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import AdminWallets from '../../../wallets/adminwallets';
+import EditIcon from '@mui/icons-material/Edit';
+
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -49,13 +53,8 @@ const Mint = ({ mint }) => {
     const dispatch = useDispatch();
     const [walletAddress, setWalletAddress] = useState(null);
     const [progressNow, setProgressNow] = useState(null);
-    const [open, setOpen] = React.useState(false);
     const [dialogOpen, setDialogOpen] = React.useState(false);
-    const [youLiked, setYouLiked] = React.useState(false);
-
-    const day = Date.parse(mint.mintDate);
-
-    const [likeLoading, setLikeLoading] = useState(false);
+    const [editDialogOpen, setEditDialogOpen] = React.useState(false);
 
 
     const checkIfWalletIsConnected = async () => {
@@ -102,11 +101,18 @@ const Mint = ({ mint }) => {
 
   const handleDialogOpen = () => {
     setDialogOpen(true);
-
   };
 
   const handleDialogClose = () => {
     setDialogOpen(false);
+  };
+
+  const handleEditDialogOpen = () => {
+    setEditDialogOpen(true);
+  };
+
+  const handleEditDialogClose = () => {
+    setEditDialogOpen(false);
   };
 
   const renderSupply = (mint) => (
@@ -189,6 +195,12 @@ const Mint = ({ mint }) => {
     )
   }
 
+  const renderEditButton = (mint) => (
+    <IconButton sx={{ color: "white", float: "right" }} aria-label="edit" onClick={handleEditDialogOpen}>
+      <EditIcon />
+    </IconButton>
+  )
+
     return (
         <Card className={cx(styles.root, shadowStyles.root)} sx={{ maxWidth: 345, borderColor: '#2b384e', borderRadius: 5, backgroundColor: 'rgba(240, 248, 255, 0)' }} variant="outlined">
           <CardActionArea onClick={handleDialogOpen}>
@@ -201,12 +213,13 @@ const Mint = ({ mint }) => {
                 {mint.price==null && renderNullPrice()} 
                 {mint.supply!=null && renderSupply(mint)}
                 {mint.supply==null && renderNullSupply()}
-                {/*mint.mintDate && renderMintDate()*/}
+                {mint.mintDate && renderMintDate()}
 
 
 
                 </CardContent>
                 </CardActionArea>
+                {AdminWallets.includes(walletAddress) && renderEditButton(mint)}
                 <CardContent>
                 <div className="votes-block">
                 <IconButton size='small' color='primary' onClick={() => {
@@ -232,6 +245,12 @@ const Mint = ({ mint }) => {
             onClose={handleDialogClose}
           >
             <DetailContent mint={mint} walletAddress={walletAddress} />
+          </Dialog>
+          <Dialog
+            open={editDialogOpen}
+            onClose={handleEditDialogClose}
+          >
+            <EditContent mint={mint} walletAddress={walletAddress} />
           </Dialog>
         </Card>
     );

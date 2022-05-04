@@ -47,7 +47,14 @@
   border-width: 3px;
   border: #00FFA3;
 }
-.today-icon {
-  margin-bottom: 15px;
+
+.center-on-mints {
+  margin: auto;
+  max-width: 1650px;
 }
 
+.today-wrapper {
+  border-style: solid;
+  border: 2px;
+  border-color: #ff867c;
+}

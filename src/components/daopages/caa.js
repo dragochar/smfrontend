@@ -1,4 +1,4 @@
-import React, { useEffect, useState, FC, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getMints } from '../../actions/mints';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
@@ -12,24 +12,20 @@ import Card from '@mui/material/Card';
 import { Grow, Grid, Paper, AppBar, TextField, Button } from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router-dom';
 import Pagination from '../pagination/Pagination';
-import Autocomplete from '@mui/material/Autocomplete';
 
 import Form from '../form/form';
 //Kellen Imports
 
 import { account, Mint, util, Wallet, WalletI } from "easy-spl";
-import { useWallet, useConnection, WalletProvider, ConnectionProvider } from '@solana/wallet-adapter-react';
+import { useWallet, WalletProvider, ConnectionProvider } from '@solana/wallet-adapter-react';
 import { getPhantomWallet, getLedgerWallet } from '@solana/wallet-adapter-wallets';
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
-import {clusterApiUrl, Connection, PublicKey, Transaction} from '@solana/web3.js';
+import {clusterApiUrl, Connection, PublicKey} from '@solana/web3.js';
 import {BN, Provider, web3} from '@project-serum/anchor';
-
 
 // Constants
 const TWITTER_HANDLE = 'realsolmints';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-const {Token} = require('@solana/spl-token');
-
 
 
 const opts = {
@@ -51,16 +47,13 @@ const Home = () => {
   const query = useQuery();
   const history = useHistory();
   const page = query.get('page') || 1;
-  const searchQuery = query.get('searchQuery');
 
   const walletContext = useWallet();
 
   const network = "http://api.mainnet-beta.solana.com/";
   const connection = new Connection(network, 'processed');
-  //const { connection } = useConnection();
   const provider = new Provider(connection, walletContext, opts.preflightCommitment);
   const userAccount = new Wallet(connection, provider.wallet);
-  const { publicKey, sendTransaction } = useWallet();
 
   const address = userAccount.publicKey;
   if (walletContext.publicKey) {
@@ -129,34 +122,21 @@ const Home = () => {
     );
 };
 
-    const onboardedDAOs = [
-      {label: 'CyberApeAge', },
-    ]
-
-
 
     return (
         <div className="App">
             <div className={walletAddress ? 'authed-container' : 'container'}>
                 <div className="header-container">
                     <div>
-                        <p className="header main-text-logo">SolMints</p>
+                        <img alt="CyberApeImg" src={brandLogo} width='100' height='100'></img>
+                        <p className="header main-text-logo">CyberApeMints</p>
                     </div>
                     <p className="sub-text">
-                        Hi there, welcome to SolMints! 👋
+                        View upcoming mints, and vote on your favourites
                     </p>
-                    <Autocomplete 
-                      options = {onboardedDAOs}
-                      renderInput={(params) => <TextField {...params} label="Our Partner DAOs" />}
-
-                    />
-                    <br></br>
-                    <br></br>
-                    
                     <PrintPubKey setPublicKey={setWalletAddress} />
-                    {/*!AdminWallets.includes(walletAddress) && walletAddress && renderConnectedContainer()*/}
-                    {/*AdminWallets.includes(walletAddress) && renderAdminContainer()*/}
-
+                    {!AdminWallets.includes(walletAddress) && walletAddress && renderConnectedContainer()}
+                    {AdminWallets.includes(walletAddress) && renderAdminContainer()}
                     
                      
                 </div>
