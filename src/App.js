@@ -8,16 +8,11 @@ import { useDispatch } from 'react-redux';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Home from './components/home/home';
 import CAA from './components/daopages/caa';
-
-
 import MintNavbar from './components/navbar/navbar';
 import BasicLayout from './components/common/basiclayout';
-
-
-
+import ReactGA from 'react-ga';
 
 //Kellen Imports
-
 import { account, Mint, util, Wallet, WalletI } from "easy-spl";
 import { useWallet, WalletProvider, ConnectionProvider } from '@solana/wallet-adapter-react';
 import { getPhantomWallet, getLedgerWallet } from '@solana/wallet-adapter-wallets';
@@ -26,6 +21,9 @@ import {clusterApiUrl, Connection, PublicKey} from '@solana/web3.js';
 import {BN, Provider, web3} from '@project-serum/anchor';
 
 const wallets = [getPhantomWallet(), getLedgerWallet()]
+
+const TRACKING_ID = "UA-218912528-2"; // OUR_TRACKING_ID
+ReactGA.initialize(TRACKING_ID);
 
 const opts = {
 	preflightCommitment: "processed"
@@ -40,6 +38,9 @@ const App = () => {
   const provider = new Provider(connection, walletContext, opts.preflightCommitment);
   const userAccount = new Wallet(connection, provider.wallet);
 
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
 
   return (
     <BrowserRouter>
