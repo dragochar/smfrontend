@@ -10,7 +10,7 @@ import Home from './components/home/home';
 import CAA from './components/daopages/caa';
 import MintNavbar from './components/navbar/navbar';
 import BasicLayout from './components/common/basiclayout';
-import GA4React from "ga-4-react";
+import ReactGA from 'react-ga4';
 
 //Kellen Imports
 import { account, Mint, util, Wallet, WalletI } from "easy-spl";
@@ -21,6 +21,9 @@ import {clusterApiUrl, Connection, PublicKey} from '@solana/web3.js';
 import {BN, Provider, web3} from '@project-serum/anchor';
 
 const wallets = [getPhantomWallet(), getLedgerWallet()]
+ReactGA.initialize("G-9EKCL3T07T");
+ReactGA.send("pageview");
+
 
 const opts = {
 	preflightCommitment: "processed"
@@ -34,6 +37,10 @@ const App = () => {
   const connection = new Connection(network, 'processed');
   const provider = new Provider(connection, walletContext, opts.preflightCommitment);
   const userAccount = new Wallet(connection, provider.wallet);
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
 
   return (
     <BrowserRouter>
