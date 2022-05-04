@@ -13,6 +13,8 @@ import { Grow, Grid, Paper, AppBar, TextField, Button } from '@material-ui/core'
 import { useHistory, useLocation } from 'react-router-dom';
 import Pagination from '../pagination/Pagination';
 import Autocomplete from '@mui/material/Autocomplete';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 
 import Form from '../form/form';
 //Kellen Imports
@@ -67,6 +69,11 @@ const Home = () => {
     console.log(walletContext.publicKey.toBase58());
   }
 
+  const theme = createTheme({
+    palette: {
+      mode: 'dark',
+    }
+  });
 
 
   const renderConnectedContainer = () => (
@@ -137,6 +144,7 @@ const Home = () => {
 
     return (
         <div className="App">
+        <ThemeProvider theme={theme}>
             <div className={walletAddress ? 'authed-container' : 'container'}>
                 <div className="header-container">
                     <div>
@@ -161,6 +169,7 @@ const Home = () => {
                      
                 </div>
             </div>
+            </ThemeProvider>
         </div>
     )
 

@@ -23,6 +23,7 @@ import CalendarTodayIcon from '@mui/icons-material/AccessAlarm';
 import Stack from '@mui/material/Stack';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Pagination from '../pagination/Pagination';
 
 
 const Mints = ({ page }) => {
@@ -33,6 +34,8 @@ const Mints = ({ page }) => {
     console.log('rm', recentMints);
     const firstFourMints = mints.slice(0, 4);
     const secondFourMints = mints.slice(4, 200);
+    const secondRealFourMints = mints.slice(4, 8);
+
     const firstFourRecentMints = recentMints.slice(0, 4);
     const secondFourRecentMints = recentMints.slice(4, 200);
     let newDate = new Date();
@@ -70,6 +73,8 @@ const Mints = ({ page }) => {
     const RenderDefaultMints = () => {
         return (
             <div>
+            <div className="today-wrapper">
+                <div className="chrono-text">Today</div>
                 <Box component="span" sx={{ p: 2, border: '2px red' }}>
                 <Grid container spacing={3}>
                     {firstFourMints.map((mint) => (
@@ -79,8 +84,20 @@ const Mints = ({ page }) => {
                     ))}
                 </Grid>
                 </Box>
-                <br></br>
-            </div>     
+            </div>
+            <div className="tomorrow-wrapper">
+                <div className="chrono-text">Thursday</div>
+                <Box component="span" sx={{ p: 2, border: '2px red' }}>
+                <Grid container spacing={3}>
+                    {secondRealFourMints.map((mint) => (
+                        <Grid item xs={6} sm={3} key={mint._id}>
+                            <Mint mint={mint} />
+                        </Grid>
+                    ))}
+                </Grid>
+                </Box>
+            </div>
+            </div> 
 
 
         )

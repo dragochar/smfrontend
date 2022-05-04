@@ -4,11 +4,11 @@ import { useDispatch } from 'react-redux';
 import { createMint } from '../../actions/mints'
 import FileBase from 'react-file-base64';
 import TextField from '@mui/material/TextField';
-//import DatePicker from "react-datepicker";
-//import "react-datepicker/dist/react-datepicker.css";
-//import AdapterDateFns from '@mui/lab/AdapterDateFns';
-//import LocalizationProvider from '@mui/lab/LocalizationProvider';
-//import DateTimePicker from '@mui/lab/DateTimePicker';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DateTimePicker from '@mui/lab/DateTimePicker';
 import Resizer from "react-image-file-resizer";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import FormControl from '@mui/material/FormControl';
@@ -168,7 +168,7 @@ const Form = () => {
                     value={mintData.DAO}
                     onChange={(e) => setMintData({ ...mintData, DAO: e.target.value })}
                 />
-                {/*
+
                 <div>
 
                 <h4 style={{ color:'azure' }}>Enter Date/Time Of Mint by clicking below</h4>
@@ -181,7 +181,6 @@ const Form = () => {
                     dateFormat="Pp"
                 />
                 </div>
-                */}
 
                 <div>
                 

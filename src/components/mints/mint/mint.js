@@ -27,6 +27,8 @@ import { useSoftRiseShadowStyles } from '@mui-treasury/styles/shadow/softRise';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import AdminWallets from '../../../wallets/adminwallets';
 import EditIcon from '@mui/icons-material/Edit';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 
 
 const useStyles = makeStyles(() => ({
@@ -181,17 +183,28 @@ const Mint = ({ mint }) => {
 
 
   const renderMintDate = () => {
+    const theme = createTheme({
+      palette: {
+        mode: 'dark',
+          date: {
+              main: '#ffefed',
+              contrastText: '#000000',
+          },
+      }
+    });
     let date = new Date(mint.mintDate.toString());
     let day = date.getDay();
     let formatDate = new Intl.DateTimeFormat("en-GB", {
       month: "long",
-      day: "2-digit"
+      day: "2-digit",
+      hour: 'numeric',
+      minute: 'numeric',
     }).format(date)
 
-
-
     return (
-    <Chip label={formatDate} icon={<CalendarMonthIcon />} variant="outlined" />
+    <ThemeProvider theme={theme}>
+    <Chip label={formatDate} icon={<CalendarMonthIcon />} color="date" variant="outlined" />
+    </ThemeProvider>
     )
   }
 
