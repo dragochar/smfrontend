@@ -35,10 +35,6 @@ const App = () => {
   const provider = new Provider(connection, walletContext, opts.preflightCommitment);
   const userAccount = new Wallet(connection, provider.wallet);
 
-  useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
-  }, []);
-
   return (
     <BrowserRouter>
     <ConnectionProvider endpoint={network}>
