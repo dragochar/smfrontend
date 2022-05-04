@@ -22,15 +22,6 @@ import {BN, Provider, web3} from '@project-serum/anchor';
 
 const wallets = [getPhantomWallet(), getLedgerWallet()]
 
-try {
-  setTimeout(_ => {
-    const ga4react = new GA4React("G-9EKCL3T07T");
-    ga4react.initialize().catch(err => console.error(err));
-  }, 4000);
-} catch (err) {
-      console.error(err);
-}
-
 const opts = {
 	preflightCommitment: "processed"
 };
