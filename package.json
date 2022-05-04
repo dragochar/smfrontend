@@ -11,6 +11,7 @@
     "@material-ui/lab": "^4.0.0-alpha.61",
     "@mui-treasury/styles": "^1.13.1",
     "@mui/icons-material": "^5.6.0",
+    "@mui/lab": "^5.0.0-alpha.80",
     "@mui/material": "^5.4.3",
     "@project-serum/anchor": "^0.22.1",
     "@solana/wallet-adapter-base": "^0.8.1",
