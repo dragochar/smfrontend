@@ -97,7 +97,7 @@ const Home = () => {
       {sort==="Explore" ?  <Mints page={page} /> : <></>}
       {sort==="Upcoming" ?  <TodayMints /> : <></>}
       <div className="paginationContainer">
-        <Pagination page={page} /> : <></>
+        {sort==="Explore" ? <Pagination page={page} /> : <></>}
         </div>
       <br></br>
       </div>
