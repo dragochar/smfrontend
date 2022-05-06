@@ -190,6 +190,10 @@ const Mint = ({ mint }) => {
               main: '#ffefed',
               contrastText: '#000000',
           },
+          upcoming: {
+            main: '#ff867c',
+            contrastText: '#000000',
+        },
       }
     });
     let date = new Date(mint.mintDate.toString());

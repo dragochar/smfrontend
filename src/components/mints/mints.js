@@ -24,24 +24,19 @@ import Stack from '@mui/material/Stack';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Pagination from '../pagination/Pagination';
+import RenderSelectButtons from '../common/renderSelectButtons';
 
 
-const Mints = ({ page }) => {
+const Mints = ({ page, sort, setSort }) => {
     const { mints, isLoading } = useSelector((state) => state.mints);
     const recentMints = mints.sort((a, b) => {return b.likes.length - a.likes.length})
-    console.log('m', mints);
-
-    console.log('rm', recentMints);
     const firstFourMints = mints.slice(0, 4);
     const secondFourMints = mints.slice(4, 200);
     const secondRealFourMints = mints.slice(4, 8);
 
-    const firstFourRecentMints = recentMints.slice(0, 4);
-    const secondFourRecentMints = recentMints.slice(4, 200);
     let newDate = new Date();
     let today = newDate.getDate();
     let month = newDate.getMonth();
-    const [sort, setSort] = useState('Upcoming');
     const dispatch = useDispatch();
 
     const theme = createTheme({
@@ -63,10 +58,6 @@ const Mints = ({ page }) => {
       });
 
 
-
-    const handleFilterChange = (event) => {
-        setSort(event.target.value);
-      };
 
     if (!mints.length && !isLoading) return 'No mints';
 
@@ -144,25 +135,6 @@ const Mints = ({ page }) => {
         )
     }
 
-    const RenderSelectButtons = () => {
-        return (
-        <ThemeProvider theme={theme}>
-        <div className="center-on-mints">
-        <Stack spacing={2} direction="row" sx={{ float: 'right' }}>
-            {sort=='Upcoming' ? <Button className="sort-button" variant="contained" color="upcoming">Upcoming</Button> : (
-                <Button onClick={() => {setSort('Upcoming')}} className="sort-button" variant="outlined" color="upcoming">Upcoming</Button>
-            )}
-            {sort=='Most Liked' ? <Button className="sort-button" variant="contained" color="mostLiked">Most Liked</Button> : (
-                <Button onClick={() => {setSort('Most Liked')}} className="sort-button" color="mostLiked" variant="outlined">Most Liked</Button>
-            )}
-            {sort=='Explore' ? <Button className="sort-button" variant="contained" color="explore">Explore</Button> : (
-                <Button onClick={() => {setSort('Explore')}} className="sort-button" variant="outlined" color="explore">Explore</Button>
-            )}
-        </Stack>
-        </div>
-        </ThemeProvider>
-        );
-    }
         
     return (
         
@@ -172,14 +144,10 @@ const Mints = ({ page }) => {
                         <div className="today-icon">
                             <Chip sx={{ marginBottom: '25px' }}label=" TOP UPCOMING MINTS " color="secondary" icon={<CalendarTodayIcon />} />
                         </div>
-                        <div className="sort-selector-group">
-                            {RenderSelectButtons()}
-                        </div>
                     </div>
                     <div className="mints-container">
-                    {sort=='Upcoming' && RenderDefaultMints()}
-                    {sort=='Most Liked' && RenderLikedMints()}
-                    {sort=='Explore' && RenderExploreMints()}
+                    {RenderExploreMints()}
+
                     </div>
                 </>
             )

@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Mints from '../mints/mints';
+import TodayMints from '../mints/todayMints';
 import AdminWallets from '../../wallets/adminwallets';
 import CyberWallets from '../../wallets/cyberapeWallets';
 import brandLogo from '../../assets/caa.gif'
@@ -12,6 +13,8 @@ import Card from '@mui/material/Card';
 import { Grow, Grid, Paper, AppBar, TextField, Button } from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router-dom';
 import Pagination from '../pagination/Pagination';
+import RenderSelectButtons from '../common/renderSelectButtons';
+import '../daopages/daopages.css';
 
 import Form from '../form/form';
 //Kellen Imports
@@ -47,6 +50,8 @@ const Home = () => {
   const query = useQuery();
   const history = useHistory();
   const page = query.get('page') || 1;
+  const [sort, setSort] = useState('Upcoming');
+
 
   const walletContext = useWallet();
 
@@ -64,11 +69,15 @@ const Home = () => {
 
   const renderConnectedContainer = () => (
     <div>
-        <Mints page={page} />
-            <div className="paginationContainer">
-            <Pagination page={page} />
-            </div>
+        <div>
+        {sort==="Explore" ?  <Mints page={page} /> : <></>}
+        {sort==="Upcoming" ?  <TodayMints /> : <></>}
+
+        <div className="paginationContainer">
+        {sort==="Explore" ? <Pagination page={page} /> : <></>}
+        </div>
         <br></br>
+        </div>
     </div>
   );
 
@@ -81,20 +90,21 @@ const Home = () => {
     </div>
   );
 
-  const renderAdminContainer = () => (
-    <div>
-      <Mints />
+  const renderAdminContainer = () => {
+    return (
+      <div>
+        <div>
+      {sort==="Explore" ?  <Mints page={page} /> : <></>}
+      {sort==="Upcoming" ?  <TodayMints /> : <></>}
       <div className="paginationContainer">
-        <Pagination page={page} />
+        <Pagination page={page} /> : <></>
+        </div>
+      <br></br>
       </div>
-      <br></br>
-      <br></br>
       <Form />
-      <br></br>
-      <br></br>
-      <br></br>
-    </div>
-  );
+  </div>
+    );
+};
 
 
 
@@ -131,14 +141,19 @@ const Home = () => {
                         <img alt="CyberApeImg" src={brandLogo} width='100' height='100'></img>
                         <p className="header main-text-logo">CyberApeMints</p>
                     </div>
+                    <div>
+                      <RenderSelectButtons sort={sort} setSort={setSort} />
+                    </div>
+                    <div>
                     <p className="sub-text">
                         View upcoming mints, and vote on your favourites
                     </p>
+                    </div>
                     <PrintPubKey setPublicKey={setWalletAddress} />
                     {!AdminWallets.includes(walletAddress) && walletAddress && renderConnectedContainer()}
                     {AdminWallets.includes(walletAddress) && renderAdminContainer()}
                     
-                     
+                   
                 </div>
             </div>
         </div>

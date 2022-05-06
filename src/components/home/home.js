@@ -72,6 +72,14 @@ const Home = () => {
   const theme = createTheme({
     palette: {
       mode: 'dark',
+      upcoming: {
+        main: '#ff867c',
+        contrastText: '#000000',
+    },
+    primary: {
+      main: '#ff867c',
+      contrastText: '#000000',
+  },
     }
   });
 
@@ -144,7 +152,8 @@ const Home = () => {
 
     return (
         <div className="App">
-        <ThemeProvider theme={theme}>
+            <ThemeProvider theme={theme}>
+
             <div className={walletAddress ? 'authed-container' : 'container'}>
                 <div className="header-container">
                     <div>

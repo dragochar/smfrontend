@@ -28,14 +28,24 @@ import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import Resizer from "react-image-file-resizer";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import AdapterDateFns from '@mui/lab/AdapterDateFns';
+import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import DateTimePicker from '@mui/lab/DateTimePicker';
+import Checkbox from '@mui/material/Checkbox';
+
 
 
 
 const EditContent = ({ mint, walletAddress }) => {
     const [mintData, setMintData] = useState({
-      creator: '', name: mint.name, description: mint.description, DAO: mint.dao, 'selectedFile': mint.selectedFile, mintDate: mint.mintDate, price: mint.price, supply: mint.supply, discord: mint.discord, twitter: mint.twitter
+      creator: '', name: mint.name, description: mint.description, DAO: mint.dao, 'selectedFile': mint.selectedFile, mintDate: new Date(mint.mintDate), price: mint.price, supply: mint.supply, discord: mint.discord, twitter: mint.twitter
     });
-  
+    const [checked, setChecked] = React.useState(false);
+
+
+    if (mintData.mintDate==="") {setChecked(true)}
 
     const dispatch = useDispatch();
 
@@ -50,7 +60,11 @@ const EditContent = ({ mint, walletAddress }) => {
           info: {
               main: '#FFFFFF',
               contrastText: '#ffff66',
-          }
+          },
+          upcoming: {
+            main: '#ff867c',
+            contrastText: '#000000',
+        },
 
       }
     });
@@ -90,6 +104,27 @@ const EditContent = ({ mint, walletAddress }) => {
             "base64"
             );
         });
+    
+    const renderDateTimePicker = () => {
+        return (
+            <DatePicker
+            selected={mintData.mintDate}
+            value={mintData.mintDate}
+            onChange ={(date) => setMintData({ ...mintData, mintDate: date })}
+            showTimeSelect
+            dateFormat="Pp"
+        />
+        );
+    };
+
+    const handleCheck = (event) => {
+        setChecked(event.target.checked);
+        //if (checked===true) {
+        //    setMintData({ ...mintData, mintDate: "" })
+        //}
+
+    };
+    
 
 
     const renderDeleteButton = (mint) => (
@@ -98,7 +133,7 @@ const EditContent = ({ mint, walletAddress }) => {
         </IconButton>
       )
 
-    
+
 
 return (
     <div className="dialog">
@@ -196,20 +231,23 @@ return (
                     value={mintData.DAO}
                     onChange={(e) => setMintData({ ...mintData, DAO: e.target.value })}
                 />
-                {/*
+
                 <div>
 
-                <h4 style={{ color:'azure' }}>Enter Date/Time Of Mint by clicking below</h4>
+                <h4 style={{ color:'azure' }}>Edit Mint Date/Time</h4>
+                <FormControl>
+                    <Checkbox
+                        checked={checked}
+                        onChange={handleCheck}
+                        inputProps={{ 'aria-label': 'controlled' }}
+                        label='Unknown Mint Date/Time'
+                    />
+                </FormControl>
                 
-                <DatePicker
-                    selected={mintData.mintDate}
-                    value={mintData.mintDate}
-                    onChange ={(date) => setMintData({ ...mintData, mintDate: date })}
-                    showTimeSelect
-                    dateFormat="Pp"
-                />
+                {!checked && renderDateTimePicker()}
+
                 </div>
-                */}
+                
 
                 <div>
                 

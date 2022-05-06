@@ -1,0 +1,86 @@
+.center-on-mints {
+  margin: auto;
+  max-width: 1650px;
+}
+
+.spotlight-header {
+  margin: 0;
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(185, 185, 185);
+  margin-bottom: 30px;
+  margin-top: 10px;
+}
+
+.sub-divider-text {
+font-size: 30px;
+font-weight: bold;
+color: rgb(255, 255, 255);
+margin-bottom: 30px;
+margin-top: 40px;
+text-align: left;
+}
+
+.chrono-text {
+font-size: 30px;
+font-weight: bold;
+color: rgb(255, 255, 255);
+text-align: left;
+}
+
+.cta-button {
+  height: 45px;
+  border: 0;
+  width: auto;
+  padding-left: 40px;
+  padding-right: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  position: relative;
+  text-align: right;
+}
+
+.submit-mint-button {
+  background: -webkit-linear-gradient(left, #00FFA3, #DC1FFF);
+  background-size: 200% 200%;
+  animation: gradient-animation 4s ease infinite;
+  margin-bottom: 20px;
+}
+
+.button-container {
+  display: flex;
+}
+
+.mints-container {
+border: 1px;
+border-width: 3px;
+border: #00FFA3;
+}
+
+
+
+.today-wrapper {
+border-style: solid;
+border-width: 5px;
+border-color: #F44336;
+margin-top: 40px;
+border-bottom-width: 10px;
+border-radius: 3px;
+}
+
+.tomorrow-wrapper {
+border-style: solid;
+border-width: 5px;
+border-color: #FFEB3B;
+margin-top: 40px;
+border-bottom-width: 10px;
+border-radius: 3px;
+}
+
+.sub-text {
+  margin: auto;
+  width: 50%
+}

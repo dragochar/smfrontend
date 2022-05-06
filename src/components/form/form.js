@@ -15,13 +15,16 @@ import FormControl from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
+import Checkbox from '@mui/material/Checkbox';
+import startOfDay from 'date-fns/startOfDay/index.js';
 
 
 const Form = () => {
     const [mintData, setMintData] = useState({
-        creator: '', name: '', description: '', DAO: 'caaDAO', 'selectedFile': '', mintDate: new Date(),
+        creator: '', name: '', description: '', DAO: 'caaDAO', 'selectedFile': '', mintDate: startOfDay(new Date()),
     });
     const dispatch = useDispatch();
+    const [checked, setChecked] = React.useState(false);
     const [value, onChange] = useState(new Date());
     const [value1, setValue] = React.useState(new Date());
 
@@ -33,7 +36,10 @@ const Form = () => {
                 darker: '#ffffff',
                 contrastText: '#ffffff',
             },
-
+            upcoming: {
+                main: '#ff867c',
+                contrastText: '#000000',
+            },
         }
       });
 
@@ -72,9 +78,28 @@ const Form = () => {
             "base64"
             );
         });
+    
+    const handleCheck = (event) => {
+        setChecked(event.target.checked);
+        if (checked===true) {
+            setMintData({ ...mintData, mintDate: "" })
+        }
+
+    };
+
+    const renderDateTimePicker = () => {
+        return (
+            <DatePicker
+            selected={mintData.mintDate}
+            value={mintData.mintDate}
+            onChange ={(date) => setMintData({ ...mintData, mintDate: date })}
+            showTimeSelect
+            dateFormat="Pp"
+        />
+        );
+    };
 
 
-    const [startDate, setStartDate] = useState(new Date());
 
     return (
         <div>
@@ -87,7 +112,7 @@ const Form = () => {
                         <OutlinedInput
                         variant="outlined" 
                         label="Name"
-                        required="true"
+                        required={true}
                         fullWidth
                         color="input"
                         value={mintData.name}
@@ -172,14 +197,16 @@ const Form = () => {
                 <div>
 
                 <h4 style={{ color:'azure' }}>Enter Date/Time Of Mint by clicking below</h4>
+                <FormControl>
+                    <Checkbox
+                        checked={checked}
+                        onChange={handleCheck}
+                        inputProps={{ 'aria-label': 'controlled' }}
+                        label='Unknown Mint Date/Time'
+                    />
+                </FormControl>
+                {!checked && renderDateTimePicker()}
                 
-                <DatePicker
-                    selected={mintData.mintDate}
-                    value={mintData.mintDate}
-                    onChange ={(date) => setMintData({ ...mintData, mintDate: date })}
-                    showTimeSelect
-                    dateFormat="Pp"
-                />
                 </div>
 
                 <div>

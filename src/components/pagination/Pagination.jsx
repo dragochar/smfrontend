@@ -13,6 +13,10 @@ const theme = createTheme({
       primary: {
           main: '#14F195'
       },
+      upcoming: {
+        main: '#ff867c',
+        contrastText: '#000000',
+    },
     },
 });
 

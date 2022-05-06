@@ -1,4 +1,4 @@
-import * as api from '../api';
+import * as api from '../api/index.js';
 import { useState } from 'react';
 
 //Action Creators
@@ -12,7 +12,19 @@ export const getMints = (page) => async (dispatch) => {
         console.log(error.message);
     }
 
-}
+};
+
+export const getTodayMints = () => async (dispatch) => {
+    try {
+        dispatch({ type: 'START_LOADING' });
+        const { data: { data } } = await api.fetchTodayMints();
+        dispatch({ type: 'FETCH_TODAY', payload: { data } });
+        dispatch({ type: 'END_LOADING' });
+    } catch (error) {
+        console.log(error.message);
+    }
+
+};
 
 export const getMintsBySort = (sortQuery) => async (dispatch) => {
     try {
@@ -22,7 +34,7 @@ export const getMintsBySort = (sortQuery) => async (dispatch) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
 
 export const createMint = (mint) => async (dispatch) => {
     try {
@@ -32,7 +44,7 @@ export const createMint = (mint) => async (dispatch) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
 
 export const updateMint = (id, mint) => async (dispatch) => {
     try {
@@ -44,7 +56,7 @@ export const updateMint = (id, mint) => async (dispatch) => {
         console.log(error.message);
     }
 
-}
+};
 
 export const likeMint = (id, wallet) => async (dispatch) => {
 
@@ -57,7 +69,7 @@ export const likeMint = (id, wallet) => async (dispatch) => {
     } catch (error) {
         console.log(error.message);
     }
-}
+};
 
 export const dislikeMint = (id, wallet) => async (dispatch) => {
 
@@ -70,7 +82,7 @@ export const dislikeMint = (id, wallet) => async (dispatch) => {
     } catch (error) {
         console.log(error.message);
     }
-}
+};
 
 
 export const deleteMint = (id) => async (dispatch) => {
@@ -81,5 +93,5 @@ export const deleteMint = (id) => async (dispatch) => {
     } catch(error) {
         console.log(error);
     }
-}
+};
 
