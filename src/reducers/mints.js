@@ -16,9 +16,17 @@ export default (state = { isLoading: true, mints: [], todayMints: [] }, action) 
         case FETCH_TODAY:
             return { ...state, todayMints: action.payload.data };
         case CREATE:
-            return { ...state, mints: [ ...state.mints, action.payload] };
+            return { 
+                ...state,
+                mints: [ ...state.mints, action.payload],
+                todayMints: [ ...state.todayMints, action.payload],
+            };
         case UPDATE:
-            return { ...state, mints: state.mints.map((mint) => (mint._id === action.payload._id ? action.payload : mint)) };
+            return { 
+                ...state,
+                mints: state.mints.map((mint) => (mint._id === action.payload._id ? action.payload : mint)),
+                todayMints: state.todayMints.map((mint) => (mint._id === action.payload._id ? action.payload : mint)),
+            };
         case LIKE:
             return { 
                 ...state, 
@@ -32,7 +40,11 @@ export default (state = { isLoading: true, mints: [], todayMints: [] }, action) 
                 todayMints: state.todayMints.map((mint) => (mint._id === action.payload._id ? action.payload : mint))
              };
         case DELETE:
-            return { ...state, mints: state.mints.filter((mint) => mint._id !== action.payload) };
+            return { 
+                ...state, 
+                mints: state.mints.filter((mint) => mint._id !== action.payload),
+                todayMints: state.todayMints.filter((mint) => mint._id !== action.payload),
+             };
         default:
             return state;
     }
