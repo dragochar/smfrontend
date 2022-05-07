@@ -22,10 +22,12 @@ text-align: left;
 }
 
 .chrono-text {
-font-size: 30px;
+font-size: 40px;
 font-weight: bold;
 color: rgb(255, 255, 255);
 text-align: left;
+margin-left: 20px;
+margin-bottom: 3;
 }
 
 .cta-button {
@@ -64,20 +66,44 @@ border: #00FFA3;
 
 .today-wrapper {
 border-style: solid;
-border-width: 5px;
-border-color: #F44336;
-margin-top: 40px;
+border-width: 1px;
+border-color: #f443366e;
+margin-top: 20px;
 border-bottom-width: 10px;
 border-radius: 3px;
+padding-left: 10px;
+padding-right: 10px;
+padding-bottom: 0px;
+margin-bottom: 10px;
+max-width: 1745px;
 }
 
 .tomorrow-wrapper {
 border-style: solid;
-border-width: 5px;
-border-color: #FFEB3B;
-margin-top: 40px;
+border-width: 1px;
+border-color: #ffeb3b66;
+margin-top: 20px;
 border-bottom-width: 10px;
 border-radius: 3px;
+padding-left: 10px;
+padding-right: 10px;
+padding-bottom: 0px;
+margin-bottom: 10px;
+max-width: 1745px;
+}
+
+.two-days-wrapper {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #3bffde60;
+  margin-top: 20px;
+  border-bottom-width: 10px;
+  border-radius: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 0px;
+  margin-bottom: 10px;
+  max-width: 1745px;
 }
 
 .sub-text {

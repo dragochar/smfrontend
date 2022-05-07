@@ -1,21 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTodayMints } from '../../actions/mints';
+import { getTodayMints, getTomorrowMints, getTwoDaysMints } from '../../actions/mints';
 import '../mints/mints.css';
 import Grid from '@mui/material/Grid';
 import Mint from './mint/mint';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+
+
+
 
 
 const TodayMints = ({ page, sort, setSort }) => {
-    const { todayMints, isLoading } = useSelector((state) => state.mints);
-    const firstFourMints = todayMints.slice(0, 4);
-    const secondRealFourMints = todayMints.slice(4, 8);
+    const { todayMints, tomorrowMints, twoDaysMints, isLoading } = useSelector((state) => state.mints);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getTodayMints());
+        dispatch(getTodayMints('caaDAO'));
+        dispatch(getTomorrowMints('caaDAO'));
+        dispatch(getTwoDaysMints('caaDAO'));
     }, [dispatch]);
 
     return (
@@ -24,28 +29,46 @@ const TodayMints = ({ page, sort, setSort }) => {
         <div>
             <div className="today-wrapper">
                 <div className="chrono-text">Today</div>
-                <Box component="span" sx={{ p: 2, border: '2px red' }}>
+            </div>
+
                 <Grid container spacing={3}>
-                    {firstFourMints.map((mint) => (
+                    {todayMints.map((mint) => (
                         <Grid item xs={6} sm={3} key={mint._id}>
                             <Mint mint={mint} />
                         </Grid>
                     ))}
                 </Grid>
-                </Box>
-            </div>
             <div className="tomorrow-wrapper">
                 <div className="chrono-text">Thursday</div>
-                <Box component="span" sx={{ p: 2, border: '2px red' }}>
-                <Grid container spacing={3}>
-                    {secondRealFourMints.map((mint) => (
+            </div>
+               <Grid container spacing={3}>
+                    {tomorrowMints.map((mint) => (
                         <Grid item xs={6} sm={3} key={mint._id}>
                             <Mint mint={mint} />
                         </Grid>
                     ))}
                 </Grid>
-                </Box>
+            <div className="two-days-wrapper">
+                <div className="chrono-text">Friday</div>
             </div>
+                <Box component="span" sx={{ p: 2, border: '2px red' }}>
+                {console.log(twoDaysMints.length)}
+                {(twoDaysMints.length!==0) ? 
+                <Grid container spacing={3}>
+                    {twoDaysMints.map((mint) => (
+                        <Grid item xs={6} sm={3} key={mint._id}>
+                            <Mint mint={mint} />
+                        </Grid>
+                    ))}
+                </Grid>
+                :
+                (
+                <Typography variant="header2" sx={{ color: '#ffffff', fontWeight: 900 }}>
+                    No Mints Available For This Day. Checkout Explore For More Mints!
+                </Typography>
+                )
+                }
+                </Box>
             </div>
             </>
         ) 

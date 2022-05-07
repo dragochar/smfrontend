@@ -7,7 +7,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 import useStyles from './styles';
 
-
 const theme = createTheme({
     palette: {
       primary: {
@@ -26,7 +25,7 @@ const Paginate = ({ page }) => {
     const dispatch = useDispatch();
     useEffect(() => {
         if (page) {
-            dispatch(getMints(page));
+            dispatch(getMints('caaDAO', page));
         }
     }, [dispatch, page]);
 

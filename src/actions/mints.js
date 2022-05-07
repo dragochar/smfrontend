@@ -2,10 +2,10 @@ import * as api from '../api/index.js';
 import { useState } from 'react';
 
 //Action Creators
-export const getMints = (page) => async (dispatch) => {
+export const getMints = (dao, page) => async (dispatch) => {
     try {
         dispatch({ type: 'START_LOADING' });
-        const { data: { data, currentPage, numberOfPages } } = await api.fetchMints(page);
+        const { data: { data, currentPage, numberOfPages } } = await api.fetchMints(dao, page);
         dispatch({ type: 'FETCH_ALL', payload: { data, currentPage, numberOfPages } });
         dispatch({ type: 'END_LOADING' });
     } catch (error) {
@@ -14,11 +14,35 @@ export const getMints = (page) => async (dispatch) => {
 
 };
 
-export const getTodayMints = () => async (dispatch) => {
+export const getTodayMints = (dao) => async (dispatch) => {
     try {
         dispatch({ type: 'START_LOADING' });
-        const { data: { data } } = await api.fetchTodayMints();
+        const { data: { data } } = await api.fetchTodayMints(dao);
         dispatch({ type: 'FETCH_TODAY', payload: { data } });
+        dispatch({ type: 'END_LOADING' });
+    } catch (error) {
+        console.log(error.message);
+    }
+};
+
+export const getTomorrowMints = (dao) => async (dispatch) => {
+    try {
+        dispatch({ type: 'START_LOADING' });
+        const { data: { data } } = await api.fetchTomorrowMints(dao);
+        dispatch({ type: 'FETCH_TOMORROW', payload: { data } });
+        dispatch({ type: 'END_LOADING' });
+    } catch (error) {
+        console.log(error.message);
+    }
+
+};
+
+
+export const getTwoDaysMints = (dao) => async (dispatch) => {
+    try {
+        dispatch({ type: 'START_LOADING' });
+        const { data: { data } } = await api.fetchTwoDaysMints(dao);
+        dispatch({ type: 'FETCH_TWO_DAYS', payload: { data } });
         dispatch({ type: 'END_LOADING' });
     } catch (error) {
         console.log(error.message);

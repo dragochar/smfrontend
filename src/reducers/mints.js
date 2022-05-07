@@ -1,6 +1,6 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, DISLIKE, START_LOADING, END_LOADING, FETCH_TODAY } from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, DISLIKE, START_LOADING, END_LOADING, FETCH_TODAY, FETCH_TOMORROW, FETCH_TWO_DAYS } from '../constants/actionTypes';
 
-export default (state = { isLoading: true, mints: [], todayMints: [] }, action) => {
+export default (state = { isLoading: true, mints: [], todayMints: [], tomorrowMints: [], twoDaysMints: [] }, action) => {
     switch (action.type) {
         case START_LOADING:
             return { ...state, isLoading: true };
@@ -15,35 +15,49 @@ export default (state = { isLoading: true, mints: [], todayMints: [] }, action) 
             };
         case FETCH_TODAY:
             return { ...state, todayMints: action.payload.data };
+        case FETCH_TOMORROW:
+            return { ...state, tomorrowMints: action.payload.data };
+        case FETCH_TWO_DAYS:
+            return { ...state, twoDaysMints: action.payload.data };
         case CREATE:
             return { 
                 ...state,
                 mints: [ ...state.mints, action.payload],
                 todayMints: [ ...state.todayMints, action.payload],
+                tomorrowMints: [ ...state.tomorrowMints, action.payload],
+                twoDaysMints: [ ...state.twoDaysMints, action.payload],
             };
         case UPDATE:
             return { 
                 ...state,
                 mints: state.mints.map((mint) => (mint._id === action.payload._id ? action.payload : mint)),
                 todayMints: state.todayMints.map((mint) => (mint._id === action.payload._id ? action.payload : mint)),
+                tomorrowMints: state.tomorrowMints.map((mint) => (mint._id === action.payload._id ? action.payload : mint)),
+                twoDaysMints: state.twoDaysMints.map((mint) => (mint._id === action.payload._id ? action.payload : mint)),
             };
         case LIKE:
             return { 
                 ...state, 
                 mints: state.mints.map((mint) => (mint._id === action.payload._id ? action.payload : mint)),
-                todayMints: state.todayMints.map((mint) => (mint._id === action.payload._id ? action.payload : mint))
+                todayMints: state.todayMints.map((mint) => (mint._id === action.payload._id ? action.payload : mint)),
+                tomorrowMints: state.tomorrowMints.map((mint) => (mint._id === action.payload._id ? action.payload : mint)),
+                twoDaysMints: state.twoDaysMints.map((mint) => (mint._id === action.payload._id ? action.payload : mint)),
             };
         case DISLIKE:
             return { 
                 ...state, 
                 mints: state.mints.map((mint) => (mint._id === action.payload._id ? action.payload : mint)),
-                todayMints: state.todayMints.map((mint) => (mint._id === action.payload._id ? action.payload : mint))
+                todayMints: state.todayMints.map((mint) => (mint._id === action.payload._id ? action.payload : mint)),
+                tomorrowMints: state.tomorrowMints.map((mint) => (mint._id === action.payload._id ? action.payload : mint)),
+                twoDaysMints: state.twoDaysMints.map((mint) => (mint._id === action.payload._id ? action.payload : mint)),
              };
         case DELETE:
             return { 
                 ...state, 
                 mints: state.mints.filter((mint) => mint._id !== action.payload),
                 todayMints: state.todayMints.filter((mint) => mint._id !== action.payload),
+                tomorrowMints: state.tomorrowMints.filter((mint) => mint._id !== action.payload),
+                twoDaysMints: state.twoDaysMints.filter((mint) => mint._id !== action.payload),
              };
         default:
             return state;

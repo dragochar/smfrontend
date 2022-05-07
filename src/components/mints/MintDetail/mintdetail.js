@@ -20,6 +20,7 @@ import DeleteOutlineIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
 import { deleteMint } from '../../../actions/mints';
 import AdminWallets from '../../../wallets/adminwallets';
+import CommentSection from '../../comments/CommentSection';
 
 
 
@@ -44,7 +45,7 @@ const DetailContent = ({ mint, walletAddress }) => {
         <div className="center">
         <CardMedia sx={{ borderRadius: 5, maxWidth: 300, maxHeight: 300, border: 1, marginLeft: 'auto', marginRight: 'auto'}} component="img" width="300" height="300" image={mint.selectedFile} alt="mint" />
         </div>
-        <DialogContent sx={{ width: 550, maxWidth: 550 }}>
+        <DialogContent sx={{ width: 600, maxWidth: 600 }}>
 
         <div className="links">
           <div className="votes-block">
@@ -65,17 +66,16 @@ const DetailContent = ({ mint, walletAddress }) => {
         </div>
         <Typography variant="body2" sx={{ color: '#e6e6e6', fontWeight: 900 }}>{mint.supply} Supply</Typography>
 
-        
+        <div className="description-box">
           <DialogContentText sx={{ color: '#e6e6e6' }}>{mint.description}</DialogContentText>
+        </div>
 
         <br></br>
         {AdminWallets.includes(walletAddress) && renderDeleteButton(mint)}
 
           
         </DialogContent>
-
-        <Divider />
-        {/*<Typography variant="body2" sx={{ color: '#FFFFFF', fontWeight: 900 }}>Comments</Typography>*/}
+        <CommentSection mint={mint} />
 
 
     </div>
