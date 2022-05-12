@@ -31,7 +31,7 @@ const DetailContent = ({ mint, walletAddress }) => {
   const dispatch = useDispatch();
 
   const renderDeleteButton = (mint) => (
-    <IconButton color="info" aria-label="delete" onClick={()=>{dispatch(deleteMint(mint._id))}}>
+    <IconButton color="primary" aria-label="delete" onClick={()=>{dispatch(deleteMint(mint._id))}}>
       <DeleteOutlineIcon />
     </IconButton>
   )
@@ -75,7 +75,7 @@ const DetailContent = ({ mint, walletAddress }) => {
 
           
         </DialogContent>
-        <CommentSection mint={mint} />
+        <CommentSection mint={mint} walletAddress={walletAddress} />
 
 
     </div>

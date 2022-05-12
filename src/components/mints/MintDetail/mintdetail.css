@@ -24,6 +24,6 @@
 }
 
 .description-box {
-    margin: auto;
-    max-width: fit-content;
+    max-width: 350px;
+    width: 500px;
 }

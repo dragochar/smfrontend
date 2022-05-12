@@ -14,3 +14,4 @@ export const updateMint = (id, updatedMint) => API.patch(`/mints/${id}`, updated
 export const likeMint = (id, walletId) => API.patch(`/mints/${id}/${walletId}/likeMint`);
 export const dislikeMint = (id, walletId) => API.patch(`/mints/${id}/${walletId}/dislikeMint`);
 export const deleteMint = (id) => API.delete(`/mints/${id}`);
+export const comment = (value, id) => API.post(`/mints/${id}/commentPost`, { value });

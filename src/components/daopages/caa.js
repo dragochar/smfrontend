@@ -62,7 +62,7 @@ const Home = () => {
 
   const address = userAccount.publicKey;
   if (walletContext.publicKey) {
-    console.log(walletContext.publicKey.toBase58());
+    //console.log(walletContext.publicKey.toBase58());
   }
 
 

@@ -66,7 +66,7 @@ const Home = () => {
 
   const address = userAccount.publicKey;
   if (walletContext.publicKey) {
-    console.log(walletContext.publicKey.toBase58());
+    //console.log(walletContext.publicKey.toBase58());
   }
 
   const theme = createTheme({
@@ -162,16 +162,7 @@ const Home = () => {
                     <p className="sub-text">
                         Hi there, welcome to SolMints! 👋
                     </p>
-                    <Autocomplete 
-                      options = {onboardedDAOs}
-                      renderInput={(params) => <TextField {...params} label="Our Partner DAOs" />}
-
-                    />
-                    <br></br>
-                    <br></br>
-                    
-                    <PrintPubKey setPublicKey={setWalletAddress} />
-                    {/*!AdminWallets.includes(walletAddress) && walletAddress && renderConnectedContainer()*/}
+                    <iframe src='https://my.spline.design/solmints-0c49ca0c7934b8697c23300df3a6cd1a/' frameborder='0' width='100%' height='100%'></iframe>
                     {/*AdminWallets.includes(walletAddress) && renderAdminContainer()*/}
 
                     

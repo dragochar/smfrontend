@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, DISLIKE, START_LOADING, END_LOADING, FETCH_TODAY, FETCH_TOMORROW, FETCH_TWO_DAYS } from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, DISLIKE, START_LOADING, END_LOADING, FETCH_TODAY, FETCH_TOMORROW, FETCH_TWO_DAYS, COMMENT } from '../constants/actionTypes';
 
 export default (state = { isLoading: true, mints: [], todayMints: [], tomorrowMints: [], twoDaysMints: [] }, action) => {
     switch (action.type) {
@@ -59,6 +59,16 @@ export default (state = { isLoading: true, mints: [], todayMints: [], tomorrowMi
                 tomorrowMints: state.tomorrowMints.filter((mint) => mint._id !== action.payload),
                 twoDaysMints: state.twoDaysMints.filter((mint) => mint._id !== action.payload),
              };
+        case COMMENT:
+            return {
+                ...state,
+                mints: state.mints.map((mint) => {
+                    if(mint._id === action.payload._id) {
+                        return action.payloAD;
+                    }
+                    return mint;
+                }),
+            };
         default:
             return state;
     }

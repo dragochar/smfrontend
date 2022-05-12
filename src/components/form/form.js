@@ -56,7 +56,6 @@ const Form = () => {
         try {
             const file = event.target.files[0];
             const image = await resizeFile(file);
-            console.log(image);
             setMintData({ ...mintData, selectedFile: image })
           } catch (err) {
             console.log(err);

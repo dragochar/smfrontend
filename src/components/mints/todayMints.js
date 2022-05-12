@@ -10,9 +10,6 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 
-
-
-
 const TodayMints = ({ page, sort, setSort }) => {
     const { todayMints, tomorrowMints, twoDaysMints, isLoading } = useSelector((state) => state.mints);
     const dispatch = useDispatch();
@@ -51,8 +48,6 @@ const TodayMints = ({ page, sort, setSort }) => {
             <div className="two-days-wrapper">
                 <div className="chrono-text">Friday</div>
             </div>
-                <Box component="span" sx={{ p: 2, border: '2px red' }}>
-                {console.log(twoDaysMints.length)}
                 {(twoDaysMints.length!==0) ? 
                 <Grid container spacing={3}>
                     {twoDaysMints.map((mint) => (
@@ -68,7 +63,6 @@ const TodayMints = ({ page, sort, setSort }) => {
                 </Typography>
                 )
                 }
-                </Box>
             </div>
             </>
         ) 
