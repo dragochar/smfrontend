@@ -30,6 +30,13 @@ margin-left: 20px;
 margin-bottom: 3;
 }
 
+.explainer-text {
+  font-size: 40px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  }
+
 .cta-button {
   height: 45px;
   border: 0;

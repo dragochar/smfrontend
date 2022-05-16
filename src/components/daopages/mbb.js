@@ -1,36 +1,35 @@
-import React, { useEffect, useState, FC, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getMints } from '../../actions/mints';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Mints from '../mints/mints';
+import TodayMints from '../mints/todayMints';
 import AdminWallets from '../../wallets/adminwallets';
 import CyberWallets from '../../wallets/cyberapeWallets';
-import brandLogo from '../../assets/caa.gif'
+import brandLogo from '../../assets/mbb.gif'
 import Footer from '../common/footer';
 import Card from '@mui/material/Card';
 import { Grow, Grid, Paper, AppBar, TextField, Button } from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router-dom';
 import Pagination from '../pagination/Pagination';
-import Autocomplete from '@mui/material/Autocomplete';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-
+import RenderSelectButtons from '../common/renderSelectButtons';
+import '../daopages/daopages.css';
 
 import Form from '../form/form';
 //Kellen Imports
 
 import { account, Mint, util, Wallet, WalletI } from "easy-spl";
-import { useWallet, useConnection, WalletProvider, ConnectionProvider } from '@solana/wallet-adapter-react';
+import { useWallet, WalletProvider, ConnectionProvider } from '@solana/wallet-adapter-react';
 import { getPhantomWallet, getLedgerWallet } from '@solana/wallet-adapter-wallets';
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
-import {clusterApiUrl, Connection, PublicKey, Transaction} from '@solana/web3.js';
+import {clusterApiUrl, Connection, PublicKey} from '@solana/web3.js';
 import {BN, Provider, web3} from '@project-serum/anchor';
-
 
 // Constants
 const TWITTER_HANDLE = 'realsolmints';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-const {Token} = require('@solana/spl-token');
+const pageName = 'mbb';
 
 
 
@@ -53,44 +52,34 @@ const Home = () => {
   const query = useQuery();
   const history = useHistory();
   const page = query.get('page') || 1;
-  const searchQuery = query.get('searchQuery');
+  const [sort, setSort] = useState('Upcoming');
+
 
   const walletContext = useWallet();
 
   const network = "http://api.mainnet-beta.solana.com/";
   const connection = new Connection(network, 'processed');
-  //const { connection } = useConnection();
   const provider = new Provider(connection, walletContext, opts.preflightCommitment);
   const userAccount = new Wallet(connection, provider.wallet);
-  const { publicKey, sendTransaction } = useWallet();
 
   const address = userAccount.publicKey;
   if (walletContext.publicKey) {
     //console.log(walletContext.publicKey.toBase58());
   }
 
-  const theme = createTheme({
-    palette: {
-      mode: 'dark',
-      upcoming: {
-        main: '#ff867c',
-        contrastText: '#000000',
-    },
-    primary: {
-      main: '#ff867c',
-      contrastText: '#000000',
-  },
-    }
-  });
 
 
   const renderConnectedContainer = () => (
     <div>
-        <Mints page={page} />
-            <div className="paginationContainer">
-            <Pagination page={page} />
-            </div>
+        <div>
+        {sort==="Explore" ?  <Mints page={page} /> : <></>}
+        {sort==="Upcoming" ?  <TodayMints /> : <></>}
+
+        <div className="paginationContainer">
+        {sort==="Explore" ? <Pagination page={page} /> : <></>}
+        </div>
         <br></br>
+        </div>
     </div>
   );
 
@@ -103,20 +92,27 @@ const Home = () => {
     </div>
   );
 
-  const renderAdminContainer = () => (
-    <div>
-      <Mints />
+  const renderSelectButtons = () => {
+    return (
+    <RenderSelectButtons sort={sort} setSort={setSort} />
+    )
+  }
+
+  const renderAdminContainer = () => {
+    return (
+      <div>
+        <div>
+      {sort==="Explore" ?  <Mints page={page} /> : <></>}
+      {sort==="Upcoming" ?  <TodayMints /> : <></>}
       <div className="paginationContainer">
-        <Pagination page={page} />
+        {sort==="Explore" ? <Pagination page={page} /> : <></>}
+        </div>
+      <br></br>
       </div>
-      <br></br>
-      <br></br>
       <Form />
-      <br></br>
-      <br></br>
-      <br></br>
-    </div>
-  );
+  </div>
+    );
+};
 
 
 
@@ -144,31 +140,31 @@ const Home = () => {
     );
 };
 
-    const onboardedDAOs = [
-      {label: 'CyberApeAge', },
-    ]
-
-
 
     return (
         <div className="App">
-            <ThemeProvider theme={theme}>
-
             <div className={walletAddress ? 'authed-container' : 'container'}>
                 <div className="header-container">
                     <div>
-                        <p className="header main-text-logo">SolMints</p>
+                        <img alt="MBBImg" src={brandLogo} width='100' height='100'></img>
+                        <p className="header main-text-logo">BabyMints</p>
                     </div>
-                    <p className="sub-text">
-                        Hi there, welcome to SolMints! 👋
-                    </p>
-                    <iframe src='https://my.spline.design/solmints-0c49ca0c7934b8697c23300df3a6cd1a/' frameborder='0' width='100%' height='100%'></iframe>
-                    {/*AdminWallets.includes(walletAddress) && renderAdminContainer()*/}
-                    {/*<div className="explainer-text">Check out some of our DAO Partners!</div>*/}
-                     
+                    <div>
+                      {walletAddress && renderSelectButtons()}
+                    </div>
+                    <div>
+                    {walletAddress ? <p className="sub-text">View upcoming mints, and vote on your favourites ✨</p> :
+                    <p className="sub-text">Connect a Solana wallet with an MBB to get started! 🍼</p>
+                    }
+                        
+                    </div>
+                    <PrintPubKey setPublicKey={setWalletAddress} />
+                    {!AdminWallets.includes(walletAddress) && walletAddress && renderConnectedContainer()}
+                    {AdminWallets.includes(walletAddress) && renderAdminContainer()}
+                    
+                   
                 </div>
             </div>
-            </ThemeProvider>
         </div>
     )
 

@@ -1,13 +1,26 @@
 import React, { useState, useRef } from 'react';
-import { Typography, TextField, Button } from '@material-ui/core';
+import { Typography, TextField } from '@material-ui/core';
+import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux';
 import { commentPost } from '../../actions/mints';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+
 
 
 const CommentSection = ({ mint, walletAddress }) => {
 
     const [comment, setComment] = useState('');
     const dispatch = useDispatch();
+
+    const theme = createTheme({
+        palette: {
+            mode: "dark",
+            primary: {
+                main: "#14F195",
+              },
+        }
+      });
 
     const handleClick = () =>  {
         let fullComment = []
@@ -30,9 +43,11 @@ const CommentSection = ({ mint, walletAddress }) => {
                             onChange={(e) => setComment(e.target.value)}
                         />
                         <div>
+                        <ThemeProvider theme={theme}>
                         <Button style={{ marginTop: '10px'}} fullWidth disabled={!comment} variant="contained" onClick={handleClick}>
                             Comment
                         </Button>
+                        </ThemeProvider>
                         </div>
                     </div>
                     <Typography gutterBottom variant="h6">Comments</Typography>
