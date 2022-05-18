@@ -21,6 +21,7 @@ import { useDispatch } from 'react-redux';
 import { deleteMint } from '../../../actions/mints';
 import AdminWallets from '../../../wallets/adminwallets';
 import CommentSection from '../../comments/CommentSection';
+import TwitterStats from '../../twitter/TwitterStats.js';
 
 
 
@@ -71,6 +72,7 @@ const DetailContent = ({ mint, walletAddress }) => {
         </div>
 
         <br></br>
+        <TwitterStats />
         {AdminWallets.includes(walletAddress) && renderDeleteButton(mint)}
 
           

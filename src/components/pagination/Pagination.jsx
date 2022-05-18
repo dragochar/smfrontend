@@ -19,7 +19,7 @@ const theme = createTheme({
     },
 });
 
-const Paginate = ({ page }) => {
+const Paginate = ({ page, pageName }) => {
     const { numberOfPages, isLoading } = useSelector((state) => state.mints);
     const classes = useStyles();
     const dispatch = useDispatch();
@@ -45,7 +45,7 @@ const Paginate = ({ page }) => {
             }}
             color="primary"
             renderItem={(item) => (
-                <PaginationItem {...item} color='primary' component={Link} to={`/caa?page=${item.page}`} sx= {{
+                <PaginationItem {...item} color='primary' component={Link} to={`/${pageName}?page=${item.page}`} sx= {{
                     color: 'white',
                     borderColor: 'rgb(41, 53, 76)',
                 }}

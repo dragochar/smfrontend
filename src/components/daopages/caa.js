@@ -29,6 +29,7 @@ import {BN, Provider, web3} from '@project-serum/anchor';
 // Constants
 const TWITTER_HANDLE = 'realsolmints';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
+const pageName = 'caa';
 
 
 const opts = {
@@ -74,7 +75,7 @@ const Home = () => {
         {sort==="Upcoming" ?  <TodayMints /> : <></>}
 
         <div className="paginationContainer">
-        {sort==="Explore" ? <Pagination page={page} /> : <></>}
+        {sort==="Explore" ? <Pagination page={page} pageName={pageName} /> : <></>}
         </div>
         <br></br>
         </div>
