@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({ baseURL: 'https://daospot.herokuapp.com' })
-const twitterAPI = axios.create({ baseURL: 'http://api.twitter.com/2/users/by/username/' })
+const twitterAPI = axios.create({ baseURL: 'https://api.twitter.com/2/users/by/username/' })
 
 
 const config = {
