@@ -31,11 +31,6 @@ const DetailContent = ({ mint, walletAddress }) => {
 
   const dispatch = useDispatch();
 
-  const renderDeleteButton = (mint) => (
-    <IconButton color="primary" aria-label="delete" onClick={()=>{dispatch(deleteMint(mint._id))}}>
-      <DeleteOutlineIcon />
-    </IconButton>
-  )
 
   return (
     <div className="dialog">
@@ -72,9 +67,6 @@ const DetailContent = ({ mint, walletAddress }) => {
         </div>
 
         <br></br>
-        <TwitterStats />
-        {AdminWallets.includes(walletAddress) && renderDeleteButton(mint)}
-
           
         </DialogContent>
         <CommentSection mint={mint} walletAddress={walletAddress} />

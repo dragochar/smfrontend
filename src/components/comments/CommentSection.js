@@ -1,9 +1,11 @@
 import React, { useState, useRef } from 'react';
-import { Typography, TextField } from '@material-ui/core';
+import TextField from '@mui/material/TextField';
+import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useDispatch } from 'react-redux';
 import { commentPost } from '../../actions/mints';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Comment from './Comment';
 
 
 
@@ -15,7 +17,7 @@ const CommentSection = ({ mint, walletAddress }) => {
 
     const theme = createTheme({
         palette: {
-            mode: "dark",
+            mode: 'dark',
             primary: {
                 main: "#14F195",
               },
@@ -29,10 +31,23 @@ const CommentSection = ({ mint, walletAddress }) => {
         setComment('');
     };
 
+    const renderComments = () => {
+
+        return (
+            <>
+            <Typography gutterBottom variant="h6" sx={{ color: '#ffffff', fontWeight: 700 }}>Comments</Typography>
+            {mint.comments.map((c, i) => (
+                <Comment comment={c} key={i} />
+            ))}
+            </>
+        );
+    }
+
     return (
         <div>
             <div>
                 <div>
+                <ThemeProvider theme={theme}>
                     <div>
                         <TextField 
                             fullWidth
@@ -43,19 +58,15 @@ const CommentSection = ({ mint, walletAddress }) => {
                             onChange={(e) => setComment(e.target.value)}
                         />
                         <div>
-                        <ThemeProvider theme={theme}>
                         <Button style={{ marginTop: '10px'}} fullWidth disabled={!comment} variant="contained" onClick={handleClick}>
                             Comment
                         </Button>
-                        </ThemeProvider>
                         </div>
+                        <br></br>
                     </div>
-                    <Typography gutterBottom variant="h6">Comments</Typography>
-                    {mint.comments.map((c, i) => (
-                        <Typography key={i} gutterBottom>
-                            {c[0]}
-                        </Typography>
-                    ))}
+                    {mint.comments[0].length!==0 && renderComments()}
+                    {console.log(mint.comments)}
+                </ThemeProvider>
                 </div>
             </div>
         </div>

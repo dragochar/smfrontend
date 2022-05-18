@@ -17,7 +17,7 @@ const TwitterStats = ({}) => {
 
     return(
         <>
-            {console.log('testingyo', twitterStats)}
+            {/*console.log('testingyo', twitterStats)*/}
         </>
     );
 

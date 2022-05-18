@@ -86,7 +86,7 @@ const Home = () => {
   const renderUnauthenticatedContainer = () => (
     <div>
         <Card>
-          <h2>Please make sure you connect with a wallet that holds a Cyber Ape.</h2>
+          <h2>Please make sure you connect with a wallet that holds a Monkey Baby Business NFT.</h2>
         </Card>
         <br></br>
     </div>
@@ -105,7 +105,7 @@ const Home = () => {
       {sort==="Explore" ?  <Mints page={page} /> : <></>}
       {sort==="Upcoming" ?  <TodayMints /> : <></>}
       <div className="paginationContainer">
-        {sort==="Explore" ? <Pagination page={page} /> : <></>}
+        {sort==="Explore" ? <Pagination page={page} pageName={pageName} /> : <></>}
         </div>
       <br></br>
       </div>

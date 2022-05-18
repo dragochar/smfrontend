@@ -64,7 +64,7 @@ export default (state = { isLoading: true, mints: [], todayMints: [], tomorrowMi
                 ...state,
                 mints: state.mints.map((mint) => {
                     if(mint._id === action.payload._id) {
-                        return action.payloAD;
+                        return action.payload;
                     }
                     return mint;
                 }),
