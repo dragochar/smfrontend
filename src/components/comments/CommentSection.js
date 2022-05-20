@@ -64,7 +64,8 @@ const CommentSection = ({ mint, walletAddress }) => {
                         </div>
                         <br></br>
                     </div>
-                    {mint.comments[0].length!==0 && renderComments()}
+                    {console.log(mint.comments[0])}
+                    {mint.comments.length!==1 && renderComments()}
                     {console.log(mint.comments)}
                 </ThemeProvider>
                 </div>

@@ -5,11 +5,13 @@ import './comments.css';
 
 const Comment = ({ comment }) => {
 
+    if (comment.length===0) return <></>;
+
     let commentPoster = comment[1];
     let endCommentPoster = commentPoster.slice(-4, -1);
     commentPoster = commentPoster.slice(0, 4);
     commentPoster = commentPoster.concat('...', endCommentPoster);
-    
+
     return(
         <div className="comment">
             <Typography sx={{ color: '#ffffff', fontWeight: 700 }} gutterBottom>
