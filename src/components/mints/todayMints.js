@@ -38,7 +38,7 @@ const TodayMints = ({ page, dao, AdminWallets, setSort }) => {
                     ))}
                 </Grid>
             <div className="tomorrow-wrapper">
-                <div className="chrono-text">Thursday</div>
+                <div className="chrono-text">Monday</div>
             </div>
                <Grid container spacing={3}>
                     {tomorrowMints.map((mint) => (
@@ -48,7 +48,7 @@ const TodayMints = ({ page, dao, AdminWallets, setSort }) => {
                     ))}
                 </Grid>
             <div className="two-days-wrapper">
-                <div className="chrono-text">Friday</div>
+                <div className="chrono-text">Tuesday</div>
             </div>
                 {(twoDaysMints.length!==0) ? 
                 <Grid container spacing={3}>
