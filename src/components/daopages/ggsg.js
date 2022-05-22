@@ -7,7 +7,7 @@ import Mints from '../mints/mints';
 import TodayMints from '../mints/todayMints';
 import AdminWallets from '../../wallets/adminwallets';
 import CyberWallets from '../../wallets/cyberapeWallets';
-import brandLogo from '../../assets/ggsg.gif'
+import brandLogo from '../../assets/ggsg.gif';
 import Footer from '../common/footer';
 import Card from '@mui/material/Card';
 import { Grow, Grid, Paper, AppBar, TextField, Button } from '@material-ui/core';
@@ -33,6 +33,8 @@ const pageName = 'ggsg';
 const dao = 'ggsgDAO';
 
 
+
+
 const opts = {
 	preflightCommitment: "processed"
 };
@@ -45,9 +47,7 @@ function useQuery() {
 
 const Home = () => {
 
-      // State
   const [walletAddress, setWalletAddress] = useState(null);
-  const [isAdminWallet, setIsAdminWallet] = useState(null);
   const dispatch = useDispatch();
   const query = useQuery();
   const history = useHistory();
@@ -72,8 +72,9 @@ const Home = () => {
   const renderConnectedContainer = () => (
     <div>
         <div>
-        {sort==="Explore" ?  <Mints page={page} /> : <></>}
-        {sort==="Upcoming" ?  <TodayMints dao={dao} /> : <></>}
+        {console.log({AdminWallets})}
+        {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminWallets} /> : <></>}
+        {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminWallets} setSort={setSort} /> : <></>}
 
         <div className="paginationContainer">
         {sort==="Explore" ? <Pagination page={page} pageName={pageName} dao={dao} /> : <></>}
@@ -102,8 +103,8 @@ const Home = () => {
     return (
       <div>
         <div>
-      {sort==="Explore" ?  <Mints page={page} /> : <></>}
-      {sort==="Upcoming" ?  <TodayMints dao={dao} /> : <></>}
+      {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminWallets} /> : <></>}
+      {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminWallets} setSort={setSort} /> : <></>}
       <div className="paginationContainer">
         {sort==="Explore" ? <Pagination page={page} pageName={pageName} dao={dao} /> : <></>}
         </div>
@@ -154,7 +155,7 @@ const Home = () => {
                     </div>
                     <div>
                     {walletAddress ? <p className="sub-text">View upcoming mints, and vote on your favourites ✨</p> :
-                    <p className="sub-text">Connect a Solana wallet with a Gecko to get started! 🦎</p>
+                    <p className="sub-text">Connect a Solana wallet with a Gecko to get started!</p>
                     }
                         
                     </div>
@@ -162,7 +163,6 @@ const Home = () => {
                     {!AdminWallets.includes(walletAddress) && walletAddress && renderConnectedContainer()}
                     {AdminWallets.includes(walletAddress) && renderAdminContainer()}
                     
-                   
                 </div>
             </div>
         </div>
