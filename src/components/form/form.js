@@ -17,8 +17,7 @@ import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import Checkbox from '@mui/material/Checkbox';
 import startOfDay from 'date-fns/startOfDay/index.js';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
+
 
 const Form = ({ dao }) => {
     var daoName = String(dao);
@@ -197,14 +196,14 @@ const Form = ({ dao }) => {
 
                 <div>
 
-                <h4 style={{ color:'azure' }}>Enter Date/Time Of Mint by clicking below</h4>
-
-                <div className="checkbox">
-                <FormGroup>
-                    <FormControlLabel control={<Checkbox checked={checked} onChange={handleCheck} inputProps={{ 'aria-label': 'controlled' }} />} sx={{ color: '#ffffff' }}label="Label" />
-                </FormGroup>
-                </div>
-
+                <h4 style={{ color:'azure' }}>Enter Date/Time Of Mint by clicking below (click checkbox if unknown)</h4>
+                <FormControl>
+                    <Checkbox
+                        checked={checked}
+                        onChange={handleCheck}
+                        inputProps={{ 'aria-label': 'controlled' }}
+                    />
+                </FormControl>
                 {!checked && renderDateTimePicker()}
                 
                 </div>
