@@ -77,7 +77,7 @@ const Home = () => {
         {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminWallets} setSort={setSort} /> : <></>}
 
         <div className="paginationContainer">
-        {sort==="Explore" ? <Pagination page={page} pageName={pageName} dao={dao} /> : <></>}
+        {sort==="Explore" ? <Pagination page={page} pageName={pageName} dao={dao} AdminWallets={AdminWallets} /> : <></>}
         </div>
         <br></br>
         </div>
@@ -106,7 +106,7 @@ const Home = () => {
       {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminWallets} /> : <></>}
       {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminWallets} setSort={setSort} /> : <></>}
       <div className="paginationContainer">
-        {sort==="Explore" ? <Pagination page={page} pageName={pageName} dao={dao} /> : <></>}
+        {sort==="Explore" ? <Pagination page={page} pageName={pageName} dao={dao} AdminWallets={AdminWallets} /> : <></>}
         </div>
       <br></br>
       </div>
