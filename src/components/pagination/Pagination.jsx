@@ -19,13 +19,13 @@ const theme = createTheme({
     },
 });
 
-const Paginate = ({ page, pageName }) => {
+const Paginate = ({ page, pageName, dao }) => {
     const { numberOfPages, isLoading } = useSelector((state) => state.mints);
     const classes = useStyles();
     const dispatch = useDispatch();
     useEffect(() => {
         if (page) {
-            dispatch(getMints('caaDAO', page));
+            dispatch(getMints({dao}, page));
         }
     }, [dispatch, page]);
 

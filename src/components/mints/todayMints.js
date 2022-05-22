@@ -10,14 +10,14 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 
-const TodayMints = ({ page, sort, setSort }) => {
+const TodayMints = ({ page, dao }) => {
     const { todayMints, tomorrowMints, twoDaysMints, isLoading } = useSelector((state) => state.mints);
     const dispatch = useDispatch();
-
+    console.log(dao);
     useEffect(() => {
-        dispatch(getTodayMints('caaDAO'));
-        dispatch(getTomorrowMints('caaDAO'));
-        dispatch(getTwoDaysMints('caaDAO'));
+        dispatch(getTodayMints({dao}));
+        dispatch(getTomorrowMints({dao}));
+        dispatch(getTwoDaysMints({dao}));
     }, [dispatch]);
 
     return (

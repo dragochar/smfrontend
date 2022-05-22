@@ -19,9 +19,9 @@ import Checkbox from '@mui/material/Checkbox';
 import startOfDay from 'date-fns/startOfDay/index.js';
 
 
-const Form = () => {
+const Form = ({ dao }) => {
     const [mintData, setMintData] = useState({
-        creator: '', name: '', description: '', DAO: 'caaDAO', 'selectedFile': '', mintDate: startOfDay(new Date()),
+        creator: '', name: '', description: '', DAO: 'bbaDAO', 'selectedFile': '', mintDate: startOfDay(new Date()),
     });
     const dispatch = useDispatch();
     const [checked, setChecked] = React.useState(false);
@@ -48,7 +48,7 @@ const Form = () => {
         
         dispatch(createMint(mintData));
         setMintData({
-            creator: '', name: '', description: '', DAO: 'caaDAO', 'selectedFile': '', mintDate: new Date(),
+            creator: '', name: '', description: '', DAO: {dao}, 'selectedFile': '', mintDate: new Date(),
         });
     }
 

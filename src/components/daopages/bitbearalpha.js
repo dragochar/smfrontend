@@ -5,9 +5,9 @@ import { useDispatch } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Mints from '../mints/mints';
 import TodayMints from '../mints/todayMints';
-import AdminWallets from '../../wallets/adminwallets';
+import AdminWallets from '../../wallets/bitbearadminwallets';
 import CyberWallets from '../../wallets/cyberapeWallets';
-import brandLogo from '../../assets/ggsg.gif'
+import brandLogo from '../../assets/bitbearalpha.png'
 import Footer from '../common/footer';
 import Card from '@mui/material/Card';
 import { Grow, Grid, Paper, AppBar, TextField, Button } from '@material-ui/core';
@@ -29,8 +29,10 @@ import {BN, Provider, web3} from '@project-serum/anchor';
 // Constants
 const TWITTER_HANDLE = 'realsolmints';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-const pageName = 'ggsg';
-const dao = 'ggsgDAO';
+const pageName = 'bitbearalpha';
+const dao = 'bbaDAO';
+
+
 
 
 const opts = {
@@ -147,7 +149,7 @@ const Home = () => {
                 <div className="header-container">
                     <div>
                         <img alt="MBBImg" src={brandLogo} width='100' height='100'></img>
-                        <p className="header main-text-logo">GeckoMints</p>
+                        <p className="header main-text-logo">BitBearMints</p>
                     </div>
                     <div>
                       {walletAddress && renderSelectButtons()}
