@@ -147,8 +147,7 @@ const Home = () => {
             <div className={walletAddress ? 'authed-container' : 'container'}>
                 <div className="header-container">
                     <div>
-                        <img alt="MBBImg" src={brandLogo} width='100' height='100'></img>
-                        <p className="header main-text-logo">BitBearMints</p>
+                        <img alt="MBBImg" src={brandLogo} width='300' height='300'></img>
                     </div>
                     <div>
                       {walletAddress && renderSelectButtons()}
