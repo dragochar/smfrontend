@@ -155,7 +155,7 @@ const Home = () => {
                     </div>
                     <div>
                     {walletAddress ? <p className="sub-text">View upcoming mints, and vote on your favourites ✨</p> :
-                    <p className="sub-text">Connect a Solana wallet with a Gecko to get started! 🦎</p>
+                    <p className="sub-text">Connect a Solana wallet to get started! 🧸</p>
                     }
                         
                     </div>
