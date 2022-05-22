@@ -21,7 +21,6 @@ import IconButton from '@mui/material/IconButton';
 import DeleteOutlineIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
 import { deleteMint } from '../../../actions/mints';
-import AdminWallets from '../../../wallets/adminwallets';
 import FormControl from '@mui/material/FormControl';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -38,7 +37,7 @@ import Checkbox from '@mui/material/Checkbox';
 
 
 
-const EditContent = ({ mint, walletAddress }) => {
+const EditContent = ({ mint, walletAddress, AdminWallets }) => {
     const [mintData, setMintData] = useState({
       creator: '', name: mint.name, description: mint.description, DAO: mint.dao, 'selectedFile': mint.selectedFile, mintDate: new Date(mint.mintDate), price: mint.price, supply: mint.supply, discord: mint.discord, twitter: mint.twitter
     });

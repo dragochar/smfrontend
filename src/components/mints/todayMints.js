@@ -10,15 +10,17 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
 
-const TodayMints = ({ page, dao }) => {
+const TodayMints = ({ page, dao, AdminWallets, setSort }) => {
+    var daoName = String(dao);
     const { todayMints, tomorrowMints, twoDaysMints, isLoading } = useSelector((state) => state.mints);
     const dispatch = useDispatch();
-    console.log(dao);
     useEffect(() => {
-        dispatch(getTodayMints({dao}));
-        dispatch(getTomorrowMints({dao}));
-        dispatch(getTwoDaysMints({dao}));
+        dispatch(getTodayMints(daoName));
+        dispatch(getTomorrowMints(daoName));
+        dispatch(getTwoDaysMints(daoName));
     }, [dispatch]);
+
+    if (todayMints.length===0) {setSort('Explore')}
 
     return (
         isLoading ? <CircularProgress sx={{ color: '#14F195' }} /> : (
@@ -31,7 +33,7 @@ const TodayMints = ({ page, dao }) => {
                 <Grid container spacing={3}>
                     {todayMints.map((mint) => (
                         <Grid item xs={6} sm={3} key={mint._id}>
-                            <Mint mint={mint} />
+                            <Mint mint={mint} AdminWallets={AdminWallets} />
                         </Grid>
                     ))}
                 </Grid>
@@ -52,7 +54,7 @@ const TodayMints = ({ page, dao }) => {
                 <Grid container spacing={3}>
                     {twoDaysMints.map((mint) => (
                         <Grid item xs={6} sm={3} key={mint._id}>
-                            <Mint mint={mint} />
+                            <Mint mint={mint} AdminWallet={AdminWallets} />
                         </Grid>
                     ))}
                 </Grid>

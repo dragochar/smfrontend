@@ -27,7 +27,7 @@ import Pagination from '../pagination/Pagination';
 import RenderSelectButtons from '../common/renderSelectButtons';
 
 
-const Mints = ({ page, sort, setSort }) => {
+const Mints = ({ page, AdminWallets }) => {
     const { mints, isLoading } = useSelector((state) => state.mints);
     const recentMints = mints.sort((a, b) => {return b.likes.length - a.likes.length})
     const firstFourMints = mints.slice(0, 4);
@@ -70,7 +70,7 @@ const Mints = ({ page, sort, setSort }) => {
                 <Grid container spacing={3}>
                     {firstFourMints.map((mint) => (
                         <Grid item xs={6} sm={3} key={mint._id}>
-                            <Mint mint={mint} />
+                            <Mint mint={mint} AdminWallets={AdminWallets} />
                         </Grid>
                     ))}
                 </Grid>
@@ -82,7 +82,7 @@ const Mints = ({ page, sort, setSort }) => {
                 <Grid container spacing={3}>
                     {secondRealFourMints.map((mint) => (
                         <Grid item xs={6} sm={3} key={mint._id}>
-                            <Mint mint={mint} />
+                            <Mint mint={mint} AdminWallets={AdminWallets} />
                         </Grid>
                     ))}
                 </Grid>
@@ -114,7 +114,7 @@ const Mints = ({ page, sort, setSort }) => {
                     <Grid container spacing={3}>
                     {firstFourMints.map((mint) => (
                         <Grid item xs={6} sm={3} key={mint._id}>
-                            <Mint mint={mint} />
+                            <Mint mint={mint} AdminWallets={AdminWallets} />
                         </Grid>
                     ))}
                     </Grid>
@@ -123,7 +123,7 @@ const Mints = ({ page, sort, setSort }) => {
                     <Grid container spacing={3}>
                     {secondFourMints.map((mint) => (
                         <Grid item xs={6} sm={3} key={mint._id}>
-                            <Mint mint={mint} />
+                            <Mint mint={mint} AdminWallets={AdminWallets} />
                         </Grid>
                     ))}
                     

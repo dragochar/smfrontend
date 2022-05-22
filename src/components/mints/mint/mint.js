@@ -25,7 +25,6 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import { format, compareAsc } from 'date-fns'
 import { useSoftRiseShadowStyles } from '@mui-treasury/styles/shadow/softRise';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import AdminWallets from '../../../wallets/adminwallets';
 import EditIcon from '@mui/icons-material/Edit';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
@@ -50,7 +49,7 @@ const useStyles = makeStyles(() => ({
 
 const family = 'Rubik';
 
-const Mint = ({ mint }) => {
+const Mint = ({ mint, AdminWallets }) => {
     const shadowStyles = useSoftRiseShadowStyles();
     const dispatch = useDispatch();
     const [walletAddress, setWalletAddress] = useState(null);
@@ -89,10 +88,6 @@ const Mint = ({ mint }) => {
 
     }
     
-    
-
-
-
 
     const useStyles = makeStyles({
       root: {
@@ -267,7 +262,7 @@ const Mint = ({ mint }) => {
             open={editDialogOpen}
             onClose={handleEditDialogClose}
           >
-            <EditContent mint={mint} walletAddress={walletAddress} />
+            <EditContent mint={mint} walletAddress={walletAddress} AdminWallets={AdminWallets} />
           </Dialog>
         </Card>
     );

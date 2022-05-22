@@ -20,8 +20,9 @@ import startOfDay from 'date-fns/startOfDay/index.js';
 
 
 const Form = ({ dao }) => {
+    var daoName = String(dao);
     const [mintData, setMintData] = useState({
-        creator: '', name: '', description: '', DAO: 'bbaDAO', 'selectedFile': '', mintDate: startOfDay(new Date()),
+        creator: '', name: '', description: '', DAO: daoName, 'selectedFile': '', mintDate: startOfDay(new Date()),
     });
     const dispatch = useDispatch();
     const [checked, setChecked] = React.useState(false);
@@ -48,7 +49,7 @@ const Form = ({ dao }) => {
         
         dispatch(createMint(mintData));
         setMintData({
-            creator: '', name: '', description: '', DAO: {dao}, 'selectedFile': '', mintDate: new Date(),
+            creator: '', name: '', description: '', DAO: daoName, 'selectedFile': '', mintDate: new Date(),
         });
     }
 

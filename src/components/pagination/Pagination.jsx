@@ -20,12 +20,13 @@ const theme = createTheme({
 });
 
 const Paginate = ({ page, pageName, dao }) => {
+    var daoName = String(dao);
     const { numberOfPages, isLoading } = useSelector((state) => state.mints);
     const classes = useStyles();
     const dispatch = useDispatch();
     useEffect(() => {
         if (page) {
-            dispatch(getMints({dao}, page));
+            dispatch(getMints(daoName, page));
         }
     }, [dispatch, page]);
 

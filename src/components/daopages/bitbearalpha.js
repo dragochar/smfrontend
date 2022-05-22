@@ -47,9 +47,7 @@ function useQuery() {
 
 const Home = () => {
 
-      // State
   const [walletAddress, setWalletAddress] = useState(null);
-  const [isAdminWallet, setIsAdminWallet] = useState(null);
   const dispatch = useDispatch();
   const query = useQuery();
   const history = useHistory();
@@ -74,8 +72,9 @@ const Home = () => {
   const renderConnectedContainer = () => (
     <div>
         <div>
-        {sort==="Explore" ?  <Mints page={page} /> : <></>}
-        {sort==="Upcoming" ?  <TodayMints dao={dao} /> : <></>}
+        {console.log({AdminWallets})}
+        {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminWallets} /> : <></>}
+        {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminWallets} setSort={setSort} /> : <></>}
 
         <div className="paginationContainer">
         {sort==="Explore" ? <Pagination page={page} pageName={pageName} dao={dao} /> : <></>}
@@ -104,8 +103,8 @@ const Home = () => {
     return (
       <div>
         <div>
-      {sort==="Explore" ?  <Mints page={page} /> : <></>}
-      {sort==="Upcoming" ?  <TodayMints dao={dao} /> : <></>}
+      {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminWallets} /> : <></>}
+      {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminWallets} setSort={setSort} /> : <></>}
       <div className="paginationContainer">
         {sort==="Explore" ? <Pagination page={page} pageName={pageName} dao={dao} /> : <></>}
         </div>
@@ -164,7 +163,6 @@ const Home = () => {
                     {!AdminWallets.includes(walletAddress) && walletAddress && renderConnectedContainer()}
                     {AdminWallets.includes(walletAddress) && renderAdminContainer()}
                     
-                   
                 </div>
             </div>
         </div>
