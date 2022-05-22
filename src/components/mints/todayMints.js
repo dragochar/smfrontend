@@ -43,7 +43,7 @@ const TodayMints = ({ page, dao, AdminWallets, setSort }) => {
                <Grid container spacing={3}>
                     {tomorrowMints.map((mint) => (
                         <Grid item xs={6} sm={3} key={mint._id}>
-                            <Mint mint={mint} />
+                            <Mint mint={mint} AdminWallets={AdminWallets} />
                         </Grid>
                     ))}
                 </Grid>

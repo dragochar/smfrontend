@@ -29,7 +29,7 @@ import {BN, Provider, web3} from '@project-serum/anchor';
 const TWITTER_HANDLE = 'realsolmints';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const pageName = 'internalalpha';
-const dao = 'zacDAO';
+const dao = '';
 
 
 
