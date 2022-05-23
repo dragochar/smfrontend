@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Mints from '../mints/mints';
 import TodayMints from '../mints/todayMints';
-import AdminWallets from '../../wallets/bitbearadminwallets';
+import AdminWallets from '../../wallets/tdwallets';
 import CyberWallets from '../../wallets/cyberapeWallets';
 import brandLogo from '../../assets/tD.png'
 import Footer from '../common/footer';
