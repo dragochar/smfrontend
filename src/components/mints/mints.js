@@ -120,7 +120,8 @@ const Mints = ({ page, AdminWallets }) => {
                     </Grid>
                     </div>
                     {console.log(page)}
-                    {page==='1' ? <div className="sub-divider-text">Vote On Other Upcoming Projects</div> : (<></>)}
+                    {page==='1' ? <></> : (<br></br>)}
+                    {page==='1' ? <div className="sub-divider-text">Vote On Other Upcoming Projects</div> : (<br></br>)}
                     <Grid container spacing={3}>
                     {secondFourMints.map((mint) => (
                         <Grid item xs={6} sm={3} key={mint._id}>
