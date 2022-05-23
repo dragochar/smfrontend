@@ -200,13 +200,14 @@ const Mint = ({ mint, AdminWallets }) => {
 
     let date = new Date(mint.mintDate.toString());
     let day = date.getDay();
-    let formatDate = new Intl.DateTimeFormat("en-GB", {
+    let formatDatePending = new Intl.DateTimeFormat("en-GB", {
       month: "long",
       day: "2-digit",
       hour: 'numeric',
       minute: 'numeric',
     }).format(date)
-
+    let UTC = " UTC"
+    let formatDate = formatDatePending.concat(UTC);
     return (
     <ThemeProvider theme={theme}>
     <Chip label={formatDate} icon={<CalendarMonthIcon />} color="date" variant="outlined" />

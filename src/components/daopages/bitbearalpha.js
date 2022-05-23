@@ -51,10 +51,9 @@ const Home = () => {
   const [walletAddress, setWalletAddress] = useState(null);
   const dispatch = useDispatch();
   const query = useQuery();
-  const history = useHistory();
   const page = query.get('page') || 1;
   const [sort, setSort] = useState('Explore');
-
+  const history = useHistory();
 
 
   const walletContext = useWallet();

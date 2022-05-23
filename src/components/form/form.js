@@ -195,7 +195,7 @@ const Form = ({ dao }) => {
 
                 <div>
 
-                <h4 style={{ color:'azure' }}>Enter Date/Time Of Mint by clicking below (click checkbox if unknown)</h4>
+                <h4 style={{ color:'azure' }}>Enter Date/Time Of Mint (UTC) by clicking below. Click checkbox if unknown</h4>
                 <FormControl>
                     <Checkbox
                         checked={checked}
