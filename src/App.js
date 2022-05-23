@@ -12,6 +12,7 @@ import MBB from './components/daopages/mbb';
 import GGSG from './components/daopages/ggsg';
 import BitBearAlpha from './components/daopages/bitbearalpha';
 import InternalAlpha from './components/daopages/internalalpha';
+import trustDAO from './components/daopages/trustdao';
 import MintNavbar from './components/navbar/navbar';
 import BasicLayout from './components/common/basiclayout';
 import ReactGA from 'react-ga4';
@@ -58,6 +59,7 @@ const App = () => {
           <Route path="/caa" exact component={CAA}/>
           <Route path="/mbb" exact component={MBB}/>
           <Route path="/ggsg" exact component={GGSG}/>
+          <Route path="/tD" exact component={trustDAO}/>
           <Route path="/bitbearalpha" exact component={BitBearAlpha}/>
           <Route path="/internalalpha" exact component={InternalAlpha}/>
 
