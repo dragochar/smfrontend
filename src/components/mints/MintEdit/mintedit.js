@@ -117,9 +117,7 @@ const EditContent = ({ mint, walletAddress, AdminWallets }) => {
 
     const handleCheck = (event) => {
         setChecked(event.target.checked);
-        //if (checked===true) {
-        //    setMintData({ ...mintData, mintDate: "" })
-        //}
+        setMintData({ ...mintData, mintDate: "" })
 
     };
     
