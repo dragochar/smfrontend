@@ -119,7 +119,8 @@ const Mints = ({ page, AdminWallets }) => {
                     ))}
                     </Grid>
                     </div>
-                    <div className="sub-divider-text">Vote On Other Upcoming Projects </div>
+                    {console.log(page)}
+                    {page==='1' ? <div className="sub-divider-text">Vote On Other Upcoming Projects</div> : (<></>)}
                     <Grid container spacing={3}>
                     {secondFourMints.map((mint) => (
                         <Grid item xs={6} sm={3} key={mint._id}>
@@ -142,7 +143,7 @@ const Mints = ({ page, AdminWallets }) => {
                 <>
                     <div className="date-and-filters-container">
                         <div className="today-icon">
-                            {/*<Chip sx={{ marginBottom: '25px' }}label=" TOP UPCOMING MINTS " color="secondary" icon={<CalendarTodayIcon />} />*/}
+                            {page==='1' ? <Chip sx={{ marginBottom: '25px' }}label=" TOP UPCOMING MINTS " color="secondary" icon={<CalendarTodayIcon />} /> : <></>}
                         </div>
                     </div>
                     <div className="mints-container">

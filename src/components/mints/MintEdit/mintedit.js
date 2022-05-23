@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { updateMint } from '../../../actions/mints';
 import './mintedit.css';
 import { Form as BSForm } from 'react-bootstrap';
@@ -43,8 +43,11 @@ const EditContent = ({ mint, walletAddress, AdminWallets }) => {
     });
     const [checked, setChecked] = React.useState(false);
 
+    useEffect(() => {
+        if (mintData.mintDate==="") {setChecked(true)}
 
-    if (mintData.mintDate==="") {setChecked(true)}
+      }, []);
+
 
     const dispatch = useDispatch();
 

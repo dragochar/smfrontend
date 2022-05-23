@@ -191,6 +191,13 @@ const Mint = ({ mint, AdminWallets }) => {
         },
       }
     });
+    console.log(mint.mintDate);
+    if (mint.mintDate===null) return (
+        <ThemeProvider theme={theme}>
+        <Chip label="Date TBA" icon={<CalendarMonthIcon />} color="date" variant="outlined" />
+        </ThemeProvider>
+    )
+
     let date = new Date(mint.mintDate.toString());
     let day = date.getDay();
     let formatDate = new Intl.DateTimeFormat("en-GB", {
@@ -225,7 +232,7 @@ const Mint = ({ mint, AdminWallets }) => {
                 {mint.price==null && renderNullPrice()} 
                 {mint.supply!=null && renderSupply(mint)}
                 {mint.supply==null && renderNullSupply()}
-                {mint.mintDate && renderMintDate()}
+                {renderMintDate()}
 
 
 
