@@ -142,7 +142,7 @@ const Mints = ({ page, AdminWallets }) => {
                 <>
                     <div className="date-and-filters-container">
                         <div className="today-icon">
-                            <Chip sx={{ marginBottom: '25px' }}label=" TOP UPCOMING MINTS " color="secondary" icon={<CalendarTodayIcon />} />
+                            {/*<Chip sx={{ marginBottom: '25px' }}label=" TOP UPCOMING MINTS " color="secondary" icon={<CalendarTodayIcon />} />*/}
                         </div>
                     </div>
                     <div className="mints-container">
