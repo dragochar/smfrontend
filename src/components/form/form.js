@@ -81,9 +81,8 @@ const Form = ({ dao }) => {
     
     const handleCheck = (event) => {
         setChecked(event.target.checked);
-        if (checked===true) {
-            setMintData({ ...mintData, mintDate: "" })
-        }
+        setMintData({ ...mintData, mintDate: "" })
+        console.log(mintData.mintDate);
 
     };
 

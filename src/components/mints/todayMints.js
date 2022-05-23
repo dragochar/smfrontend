@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import { dayFromNumber } from '../common/dayFromNumber';
 
 
 const TodayMints = ({ page, dao, AdminWallets, setSort }) => {
@@ -20,7 +21,13 @@ const TodayMints = ({ page, dao, AdminWallets, setSort }) => {
         dispatch(getTwoDaysMints(daoName));
     }, [dispatch]);
 
-    if (todayMints.length===0) {setSort('Explore')}
+    const tomorrowDay = new Date();
+    const twoDaysDay = new Date();
+    tomorrowDay.setDate(tomorrowDay.getDate() + 1);
+    twoDaysDay.setDate(twoDaysDay.getDate() + 2);
+    const textTomDay = tomorrowDay.getDay();
+    const textTwoDay = twoDaysDay.getDay();
+
 
     return (
         isLoading ? <CircularProgress sx={{ color: '#14F195' }} /> : (
@@ -38,7 +45,7 @@ const TodayMints = ({ page, dao, AdminWallets, setSort }) => {
                     ))}
                 </Grid>
             <div className="tomorrow-wrapper">
-                <div className="chrono-text">Monday</div>
+                <div className="chrono-text">{dayFromNumber(textTomDay)}</div>
             </div>
                <Grid container spacing={3}>
                     {tomorrowMints.map((mint) => (
@@ -48,7 +55,7 @@ const TodayMints = ({ page, dao, AdminWallets, setSort }) => {
                     ))}
                 </Grid>
             <div className="two-days-wrapper">
-                <div className="chrono-text">Tuesday</div>
+                <div className="chrono-text">{dayFromNumber(textTwoDay)}</div>
             </div>
                 {(twoDaysMints.length!==0) ? 
                 <Grid container spacing={3}>

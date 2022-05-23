@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getMints } from '../../actions/mints';
 import { Container, Row, Col } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Mints from '../mints/mints';
 import TodayMints from '../mints/todayMints';
@@ -14,6 +14,7 @@ import { Grow, Grid, Paper, AppBar, TextField, Button } from '@material-ui/core'
 import { useHistory, useLocation } from 'react-router-dom';
 import Pagination from '../pagination/Pagination';
 import RenderSelectButtons from '../common/renderSelectButtons';
+import { getTodayMints } from '../../actions/mints';
 import '../daopages/daopages.css';
 
 import Form from '../form/form';
@@ -52,7 +53,8 @@ const Home = () => {
   const query = useQuery();
   const history = useHistory();
   const page = query.get('page') || 1;
-  const [sort, setSort] = useState('Upcoming');
+  const [sort, setSort] = useState('Explore');
+
 
 
   const walletContext = useWallet();
@@ -125,6 +127,7 @@ const Home = () => {
     window.addEventListener('load', onLoad);
     return () => window.removeEventListener('load', onLoad);
   }, []);
+
 
   const PrintPubKey = ({ setPublicKey }) => {
     const wallet = useWallet();
