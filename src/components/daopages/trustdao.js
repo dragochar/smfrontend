@@ -156,7 +156,7 @@ const Home = () => {
                       {walletAddress && renderSelectButtons()}
                     </div>
                     <div>
-                    {walletAddress ? <p className="sub-text">View upcoming mints, and vote on your favourites ✨</p> :
+                    {walletAddress ? <div className="sub-text"><p>View upcoming mints, and vote on your favourites ✨</p></div> :
                     <p className="sub-text">Connect a Solana wallet to get started! 🤝</p>
                     }
                         
