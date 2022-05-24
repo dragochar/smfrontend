@@ -8,7 +8,6 @@ import { useDispatch } from 'react-redux';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Home from './components/home/home';
 import CAA from './components/daopages/caa';
-import MBB from './components/daopages/mbb';
 import GGSG from './components/daopages/ggsg';
 import BitBearAlpha from './components/daopages/bitbearalpha';
 import InternalAlpha from './components/daopages/internalalpha';
@@ -57,7 +56,6 @@ const App = () => {
           {/*<Route path="/" exact component={() => <Redirect to="/mints" />} /> */}
           <Route path="/" exact component={Home}/>
           <Route path="/caa" exact component={CAA}/>
-          <Route path="/mbb" exact component={MBB}/>
           <Route path="/ggsg" exact component={GGSG}/>
           <Route path="/tD" exact component={trustDAO}/>
           <Route path="/bitbearalpha" exact component={BitBearAlpha}/>

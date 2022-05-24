@@ -28,7 +28,7 @@ const LikedMints = ({ page, dao, AdminWallets, setSort }) => {
         isLoading ? <CircularProgress sx={{ color: '#14F195' }} /> : (
         <>
             <div>
-             <div className="chrono-text">Most Liked Mints to Try And Get Whitelist For!</div>
+             <div className="chrono-text-2">Most Liked Mints to Try And Get Whitelist For:</div>
                 <Box component="span" sx={{ p: 2, border: '2px red' }}>
                 <Grid container spacing={3}>
                     {firstFourMints.map((mint) => (

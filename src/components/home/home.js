@@ -14,6 +14,8 @@ import { useHistory, useLocation } from 'react-router-dom';
 import Pagination from '../pagination/Pagination';
 import Autocomplete from '@mui/material/Autocomplete';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Showcases from '../daoShowcases/showcases';
+import './home.css';
 
 
 import Form from '../form/form';
@@ -162,7 +164,11 @@ const Home = () => {
                     <p className="sub-text">
                         Hi there, welcome to SolMints! 👋
                     </p>
-                    <iframe src='https://my.spline.design/solmints-0c49ca0c7934b8697c23300df3a6cd1a/' frameborder='0' width='100%' height='100%'></iframe>
+                    <div className="move-up">
+                    <iframe src='https://my.spline.design/solmints-0c49ca0c7934b8697c23300df3a6cd1a/' frameborder='0' width='100%' height='210px'></iframe>
+                    </div>
+                    <br></br>
+                    <Showcases />
                     {/*AdminWallets.includes(walletAddress) && renderAdminContainer()*/}
                     {/*<div className="explainer-text">Check out some of our DAO Partners!</div>*/}
                      

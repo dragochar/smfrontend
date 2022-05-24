@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { getMints } from '../../actions/mints';
 import { Container, Row, Col } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Mints from '../mints/mints';
 import TodayMints from '../mints/todayMints';
-import AdminWallets from '../../wallets/adminwallets';
+import LikedMints from '../mints/likedMints';
+import AdminWallets from '../../wallets/ggsgwallets';
 import CyberWallets from '../../wallets/cyberapeWallets';
-import brandLogo from '../../assets/ggsg.gif';
+import brandLogo from '../../assets/ggsg.gif'
 import Footer from '../common/footer';
 import Card from '@mui/material/Card';
 import { Grow, Grid, Paper, AppBar, TextField, Button } from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router-dom';
 import Pagination from '../pagination/Pagination';
 import RenderSelectButtons from '../common/renderSelectButtons';
+import { getTodayMints } from '../../actions/mints';
 import '../daopages/daopages.css';
 
 import Form from '../form/form';
@@ -50,9 +52,9 @@ const Home = () => {
   const [walletAddress, setWalletAddress] = useState(null);
   const dispatch = useDispatch();
   const query = useQuery();
-  const history = useHistory();
   const page = query.get('page') || 1;
-  const [sort, setSort] = useState('Upcoming');
+  const [sort, setSort] = useState('Explore');
+  const history = useHistory();
 
 
   const walletContext = useWallet();
@@ -77,7 +79,7 @@ const Home = () => {
         {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminWallets} setSort={setSort} /> : <></>}
 
         <div className="paginationContainer">
-        {sort==="Explore" ? <Pagination page={page} pageName={pageName} dao={dao} /> : <></>}
+        {sort==="Explore" ? <Pagination page={page} pageName={pageName} dao={dao} AdminWallets={AdminWallets} /> : <></>}
         </div>
         <br></br>
         </div>
@@ -105,8 +107,9 @@ const Home = () => {
         <div>
       {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminWallets} /> : <></>}
       {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminWallets} setSort={setSort} /> : <></>}
+      {sort==="Most Liked" ?  <LikedMints dao={dao} AdminWallets={AdminWallets} setSort={setSort} /> : <></>}
       <div className="paginationContainer">
-        {sort==="Explore" ? <Pagination page={page} pageName={pageName} dao={dao} /> : <></>}
+        {sort==="Explore" ? <Pagination page={page} pageName={pageName} dao={dao} AdminWallets={AdminWallets} /> : <></>}
         </div>
       <br></br>
       </div>
@@ -125,6 +128,7 @@ const Home = () => {
     window.addEventListener('load', onLoad);
     return () => window.removeEventListener('load', onLoad);
   }, []);
+
 
   const PrintPubKey = ({ setPublicKey }) => {
     const wallet = useWallet();
@@ -154,8 +158,8 @@ const Home = () => {
                       {walletAddress && renderSelectButtons()}
                     </div>
                     <div>
-                    {walletAddress ? <p className="sub-text">View upcoming mints, and vote on your favourites ✨</p> :
-                    <p className="sub-text">Connect a Solana wallet with a Gecko to get started!</p>
+                    {walletAddress ? <div className="sub-text"><p>View upcoming mints, and vote on your favourites ✨</p></div> :
+                    <p className="sub-text">Connect a Solana wallet to get started! 🦎</p>
                     }
                         
                     </div>

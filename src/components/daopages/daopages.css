@@ -30,6 +30,15 @@ margin-left: 20px;
 margin-bottom: 3;
 }
 
+.chrono-text-2 {
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  text-align: left;
+  margin-left: 20px;
+  margin-bottom: 3;
+  }
+
 .explainer-text {
   font-size: 40px;
   font-weight: bold;
