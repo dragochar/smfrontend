@@ -206,7 +206,7 @@ const Mint = ({ mint, AdminWallets }) => {
       minute: 'numeric',
     }).format(date)
     let UTC = " UTC"
-    let formatDate = formatDatePending.concat(UTC);
+    let formatDate = formatDatePending;
     return (
     <ThemeProvider theme={theme}>
     <Chip label={formatDate} icon={<CalendarMonthIcon />} color="date" variant="outlined" />
