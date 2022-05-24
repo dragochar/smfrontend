@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Mints from '../mints/mints';
 import TodayMints from '../mints/todayMints';
+import LikedMints from '../mints/likedMints';
 import AdminWallets from '../../wallets/tdwallets';
 import CyberWallets from '../../wallets/cyberapeWallets';
 import brandLogo from '../../assets/tD.png'
@@ -30,7 +31,7 @@ import {BN, Provider, web3} from '@project-serum/anchor';
 // Constants
 const TWITTER_HANDLE = 'realsolmints';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
-const pageName = 'trustdao';
+const pageName = 'td';
 const dao = 'tDAO';
 
 
@@ -106,6 +107,7 @@ const Home = () => {
         <div>
       {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminWallets} /> : <></>}
       {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminWallets} setSort={setSort} /> : <></>}
+      {sort==="Most Liked" ?  <LikedMints dao={dao} AdminWallets={AdminWallets} setSort={setSort} /> : <></>}
       <div className="paginationContainer">
         {sort==="Explore" ? <Pagination page={page} pageName={pageName} dao={dao} AdminWallets={AdminWallets} /> : <></>}
         </div>
