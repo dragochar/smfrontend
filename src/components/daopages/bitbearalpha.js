@@ -52,7 +52,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const query = useQuery();
   const page = query.get('page') || 1;
-  const [sort, setSort] = useState('Explore');
+  const [sort, setSort] = useState('Upcoming');
   const history = useHistory();
 
 
