@@ -198,6 +198,10 @@ const Mint = ({ mint, AdminWallets }) => {
     )
 
     let date = new Date(mint.mintDate.toString());
+    const timezoneOffset = ((new Date()).getTimezoneOffset()/60);
+    console.log(date);
+    date.setTime(date.getTime() - timezoneOffset * 60 * 60 * 1000);
+    console.log(date);
     let day = date.getDay();
     let formatDatePending = new Intl.DateTimeFormat("en-GB", {
       month: "long",
@@ -205,11 +209,11 @@ const Mint = ({ mint, AdminWallets }) => {
       hour: 'numeric',
       minute: 'numeric',
     }).format(date)
-    let UTC = " UTC"
-    let formatDate = formatDatePending;
+
+
     return (
     <ThemeProvider theme={theme}>
-    <Chip label={formatDate} icon={<CalendarMonthIcon />} color="date" variant="outlined" />
+    <Chip label={formatDatePending} icon={<CalendarMonthIcon />} color="date" variant="outlined" />
     </ThemeProvider>
     )
   }

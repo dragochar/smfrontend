@@ -11,6 +11,7 @@ import CyberWallets from '../../wallets/cyberapeWallets';
 import brandLogo from '../../assets/ggsg.gif'
 import Footer from '../common/footer';
 import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
 import { Grow, Grid, Paper, AppBar, TextField, Button } from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router-dom';
 import Pagination from '../pagination/Pagination';
@@ -69,6 +70,9 @@ const Home = () => {
     //console.log(walletContext.publicKey.toBase58());
   }
 
+  const date = new Date();
+  const dateAsString = date.toString();
+  const timezone = dateAsString.match(/\(([^\)]+)\)$/)[1];
 
 
   const renderConnectedContainer = () => (
@@ -158,7 +162,9 @@ const Home = () => {
                       {walletAddress && renderSelectButtons()}
                     </div>
                     <div>
-                    {walletAddress ? <div className="sub-text"><p>View upcoming mints, and vote on your favourites ✨</p></div> :
+                    {walletAddress ? <div className="sub-text"><p>View upcoming mints, and vote on your favourites ✨</p>
+                    <div className="time-text"><Typography variant="caption">(Times in {timezone})</Typography></div>
+                    </div> :
                     <p className="sub-text">Connect a Solana wallet to get started! 🦎</p>
                     }
                         
