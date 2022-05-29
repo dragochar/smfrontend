@@ -18,6 +18,7 @@ import cx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import DetailContent from '../MintDetail/mintdetail';
 import EditContent from '../MintEdit/mintedit';
+import AlertContent from '../MintAlert/mintalert';
 import CircularProgress from '@mui/material/CircularProgress';
 import Chip from '@mui/material/Chip';
 import Dialog from '@mui/material/Dialog';
@@ -26,6 +27,7 @@ import { format, compareAsc } from 'date-fns'
 import { useSoftRiseShadowStyles } from '@mui-treasury/styles/shadow/softRise';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import EditIcon from '@mui/icons-material/Edit';
+import AddAlertIcon from '@mui/icons-material/AddAlert';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 
@@ -56,6 +58,8 @@ const Mint = ({ mint, AdminWallets }) => {
     const [progressNow, setProgressNow] = useState(null);
     const [dialogOpen, setDialogOpen] = React.useState(false);
     const [editDialogOpen, setEditDialogOpen] = React.useState(false);
+    const [giveawayDialogOpen, setGiveawayDialogOpen] = React.useState(false);
+
 
 
     const checkIfWalletIsConnected = async () => {
@@ -98,6 +102,14 @@ const Mint = ({ mint, AdminWallets }) => {
 
   const handleDialogOpen = () => {
     setDialogOpen(true);
+  };
+
+  const handleGiveawayDialogOpen = () => {
+    setGiveawayDialogOpen(true);
+  };
+
+  const handleGiveawayDialogClose = () => {
+    setGiveawayDialogOpen(false);
   };
 
   const handleDialogClose = () => {
@@ -199,9 +211,7 @@ const Mint = ({ mint, AdminWallets }) => {
 
     let date = new Date(mint.mintDate.toString());
     const timezoneOffset = ((new Date()).getTimezoneOffset()/60);
-    console.log(date);
     date.setTime(date.getTime() - timezoneOffset * 60 * 60 * 1000);
-    console.log(date);
     let day = date.getDay();
     let formatDatePending = new Intl.DateTimeFormat("en-GB", {
       month: "long",
@@ -224,6 +234,12 @@ const Mint = ({ mint, AdminWallets }) => {
     </IconButton>
   )
 
+  const renderGiveawayButton = (mint) => (
+    <IconButton sx={{ color: "white", float: "right" }} aria-label="giveaway" onClick={handleGiveawayDialogOpen}>
+      <AddAlertIcon />
+    </IconButton>
+  )
+
     return (
         <Card className={cx(styles.root, shadowStyles.root)} sx={{ maxWidth: 345, borderColor: '#2b384e', borderRadius: 5, backgroundColor: 'rgba(240, 248, 255, 0)' }} variant="outlined">
           <CardActionArea onClick={handleDialogOpen}>
@@ -242,7 +258,8 @@ const Mint = ({ mint, AdminWallets }) => {
 
                 </CardContent>
                 </CardActionArea>
-                {AdminWallets.includes(walletAddress) && renderEditButton(mint)}
+                <div>{AdminWallets.includes(walletAddress) && renderEditButton(mint)}</div>
+                <div>{AdminWallets.includes(walletAddress) && renderGiveawayButton(mint)}</div>
                 <CardContent>
                 <div className="votes-block">
                 <IconButton size='small' color='primary' onClick={() => {
@@ -274,6 +291,12 @@ const Mint = ({ mint, AdminWallets }) => {
             onClose={handleEditDialogClose}
           >
             <EditContent mint={mint} walletAddress={walletAddress} AdminWallets={AdminWallets} />
+          </Dialog>
+          <Dialog
+            open={giveawayDialogOpen}
+            onClose={handleGiveawayDialogClose}
+          >
+            <AlertContent mint={mint} walletAddress={walletAddress} AdminWallets={AdminWallets} setGiveawayDialogOpen={setGiveawayDialogOpen} />
           </Dialog>
         </Card>
     );

@@ -10,4 +10,8 @@ export const DISLIKE = 'DISLIKE';
 export const START_LOADING = 'START_LOADING';
 export const END_LOADING = 'END_LOADING';
 export const COMMENT = 'COMMENT';
+export const CREATE_GIVEAWAY = 'CREATE_GIVEAWAY';
+export const FETCH_ALL_GIVEAWAYS = 'FETCH_ALL_GIVEAWAYS';
+export const ENTER_GIVEAWAY = 'ENTER_GIVEAWAY';
+export const DELETE_GIVEAWAY = 'DELETE_GIVEAWAY';
 

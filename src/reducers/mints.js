@@ -1,4 +1,4 @@
-import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, DISLIKE, START_LOADING, END_LOADING, FETCH_TODAY, FETCH_TOMORROW, FETCH_TWO_DAYS, COMMENT } from '../constants/actionTypes';
+import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, DISLIKE, START_LOADING, END_LOADING, FETCH_TODAY, FETCH_TOMORROW, FETCH_TWO_DAYS, COMMENT, FETCH_ALL_GIVEAWAYS, CREATE_GIVEAWAY } from '../constants/actionTypes';
 
 export default (state = { isLoading: true, mints: [], todayMints: [], tomorrowMints: [], twoDaysMints: [] }, action) => {
     switch (action.type) {

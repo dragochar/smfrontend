@@ -14,6 +14,18 @@ export const getMints = (dao, page) => async (dispatch) => {
 
 };
 
+export const getGiveaways = (dao, page) => async (dispatch) => {
+    try {
+        dispatch({ type: 'START_LOADING' });
+        const { data: { data, currentPage, numberOfPages } } = await api.fetchGiveaways(dao, page);
+        dispatch({ type: 'FETCH_ALL_GIVEAWAYS', payload: { data, currentPage, numberOfPages } });
+        dispatch({ type: 'END_LOADING' });
+    } catch (error) {
+        console.log(error.message);
+    }
+
+};
+
 export const getTodayMints = (dao) => async (dispatch) => {
     try {
         dispatch({ type: 'START_LOADING' });
@@ -65,6 +77,16 @@ export const createMint = (mint) => async (dispatch) => {
         const { data } = await api.createMint(mint);
 
         dispatch({ type: 'CREATE', payload: data });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const createGiveaway = (giveaway) => async (dispatch) => {
+    try {
+        const { data } = await api.createGiveaway(giveaway);
+
+        dispatch({ type: 'CREATE_GIVEAWAY', payload: data });
     } catch (error) {
         console.log(error);
     }
@@ -128,6 +150,29 @@ export const commentPost = (value, id) => async (dispatch) => {
        return data.comments;
 
     } catch (error) {
+        console.log(error);
+    }
+};
+
+export const enterGiveaway = (value, id) => async (dispatch) => {
+    try {
+       const { data } = await api.enterGiveaway(value, id);
+        
+       dispatch({ type: 'ENTER_GIVEAWAY', payload: data});
+
+       return data.entries;
+
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const deleteGiveaway = (id) => async (dispatch) => {
+    try {
+        await api.deleteGiveaway(id);
+        dispatch({ type: 'DELETE_GIVEAWAY', payload: id });
+
+    } catch(error) {
         console.log(error);
     }
 };

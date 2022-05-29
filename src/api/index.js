@@ -19,6 +19,13 @@ export const createMint = (newMint) => API.post('/mints', newMint);
 export const updateMint = (id, updatedMint) => API.patch(`/mints/${id}`, updatedMint);
 export const likeMint = (id, walletId) => API.patch(`/mints/${id}/${walletId}/likeMint`);
 export const dislikeMint = (id, walletId) => API.patch(`/mints/${id}/${walletId}/dislikeMint`);
-export const deleteMint = (id) => API.delete(`/mints/${id}`);
 export const comment = (value, id) => API.post(`/mints/${id}/commentPost`, { value });
+export const deleteMint = (id) => API.delete(`/mints/${id}`);
 export const fetchTwitter = (twitter) => twitterAPI.get(`${twitter}?user.fields=public_metrics`, config);
+export const createGiveaway = (newGiveaway) => API.post('/mints/giveaways', newGiveaway);
+export const fetchGiveaways = (dao, page) => API.get(`/mints/giveaways/get/${dao}?page=${page}`);
+export const enterGiveaway = (value, id) => API.post(`/mints/giveaways/${id}/enterGiveaway`, { value });
+export const deleteGiveaway = (id) => API.delete(`/mints/giveaways/${id}`);
+
+
+

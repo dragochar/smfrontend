@@ -3,20 +3,7 @@ import { updateMint } from '../../../actions/mints';
 import './mintedit.css';
 import { Form as BSForm } from 'react-bootstrap';
 import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Paper from '@mui/material/Paper';
-import Draggable from 'react-draggable';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import Link from '@mui/material/Link';
-import solanaLogo from '../../../assets/sol.svg';
-import Divider from '@mui/material/Divider';
-import discordLogo from '../../../assets/discord.svg';
-import twitterLogo from '../../../assets/twitter.svg';
 import IconButton from '@mui/material/IconButton';
 import DeleteOutlineIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
@@ -29,9 +16,7 @@ import Resizer from "react-image-file-resizer";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DateTimePicker from '@mui/lab/DateTimePicker';
+
 import Checkbox from '@mui/material/Checkbox';
 
 
@@ -149,7 +134,7 @@ return (
                         <OutlinedInput
                         variant="outlined" 
                         label="Name"
-                        required="true"
+                        required={true}
                         fullWidth
                         color="input"
                         value={mintData.name}

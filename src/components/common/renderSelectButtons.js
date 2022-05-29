@@ -37,11 +37,11 @@ const RenderSelectButtons = ({ sort, setSort }) => {
             {sort=='Upcoming' ? <Button className="sort-button" variant="contained" color="upcoming">Upcoming</Button> : (
                 <Button onClick={() => {setSort('Upcoming')}} className="sort-button" variant="outlined" color="upcoming">Upcoming</Button>
             )}
-            {sort=='Most Liked' ? <Button className="sort-button" variant="contained" color="mostLiked">Most Liked</Button> : (
-                <Button onClick={() => {setSort('Most Liked')}} className="sort-button" color="mostLiked" variant="outlined">Most Liked</Button>
+            {sort=='Explore' ? <Button className="sort-button" variant="contained" color="mostLiked">Explore</Button> : (
+                <Button onClick={() => {setSort('Explore')}} className="sort-button" color="mostLiked" variant="outlined">Explore</Button>
             )}
-            {sort=='Explore' ? <Button className="sort-button" variant="contained" color="explore">Explore</Button> : (
-                <Button onClick={() => {setSort('Explore')}} className="sort-button" variant="outlined" color="explore">Explore</Button>
+            {sort=='Giveaways' ? <Button className="sort-button" variant="contained" color="explore">Giveaways</Button> : (
+                <Button onClick={() => {setSort('Giveaways')}} className="sort-button" variant="outlined" color="explore">Giveaways</Button>
             )}
         </Stack>
         </div>

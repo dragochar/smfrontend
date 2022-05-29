@@ -3,7 +3,6 @@ import { getMintsBySort } from '../../actions/mints';
 import { useDispatch } from 'react-redux';
 
 import Mint from './mint/mint';
-import { Spinner } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Grid from '@mui/material/Grid';
 import { useSelector } from 'react-redux';
@@ -29,15 +28,12 @@ import RenderSelectButtons from '../common/renderSelectButtons';
 
 const Mints = ({ page, AdminWallets }) => {
     const { mints, isLoading } = useSelector((state) => state.mints);
-    const recentMints = mints.sort((a, b) => {return b.likes.length - a.likes.length})
     const firstFourMints = mints.slice(0, 4);
     const secondFourMints = mints.slice(4, 200);
     const secondRealFourMints = mints.slice(4, 8);
 
     let newDate = new Date();
-    let today = newDate.getDate();
-    let month = newDate.getMonth();
-    const dispatch = useDispatch();
+
 
     const theme = createTheme({
         palette: {
@@ -61,51 +57,6 @@ const Mints = ({ page, AdminWallets }) => {
 
     if (!mints.length && !isLoading) return 'No mints';
 
-    const RenderDefaultMints = () => {
-        return (
-            <div>
-            <div className="today-wrapper">
-                <div className="chrono-text">Today</div>
-                <Box component="span" sx={{ p: 2, border: '2px red' }}>
-                <Grid container spacing={3}>
-                    {firstFourMints.map((mint) => (
-                        <Grid item xs={6} sm={3} key={mint._id}>
-                            <Mint mint={mint} AdminWallets={AdminWallets} />
-                        </Grid>
-                    ))}
-                </Grid>
-                </Box>
-            </div>
-            <div className="tomorrow-wrapper">
-                <div className="chrono-text">Thursday</div>
-                <Box component="span" sx={{ p: 2, border: '2px red' }}>
-                <Grid container spacing={3}>
-                    {secondRealFourMints.map((mint) => (
-                        <Grid item xs={6} sm={3} key={mint._id}>
-                            <Mint mint={mint} AdminWallets={AdminWallets} />
-                        </Grid>
-                    ))}
-                </Grid>
-                </Box>
-            </div>
-            </div> 
-
-
-        )
-    }
-
-    const RenderLikedMints = () => {
-        return (
-            <div>
-                    <Grid container spacing={3}>
-                
-                    </Grid>
-                    <br></br>
-            </div>     
-
-
-        )
-    }
 
     const RenderExploreMints = () => {
         return (
@@ -119,7 +70,6 @@ const Mints = ({ page, AdminWallets }) => {
                     ))}
                     </Grid>
                     </div>
-                    {console.log(page)}
                     {page==='1' ? <></> : (<br></br>)}
                     {page==='1' ? <div className="sub-divider-text">Vote On Other Upcoming Projects</div> : (<br></br>)}
                     <Grid container spacing={3}>

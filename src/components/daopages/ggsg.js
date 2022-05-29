@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Mints from '../mints/mints';
 import TodayMints from '../mints/todayMints';
+import Giveaways from '../giveaways/giveaways';
 import LikedMints from '../mints/likedMints';
 import AdminWallets from '../../wallets/ggsgwallets';
 import CyberWallets from '../../wallets/cyberapeWallets';
@@ -15,8 +16,8 @@ import Typography from '@mui/material/Typography';
 import { Grow, Grid, Paper, AppBar, TextField, Button } from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router-dom';
 import Pagination from '../pagination/Pagination';
+import GiveawayPagination from '../pagination/GiveawayPagination';
 import RenderSelectButtons from '../common/renderSelectButtons';
-import { getTodayMints } from '../../actions/mints';
 import '../daopages/daopages.css';
 
 import Form from '../form/form';
@@ -81,9 +82,12 @@ const Home = () => {
         {console.log({AdminWallets})}
         {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminWallets} /> : <></>}
         {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminWallets} setSort={setSort} /> : <></>}
+        {sort==="Giveaways" ?  <Giveaways dao={dao} AdminWallets={AdminWallets} setSort={setSort} /> : <></>}
+
 
         <div className="paginationContainer">
         {sort==="Explore" ? <Pagination page={page} pageName={pageName} dao={dao} AdminWallets={AdminWallets} /> : <></>}
+        {sort==="Giveaways" ? <GiveawayPagination page={page} pageName={pageName} dao={dao} AdminWallets={AdminWallets} /> : <></>}
         </div>
         <br></br>
         </div>
@@ -111,9 +115,11 @@ const Home = () => {
         <div>
       {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminWallets} /> : <></>}
       {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminWallets} setSort={setSort} /> : <></>}
-      {sort==="Most Liked" ?  <LikedMints dao={dao} AdminWallets={AdminWallets} setSort={setSort} /> : <></>}
+      {sort==="Giveaways" ?  <Giveaways dao={dao} AdminWallets={AdminWallets} setSort={setSort} wallet={walletAddress} /> : <></>}
+
       <div className="paginationContainer">
         {sort==="Explore" ? <Pagination page={page} pageName={pageName} dao={dao} AdminWallets={AdminWallets} /> : <></>}
+        {sort==="Giveaways" ? <GiveawayPagination page={page} pageName={pageName} dao={dao} AdminWallets={AdminWallets} /> : <></>}
         </div>
       <br></br>
       </div>
