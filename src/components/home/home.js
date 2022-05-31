@@ -165,7 +165,7 @@ const Home = () => {
                         Hi there, welcome to SolMints! 👋
                     </p>
                     <div className="move-up">
-                    <iframe src='https://my.spline.design/solmints-0c49ca0c7934b8697c23300df3a6cd1a/' frameborder='0' width='100%' height='210px'></iframe>
+                    <iframe src='https://my.spline.design/solmints-0c49ca0c7934b8697c23300df3a6cd1a/' frameBorder='0' width='100%' height='210px'></iframe>
                     </div>
                     <br></br>
                     <Showcases />

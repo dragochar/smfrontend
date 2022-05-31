@@ -1,21 +1,21 @@
 import React from 'react';
 import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
 import './comments.css';
 
 
-const Comment = ({ comment }) => {
-
+const Comment = ({ comment, photo }) => {
+    
     if (comment.length===0) return <></>;
 
     let commentPoster = comment[1];
-    let endCommentPoster = commentPoster.slice(-4, -1);
-    commentPoster = commentPoster.slice(0, 4);
-    commentPoster = commentPoster.concat('...', endCommentPoster);
+
 
     return(
         <div className="comment">
+            <Avatar alt="User" src={photo} sx={{ width: 20, height: 20 }} />
             <Typography sx={{ color: '#ffffff', fontWeight: 700 }} gutterBottom>
-                {commentPoster}:&nbsp;
+            &nbsp;{commentPoster}:&nbsp;
             </Typography>
             <Typography sx={{ color: '#eeeeee' }} gutterBottom>
                 {comment[0]}

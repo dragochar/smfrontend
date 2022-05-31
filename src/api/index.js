@@ -25,6 +25,7 @@ export const fetchTwitter = (twitter) => twitterAPI.get(`${twitter}?user.fields=
 export const createGiveaway = (newGiveaway) => API.post('/mints/giveaways', newGiveaway);
 export const fetchGiveaways = (dao, page) => API.get(`/mints/giveaways/get/${dao}?page=${page}`);
 export const enterGiveaway = (value, id) => API.post(`/mints/giveaways/${id}/enterGiveaway`, { value });
+export const getOrCreateUser = (code) => API.get(`/mints/users/${code}`);
 export const deleteGiveaway = (id) => API.delete(`/mints/giveaways/${id}`);
 
 

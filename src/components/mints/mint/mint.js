@@ -54,41 +54,22 @@ const family = 'Rubik';
 const Mint = ({ mint, AdminWallets }) => {
     const shadowStyles = useSoftRiseShadowStyles();
     const dispatch = useDispatch();
-    const [walletAddress, setWalletAddress] = useState(null);
     const [progressNow, setProgressNow] = useState(null);
     const [dialogOpen, setDialogOpen] = React.useState(false);
     const [editDialogOpen, setEditDialogOpen] = React.useState(false);
     const [giveawayDialogOpen, setGiveawayDialogOpen] = React.useState(false);
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
 
 
-    const checkIfWalletIsConnected = async () => {
-        try {
-          const { solana } = window;
-    
-          if (solana) {
-            if (solana.isPhantom) {
-              const response = await solana.connect({ onlyIfTrusted: true });
-
-              setWalletAddress(response.publicKey.toString());
-            }
-          } else {
-            alert('Solana object not found! Get a Phantom Wallet 👻');
-          }
-        } catch (error) {
-          console.error(error);
-        }
-        //hi there
-    };
 
     useEffect(() => {
-        checkIfWalletIsConnected();
         setProgressNow(((mint.likes.length)/((mint.likes.length)+(mint.dislikes.length))*100));
 
       }, []);
 
     const getLiked = () => {
-      return mint.likes.includes(walletAddress)
+      return mint.likes.includes(user.data.discordID)
 
     }
     
@@ -148,7 +129,7 @@ const Mint = ({ mint, AdminWallets }) => {
   
 
   const Likes = () => {
-    return mint.likes.find((like) => like === (walletAddress))
+    return mint.likes.find((like) => like === (user.data.discordID))
       ? (
 
         <><HandThumbsUpFill />&nbsp;{mint.likes.length}</>
@@ -158,7 +139,7 @@ const Mint = ({ mint, AdminWallets }) => {
   }
 
   const Dislikes = () => {
-    return mint.dislikes.find((dislike) => dislike === (walletAddress))
+    return mint.dislikes.find((dislike) => dislike === (user.data.discordID))
 
       ? (
         <><HandThumbsDownFill />&nbsp;{mint.dislikes.length}</>
@@ -169,7 +150,7 @@ const Mint = ({ mint, AdminWallets }) => {
 
   const changeRatioLike = () => {
 
-    return mint.likes.find((like) => like === (walletAddress))
+    return mint.likes.find((like) => like === (user.data.discordID))
       ? (
 
         <>{setProgressNow(((mint.likes.length-1)/((mint.likes.length-1)+(mint.dislikes.length))*100))}</>
@@ -179,7 +160,7 @@ const Mint = ({ mint, AdminWallets }) => {
   }
 
   const changeRatioDislike = () => {
-    return mint.dislikes.find((dislike) => dislike === (walletAddress))
+    return mint.dislikes.find((dislike) => dislike === (user.data.discordID))
 
       ? (
         <>{setProgressNow(((mint.likes.length)/((mint.likes.length)+(mint.dislikes.length-1))*100))}</>
@@ -258,12 +239,12 @@ const Mint = ({ mint, AdminWallets }) => {
 
                 </CardContent>
                 </CardActionArea>
-                <div>{AdminWallets.includes(walletAddress) && renderEditButton(mint)}</div>
-                <div>{AdminWallets.includes(walletAddress) && renderGiveawayButton(mint)}</div>
+                <div>{AdminWallets.includes(user.data.discordID) && renderEditButton(mint)}</div>
+                <div>{AdminWallets.includes(user.data.discordID) && renderGiveawayButton(mint)}</div>
                 <CardContent>
                 <div className="votes-block">
                 <IconButton size='small' color='primary' onClick={() => {
-                  dispatch(likeMint(mint._id, walletAddress));
+                  dispatch(likeMint(mint._id, user.data.discordID));
                   changeRatioLike();
                   }}>
                   <Likes />
@@ -271,7 +252,7 @@ const Mint = ({ mint, AdminWallets }) => {
 
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 <IconButton color="error" size='small' onClick={() => {
-                  dispatch(dislikeMint(mint._id, walletAddress));
+                  dispatch(dislikeMint(mint._id, user.data.discordID));
                   changeRatioDislike();
                   }}>
                   <Dislikes />
@@ -284,19 +265,19 @@ const Mint = ({ mint, AdminWallets }) => {
             open={dialogOpen}
             onClose={handleDialogClose}
           >
-            <DetailContent mint={mint} walletAddress={walletAddress} />
+            <DetailContent mint={mint} walletAddress={user.data.discordID} />
           </Dialog>
           <Dialog
             open={editDialogOpen}
             onClose={handleEditDialogClose}
           >
-            <EditContent mint={mint} walletAddress={walletAddress} AdminWallets={AdminWallets} />
+            <EditContent mint={mint} walletAddress={user.data.discordIDs} AdminWallets={AdminWallets} />
           </Dialog>
           <Dialog
             open={giveawayDialogOpen}
             onClose={handleGiveawayDialogClose}
           >
-            <AlertContent mint={mint} walletAddress={walletAddress} AdminWallets={AdminWallets} setGiveawayDialogOpen={setGiveawayDialogOpen} />
+            <AlertContent mint={mint} walletAddress={user.data.discordID} AdminWallets={AdminWallets} setGiveawayDialogOpen={setGiveawayDialogOpen} />
           </Dialog>
         </Card>
     );

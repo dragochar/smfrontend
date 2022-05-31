@@ -2,3 +2,149 @@
     padding-bottom: 0px;
     padding-top: 0px
 }
+
+.sub-text {
+    padding-top: 5px;
+    padding-bottom: 10px;
+  }
+  
+  @media screen and (min-width: 1400px) {
+    .sub-text {
+      margin: auto;
+      width: 50% 
+    }
+  }
+
+  .center-on-mints {
+    margin: auto;
+    max-width: 1650px;
+  }
+  
+  .spotlight-header {
+    margin: 0;
+    font-size: 15px;
+    font-weight: bold;
+    color: rgb(185, 185, 185);
+    margin-bottom: 30px;
+    margin-top: 10px;
+  }
+  
+  .sub-divider-text {
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  margin-bottom: 30px;
+  margin-top: 40px;
+  text-align: left;
+  }
+  
+  .chrono-text {
+  font-size: 40px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  text-align: left;
+  margin-left: 20px;
+  margin-bottom: 3;
+  }
+  
+  .chrono-text-2 {
+    font-size: 30px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-align: left;
+    margin-left: 20px;
+    margin-bottom: 3;
+    }
+  
+  .explainer-text {
+    font-size: 40px;
+    font-weight: bold;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    }
+  
+  .cta-button {
+    height: 45px;
+    border: 0;
+    width: auto;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    position: relative;
+    text-align: right;
+  }
+  
+  .submit-mint-button {
+    background: -webkit-linear-gradient(left, #00FFA3, #DC1FFF);
+    background-size: 200% 200%;
+    animation: gradient-animation 4s ease infinite;
+    margin-bottom: 20px;
+  }
+  
+  .button-container {
+    display: flex;
+  }
+  
+  .mints-container {
+  border: 1px;
+  border-width: 3px;
+  border: #00FFA3;
+  }
+  
+  
+  
+  .today-wrapper {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #f443366e;
+  margin-top: 20px;
+  border-bottom-width: 10px;
+  border-radius: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 0px;
+  margin-bottom: 10px;
+  max-width: 1745px;
+  }
+  
+  .tomorrow-wrapper {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #ffeb3b66;
+  margin-top: 20px;
+  border-bottom-width: 10px;
+  border-radius: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 0px;
+  margin-bottom: 10px;
+  max-width: 1745px;
+  }
+  
+  .two-days-wrapper {
+    border-style: solid;
+    border-width: 1px;
+    border-color: #3bffde60;
+    margin-top: 20px;
+    border-bottom-width: 10px;
+    border-radius: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 0px;
+    margin-bottom: 10px;
+    max-width: 1745px;
+  }
+  
+  .time-text {
+    margin-bottom: -10px;
+    margin-top: -10px;
+  
+  }
+
+.main-logo {
+    padding-top: 200px;
+}

@@ -13,6 +13,7 @@ import Comment from './Comment';
 const CommentSection = ({ mint, walletAddress }) => {
 
     const [comment, setComment] = useState('');
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
     const dispatch = useDispatch();
 
     const theme = createTheme({
@@ -26,7 +27,7 @@ const CommentSection = ({ mint, walletAddress }) => {
 
     const handleClick = () =>  {
         let fullComment = []
-        fullComment = [comment, walletAddress]
+        fullComment = [comment, user.data.username]
         dispatch(commentPost(fullComment, mint._id))
         setComment('');
     };
@@ -37,7 +38,7 @@ const CommentSection = ({ mint, walletAddress }) => {
             <>
             <Typography gutterBottom variant="h6" sx={{ color: '#ffffff', fontWeight: 700 }}>Comments</Typography>
             {mint.comments.map((c, i) => (
-                <Comment comment={c} key={i} />
+                <Comment comment={c} photo={user.data.avatarLink} key={i} />
             ))}
             </>
         );

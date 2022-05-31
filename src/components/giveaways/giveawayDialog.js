@@ -67,7 +67,7 @@ const GiveawayDialog = ({ giveaway, setDialogOpen, wallet }) => {
                             />
                     </FormControl>
                     <FormControl sx={{ m: 1 }}>
-                        <InputLabel htmlFor="outlined-adornment-amount">Your Discord Username</InputLabel>
+                        <InputLabel htmlFor="outlined-adornment-amount">Your Wallet Address</InputLabel>
                             <OutlinedInput
                                 variant="outlined" 
                                 label="Discord"

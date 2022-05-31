@@ -251,7 +251,7 @@ return (
 
     <br></br>
 
-    {AdminWallets.includes(walletAddress) && renderDeleteButton(mint)}
+    {renderDeleteButton(mint)}
 
       
     {/*<Typography variant="body2" sx={{ color: '#FFFFFF', fontWeight: 900 }}>Comments</Typography>*/}

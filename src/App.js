@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import twitterLogo from './assets/twitter-logo.svg';
-import './App.css';
+import './App2.css';
 import { getMints } from './actions/mints';
 import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -12,6 +12,7 @@ import GGSG from './components/daopages/ggsg';
 import BitBearAlpha from './components/daopages/bitbearalpha';
 import InternalAlpha from './components/daopages/internalalpha';
 import trustDAO from './components/daopages/trustdao';
+import Auth from './components/common/auth';
 import MintNavbar from './components/navbar/navbar';
 import BasicLayout from './components/common/basiclayout';
 import ReactGA from 'react-ga4';
@@ -51,10 +52,12 @@ const App = () => {
     <ConnectionProvider endpoint={network}>
 		<WalletProvider wallets={wallets} autoConnect>
 			<WalletModalProvider>
+      <div className="main-app">
         <BasicLayout>
         <Switch>
           {/*<Route path="/" exact component={() => <Redirect to="/mints" />} /> */}
           <Route path="/" exact component={Home}/>
+          <Route path="/auth" exact component={Auth} />
           <Route path="/caa" exact component={CAA}/>
           <Route path="/ggsg" exact component={GGSG}/>
           <Route path="/tD" exact component={trustDAO}/>
@@ -64,8 +67,9 @@ const App = () => {
           <Route path="/mints/search" exact component={Home}/>
 
         </Switch>
-
         </BasicLayout>
+        </div>
+
 			</WalletModalProvider>
 		</WalletProvider>
 	</ConnectionProvider>
