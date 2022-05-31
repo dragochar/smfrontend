@@ -5,17 +5,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Mints from '../mints/mints';
 import TodayMints from '../mints/todayMints';
+import Giveaways from '../giveaways/giveaways';
 import LikedMints from '../mints/likedMints';
-import AdminWallets from '../../wallets/tdwallets';
+import AdminUsers from '../../wallets/ggsgwallets';
 import CyberWallets from '../../wallets/cyberapeWallets';
 import brandLogo from '../../assets/tD.png'
 import Footer from '../common/footer';
 import Card from '@mui/material/Card';
+import Typography from '@mui/material/Typography';
 import { Grow, Grid, Paper, AppBar, TextField, Button } from '@material-ui/core';
 import { useHistory, useLocation } from 'react-router-dom';
 import Pagination from '../pagination/Pagination';
+import GiveawayPagination from '../pagination/GiveawayPagination';
 import RenderSelectButtons from '../common/renderSelectButtons';
-import { getTodayMints } from '../../actions/mints';
 import '../daopages/daopages.css';
 
 import Form from '../form/form';
@@ -49,11 +51,11 @@ function useQuery() {
 
 const Home = () => {
 
-  const [walletAddress, setWalletAddress] = useState(null);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
   const dispatch = useDispatch();
   const query = useQuery();
   const page = query.get('page') || 1;
-  const [sort, setSort] = useState('Explore');
+  const [sort, setSort] = useState('Upcoming');
   const history = useHistory();
 
 
@@ -64,22 +66,23 @@ const Home = () => {
   const provider = new Provider(connection, walletContext, opts.preflightCommitment);
   const userAccount = new Wallet(connection, provider.wallet);
 
-  const address = userAccount.publicKey;
-  if (walletContext.publicKey) {
-    //console.log(walletContext.publicKey.toBase58());
-  }
 
+  const date = new Date();
+  const dateAsString = date.toString();
+  const timezone = dateAsString.match(/\(([^\)]+)\)$/)[1];
 
 
   const renderConnectedContainer = () => (
     <div>
         <div>
-        {console.log({AdminWallets})}
-        {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminWallets} /> : <></>}
-        {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminWallets} setSort={setSort} /> : <></>}
+        {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminUsers} /> : <></>}
+        {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminUsers} setSort={setSort} /> : <></>}
+        {sort==="Giveaways" ?  <Giveaways dao={dao} AdminWallets={AdminUsers} setSort={setSort} /> : <></>}
+
 
         <div className="paginationContainer">
-        {sort==="Explore" ? <Pagination page={page} pageName={pageName} dao={dao} AdminWallets={AdminWallets} /> : <></>}
+        {sort==="Explore" ? <Pagination page={page} pageName={pageName} dao={dao} AdminWallets={AdminUsers} /> : <></>}
+        {sort==="Giveaways" ? <GiveawayPagination page={page} pageName={pageName} dao={dao} AdminWallets={AdminUsers} /> : <></>}
         </div>
         <br></br>
         </div>
@@ -89,7 +92,7 @@ const Home = () => {
   const renderUnauthenticatedContainer = () => (
     <div>
         <Card>
-          <h2>Please make sure you connect with a wallet that holds a Sol Cyber Patrol NFT.</h2>
+          <h2>Please make sure you connect with a wallet that holds a Galactic Gecko NFT.</h2>
         </Card>
         <br></br>
     </div>
@@ -105,11 +108,13 @@ const Home = () => {
     return (
       <div>
         <div>
-      {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminWallets} /> : <></>}
-      {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminWallets} setSort={setSort} /> : <></>}
-      {sort==="Most Liked" ?  <LikedMints dao={dao} AdminWallets={AdminWallets} setSort={setSort} /> : <></>}
+      {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminUsers} /> : <></>}
+      {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminUsers} setSort={setSort} /> : <></>}
+      {sort==="Giveaways" ?  <Giveaways dao={dao} AdminWallets={AdminUsers} setSort={setSort} wallet={user.data.discordID} /> : <></>}
+
       <div className="paginationContainer">
-        {sort==="Explore" ? <Pagination page={page} pageName={pageName} dao={dao} AdminWallets={AdminWallets} /> : <></>}
+        {sort==="Explore" ? <Pagination page={page} pageName={pageName} dao={dao} AdminWallets={AdminUsers} /> : <></>}
+        {sort==="Giveaways" ? <GiveawayPagination page={page} pageName={pageName} dao={dao} AdminWallets={AdminUsers} /> : <></>}
         </div>
       <br></br>
       </div>
@@ -148,24 +153,25 @@ const Home = () => {
 
     return (
         <div className="App">
-            <div className={walletAddress ? 'authed-container' : 'container'}>
+            <div className={user!==null ? 'authed-container' : 'container'}>
                 <div className="header-container">
                     <div>
-                        <img alt="MBBImg" src={brandLogo} width='100' height='100'></img>
+                        <img alt="DAO Logo" src={brandLogo} width='100' height='100'></img>
                         <p className="header main-text-logo">TrustMints</p>
                     </div>
                     <div>
-                      {walletAddress && renderSelectButtons()}
+                      {user!==null && renderSelectButtons()}
                     </div>
                     <div>
-                    {walletAddress ? <div className="sub-text"><p>View upcoming mints, and vote on your favourites ✨</p></div> :
-                    <p className="sub-text">Connect a Solana wallet to get started! 🤝</p>
+                    {user!==null ? <div className="sub-text"><p>View upcoming mints, and vote on your favourites ✨</p>
+                    {/*<div className="time-text"><Typography variant="caption">(Times in {timezone})</Typography></div>*/}
+                    </div> :
+                    <p className="sub-text">Login with your Discord to get started! 🦎</p>
                     }
-                        
+                    
                     </div>
-                    <PrintPubKey setPublicKey={setWalletAddress} />
-                    {!AdminWallets.includes(walletAddress) && walletAddress && renderConnectedContainer()}
-                    {AdminWallets.includes(walletAddress) && renderAdminContainer()}
+                    {user!==null && !AdminUsers.includes(user.data.discordID) && renderConnectedContainer()}
+                    {user!==null && AdminUsers.includes(user.data.discordID) && renderAdminContainer()}
                     
                 </div>
             </div>

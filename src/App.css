@@ -169,7 +169,7 @@ max-width: 1745px;
 
 @media screen and (max-width: 592px) {
   .header {
-    padding-top: 300px;
+    padding-top: 500px;
     margin: 0;
     font-size: 50px;
     font-weight: bold;
