@@ -1,5 +1,3 @@
-import Discord from 'discord.js';
-require('dotenv').config();
 const axios = require('axios');
 
 
