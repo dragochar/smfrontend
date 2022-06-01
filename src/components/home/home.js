@@ -159,7 +159,7 @@ const Home = () => {
             <div className={walletAddress ? 'authed-container' : 'container'}>
                 <div className="header-container">
                     <div>
-                        <p className="header main-text-logo">SolMints</p>
+                        <p className="home-header main-text-logo">SolMints</p>
                     </div>
                     <p className="sub-text">
                         Hi there, welcome to SolMints! 👋
