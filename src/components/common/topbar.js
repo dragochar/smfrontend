@@ -20,8 +20,7 @@ import Chip from '@mui/material/Chip';
 import './common.css';
 
 
-
-//const crypto = require('crypto')
+const crypto = require('crypto')
 const DiscordOauth2 = require("discord-oauth2");
 
 
@@ -88,7 +87,7 @@ export default function TopBar() {
         const API_ENDPOINT = 'https://discord.com/api/v10/oauth2/token';
         const CLIENT_ID = '978019233021706302';
         const CLIENT_SECRET = 'PXIjC2_mgELNFjHkJR00gsewv40Su3MD';
-        const REDIRECT_URI = 'http://solmints.io/auth';
+        const REDIRECT_URI = 'https://solmints.io/auth';
         const useroauth = new DiscordOauth2();
 
 
