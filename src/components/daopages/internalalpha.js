@@ -55,7 +55,7 @@ const Home = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
 
-  const AdminWallets = ["680887038916165827" ]
+  const AdminWallets = ["680887038916165827"]
 
 
   const walletContext = useWallet();
@@ -145,7 +145,7 @@ const Home = () => {
                         
                     </div>
                     <PrintPubKey setPublicKey={setWalletAddress} />
-                    {!AdminWallets.includes(user.data.id) && walletAddress && renderConnectedContainer()}
+                    {!AdminWallets.includes(user.data.id) && user!==null && renderConnectedContainer()}
                     {AdminWallets.includes(user.data.id) && renderAdminContainer()}
                     
                 </div>
