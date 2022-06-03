@@ -30,7 +30,6 @@ const TWITTER_HANDLE = 'realsolmints';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const pageName = 'internalalpha';
 const dao = '';
-const [userDBID, setUserDBID] = useState(JSON.parse(localStorage.getItem('user2')));
 
 
 
@@ -55,6 +54,7 @@ const Home = () => {
   const page = query.get('page') || 1;
   const [sort, setSort] = useState('Upcoming');
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+  const [userDBID, setUserDBID] = useState(JSON.parse(localStorage.getItem('user2')));
 
 
   const AdminWallets = ["680887038916165827", "484894692987633686"]
