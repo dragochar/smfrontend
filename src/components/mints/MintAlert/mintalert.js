@@ -25,7 +25,7 @@ import { createGiveaway } from '../../../actions/mints';
 
 const AlertContent = ({ mint, walletAddress, AdminWallets, setGiveawayDialogOpen }) => {
     const [giveawayData, setGiveawayData] = useState({
-        name: mint.name, description: '', numSpots: '', timeInHours: 24, DAO: mint.DAO, 'selectedFile': mint.selectedFile, discord: mint.discord, twitter: mint.twitter
+        name: mint.name, description: '', mintID: mint._id, numSpots: '', timeInHours: 24, DAO: mint.DAO, 'selectedFile': mint.selectedFile, discord: mint.discord, twitter: mint.twitter
     });
     const [checked, setChecked] = React.useState(false);
     const dispatch = useDispatch();

@@ -51,14 +51,13 @@ const useStyles = makeStyles(() => ({
 
 const family = 'Rubik';
 
-const Mint = ({ mint, AdminWallets }) => {
+const Mint = ({ mint, AdminWallets, user }) => {
     const shadowStyles = useSoftRiseShadowStyles();
     const dispatch = useDispatch();
     const [progressNow, setProgressNow] = useState(null);
     const [dialogOpen, setDialogOpen] = React.useState(false);
     const [editDialogOpen, setEditDialogOpen] = React.useState(false);
     const [giveawayDialogOpen, setGiveawayDialogOpen] = React.useState(false);
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
 
 

@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 
 
 
-const RenderSelectButtons = ({ sort, setSort }) => {
+const RenderSelectButtons = ({ sort, setSort , pageName}) => {
 
 
 

@@ -11,6 +11,11 @@ export default (state = { isLoading: true, user: [] }, action) => {
                 ...state,
                 user: action.payload.data,
             };
+        case "FETCH_ONE_USER":
+            return {
+                ...state,
+                user: action.payload.data,
+            }
         default:
             return state;
     }

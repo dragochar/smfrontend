@@ -26,7 +26,7 @@ import Pagination from '../pagination/Pagination';
 import RenderSelectButtons from '../common/renderSelectButtons';
 
 
-const Mints = ({ page, AdminWallets }) => {
+const Mints = ({ page, AdminWallets, user }) => {
     const { mints, isLoading } = useSelector((state) => state.mints);
     const firstFourMints = mints.slice(0, 4);
     const secondFourMints = mints.slice(4, 200);
@@ -65,7 +65,7 @@ const Mints = ({ page, AdminWallets }) => {
                     <Grid container spacing={3}>
                     {firstFourMints.map((mint) => (
                         <Grid item xs={6} sm={3} key={mint._id}>
-                            <Mint mint={mint} AdminWallets={AdminWallets} />
+                            <Mint mint={mint} AdminWallets={AdminWallets} user={user} />
                         </Grid>
                     ))}
                     </Grid>
@@ -75,7 +75,7 @@ const Mints = ({ page, AdminWallets }) => {
                     <Grid container spacing={3}>
                     {secondFourMints.map((mint) => (
                         <Grid item xs={6} sm={3} key={mint._id}>
-                            <Mint mint={mint} AdminWallets={AdminWallets} />
+                            <Mint mint={mint} AdminWallets={AdminWallets} user={user} />
                         </Grid>
                     ))}
                     

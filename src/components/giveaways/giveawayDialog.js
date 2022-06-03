@@ -13,7 +13,7 @@ import './giveaway.css';
 import { enterGiveaway } from '../../actions/mints';
 
 
-const GiveawayDialog = ({ giveaway, setDialogOpen, wallet }) => {
+const GiveawayDialog = ({ giveaway, setDialogOpen, wallet, setAlreadyVoted }) => {
 
     const [entryData, setEntryData] = useState({
         wallet: wallet, twitter: '', discord: ''
@@ -36,7 +36,7 @@ const GiveawayDialog = ({ giveaway, setDialogOpen, wallet }) => {
         e.preventDefault();
         let fullEntry = []
         fullEntry = [entryData.wallet, entryData.twitter, entryData.discord]
-
+        setAlreadyVoted(true);
         dispatch(enterGiveaway(fullEntry, giveaway._id));
 
         setDialogOpen(false);

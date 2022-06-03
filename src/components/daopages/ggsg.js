@@ -18,6 +18,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import Pagination from '../pagination/Pagination';
 import GiveawayPagination from '../pagination/GiveawayPagination';
 import RenderSelectButtons from '../common/renderSelectButtons';
+import { getOneUserWithID } from '../../actions/users';
 import '../daopages/daopages.css';
 
 import Form from '../form/form';
@@ -51,12 +52,13 @@ function useQuery() {
 
 const Home = () => {
 
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
   const dispatch = useDispatch();
   const query = useQuery();
   const page = query.get('page') || 1;
   const [sort, setSort] = useState('Upcoming');
   const history = useHistory();
+  const [userDBID, setUserDBID] = useState(JSON.parse(localStorage.getItem('user')));
+  const [user, setUser] = useState(null);
 
 
   const walletContext = useWallet();
@@ -75,9 +77,9 @@ const Home = () => {
   const renderConnectedContainer = () => (
     <div>
         <div>
-        {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminUsers} /> : <></>}
-        {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminUsers} setSort={setSort} /> : <></>}
-        {sort==="Giveaways" ?  <Giveaways dao={dao} AdminWallets={AdminUsers} setSort={setSort} /> : <></>}
+        {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminUsers} user={user} /> : <></>}
+        {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminUsers} setSort={setSort} user={user} /> : <></>}
+        {sort==="Giveaways" ?  <Giveaways dao={dao} AdminWallets={AdminUsers} setSort={setSort} user={user} /> : <></>}
 
 
         <div className="paginationContainer">
@@ -100,7 +102,7 @@ const Home = () => {
 
   const renderSelectButtons = () => {
     return (
-    <RenderSelectButtons sort={sort} setSort={setSort} />
+    <RenderSelectButtons sort={sort} setSort={setSort} pageName={pageName} />
     )
   }
 
@@ -108,9 +110,9 @@ const Home = () => {
     return (
       <div>
         <div>
-      {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminUsers} /> : <></>}
-      {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminUsers} setSort={setSort} /> : <></>}
-      {sort==="Giveaways" ?  <Giveaways dao={dao} AdminWallets={AdminUsers} setSort={setSort} wallet={user.data.discordID} /> : <></>}
+      {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminUsers} user={user} /> : <></>}
+      {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminUsers} setSort={setSort} user={user} /> : <></>}
+      {sort==="Giveaways" ?  <Giveaways dao={dao} AdminWallets={AdminUsers} setSort={setSort} wallet={user.data.discordID} user={user} /> : <></>}
 
       <div className="paginationContainer">
         {sort==="Explore" ? <Pagination page={page} pageName={pageName} dao={dao} AdminWallets={AdminUsers} /> : <></>}
@@ -133,6 +135,13 @@ const Home = () => {
     window.addEventListener('load', onLoad);
     return () => window.removeEventListener('load', onLoad);
   }, []);
+
+  useEffect(async () => {
+    if (localStorage.getItem('user') !==null) {
+    const ourUser = await dispatch(getOneUserWithID(userDBID.data));
+    setUser(ourUser);
+    }
+}, []);
 
 
   const PrintPubKey = ({ setPublicKey }) => {

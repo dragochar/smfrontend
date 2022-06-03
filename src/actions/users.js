@@ -15,3 +15,15 @@ export const getUser = (code) => async (dispatch) => {
     }
 
 };
+
+export const getOneUserWithID = (id) => async (dispatch) => {
+    try {
+        const { data } = await api.getUser(id);
+        dispatch({ type: 'FETCH_ONE_USER', payload: data });
+
+        return { data };
+    } catch (error) {
+        console.log(error.message);
+    }
+
+};

@@ -38,6 +38,7 @@ const Auth = () => {
 
         try {
             let userData = await dispatch(getUser(code));
+            console.log('auth returned', userData);
             await sleep(600);
             console.log(userData);
             try {
@@ -47,8 +48,6 @@ const Auth = () => {
                 console.log(error);
             }
 
-            //680887038916165900
-            //922886466244313119
 
 
         } catch (error) {

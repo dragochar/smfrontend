@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 import { dayFromNumber } from '../common/dayFromNumber';
 
 
-const TodayMints = ({ page, dao, AdminWallets, setSort }) => {
+const TodayMints = ({ page, dao, AdminWallets, setSort, user }) => {
     var daoName = String(dao);
     const { todayMints, tomorrowMints, twoDaysMints, isLoading } = useSelector((state) => state.mints);
     const dispatch = useDispatch();
@@ -40,7 +40,7 @@ const TodayMints = ({ page, dao, AdminWallets, setSort }) => {
                 <Grid container spacing={3}>
                     {todayMints.map((mint) => (
                         <Grid item xs={6} sm={3} key={mint._id}>
-                            <Mint mint={mint} AdminWallets={AdminWallets} />
+                            <Mint mint={mint} AdminWallets={AdminWallets} user={user} />
                         </Grid>
                     ))}
                 </Grid>
@@ -50,7 +50,7 @@ const TodayMints = ({ page, dao, AdminWallets, setSort }) => {
                <Grid container spacing={3}>
                     {tomorrowMints.map((mint) => (
                         <Grid item xs={6} sm={3} key={mint._id}>
-                            <Mint mint={mint} AdminWallets={AdminWallets} />
+                            <Mint mint={mint} AdminWallets={AdminWallets} user={user} />
                         </Grid>
                     ))}
                 </Grid>
@@ -61,7 +61,7 @@ const TodayMints = ({ page, dao, AdminWallets, setSort }) => {
                 <Grid container spacing={3}>
                     {twoDaysMints.map((mint) => (
                         <Grid item xs={6} sm={3} key={mint._id}>
-                            <Mint mint={mint} AdminWallets={AdminWallets} />
+                            <Mint mint={mint} AdminWallets={AdminWallets} user={user} />
                         </Grid>
                     ))}
                 </Grid>

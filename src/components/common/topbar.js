@@ -13,6 +13,7 @@ import images from '../../assets/images';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { getOneUserWithID } from '../../actions/users';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Avatar from '@mui/material/Avatar';
@@ -41,8 +42,9 @@ export default function TopBar() {
     const data = useSelector((state) => state.data)
 
     //Our User stuff
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+    const [userDBID, setUserDBID] = useState(JSON.parse(localStorage.getItem('user')));
     const dispatch = useDispatch();
+    const [user, setUser] = useState(null);
 
     //Discord Stuff
     
@@ -58,6 +60,21 @@ export default function TopBar() {
       const handleClose = () => {
         setAnchorEl(null);
       };
+    
+    useEffect(() => {
+    if (localStorage.getItem('user') !==null) {
+        setUserDBID(JSON.parse(localStorage.getItem('user')));
+    }
+    }, [location]);
+
+    useEffect(async () => {
+        if (localStorage.getItem('user') !==null) {
+        const ourUser = await dispatch(getOneUserWithID(userDBID.data));
+        setUser(ourUser);
+        }
+    }, []);
+
+    
 
     const theme = createTheme({
     palette: {
@@ -76,12 +93,6 @@ export default function TopBar() {
         });
     
 
-    useEffect(() => {
-        if (localStorage.getItem('user') !==null) {
-            setUser(JSON.parse(localStorage.getItem('user')));
-        }
-        
-    }, [location]);
 
     if (code!=='') {
         const API_ENDPOINT = 'https://discord.com/api/v10/oauth2/token';
@@ -102,11 +113,6 @@ export default function TopBar() {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
         
-        //axios.post('https://discord.com/api/v10/oauth2/token', params, { headers })
-        //    .then((response) => {
-        //        const access_token = response.data.access_token;
-        //        console.log(access_token);
-        //    });
 
     }
 
@@ -146,7 +152,7 @@ export default function TopBar() {
             <div className=''>
                 <div className=''>
 
-                { user===null ? <ThemeProvider theme={theme2}><Button href={url} variant="contained" >
+                { user=== null ? <ThemeProvider theme={theme2}><Button href={url} variant="contained" >
                     Login
                     </Button></ThemeProvider> : (
                         <>

@@ -9,6 +9,8 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Home from './components/home/home';
 import CAA from './components/daopages/caa';
 import GGSG from './components/daopages/ggsg';
+import Noot from './components/daopages/noot';
+import MonkeDAO from './components/daopages/monkedao';
 import BitBearAlpha from './components/daopages/bitbearalpha';
 import InternalAlpha from './components/daopages/internalalpha';
 import trustDAO from './components/daopages/trustdao';
@@ -59,10 +61,12 @@ const App = () => {
           <Route path="/" exact component={Home}/>
           <Route path="/auth" exact component={Auth} />
           <Route path="/caa" exact component={CAA}/>
+          <Route path="/monkedao" exact component={MonkeDAO}/>
           <Route path="/ggsg" exact component={GGSG}/>
           <Route path="/tD" exact component={trustDAO}/>
           <Route path="/bitbearalpha" exact component={BitBearAlpha}/>
           <Route path="/internalalpha" exact component={InternalAlpha}/>
+          <Route path="/noot" exact component={Noot}/>
 
           <Route path="/mints/search" exact component={Home}/>
 
