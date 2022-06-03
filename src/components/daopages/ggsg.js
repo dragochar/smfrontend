@@ -57,7 +57,7 @@ const Home = () => {
   const page = query.get('page') || 1;
   const [sort, setSort] = useState('Upcoming');
   const history = useHistory();
-  const [userDBID, setUserDBID] = useState(JSON.parse(localStorage.getItem('user')));
+  const [userDBID, setUserDBID] = useState(JSON.parse(localStorage.getItem('user2')));
   const [user, setUser] = useState(null);
 
 
