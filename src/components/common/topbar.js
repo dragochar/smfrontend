@@ -31,10 +31,8 @@ function useQuery() {
 
 export default function TopBar() {
 
-    //init stuff
     const location = useLocation();
     const history = useHistory();
-
     //Our User stuff
     const [userDBID, setUserDBID] = useState(JSON.parse(localStorage.getItem('user2')));
     const dispatch = useDispatch();
@@ -55,13 +53,18 @@ export default function TopBar() {
         setAnchorEl(null);
       };
     
-    useEffect(async () => {
+    useEffect(() => {
     if (localStorage.getItem('user2') !==null) {
         setUserDBID(JSON.parse(localStorage.getItem('user')));
-        const ourUser = await dispatch(getOneUserWithID(userDBID.data));
-        setUser(ourUser);
     }
     }, [location]);
+
+    useEffect(async () => {
+        if (localStorage.getItem('user2') !==null) {
+        const ourUser = await dispatch(getOneUserWithID(userDBID.data));
+        setUser(ourUser);
+        }
+    }, []);
 
     
 
