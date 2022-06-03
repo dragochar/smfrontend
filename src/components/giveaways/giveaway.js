@@ -96,6 +96,8 @@ const Giveaway = ({ giveaway, wallet }) => {
             <Dialog
                 open={dialogOpen}
                 onClose={handleDialogClose}
+                fullWidth
+                maxWidth='xl'
             >
                 <GiveawayDialog giveaway={giveaway} setDialogOpen={setDialogOpen} wallet={wallet} setAlreadyVoted={setAlreadyVoted} />
             </Dialog>

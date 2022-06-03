@@ -80,10 +80,12 @@ const WinnersDialog = ({ giveaway, setDialogOpen, wallet }) => {
     return(
         <div className="dialog">
             <DialogTitle sx={{ fontSize: 30, fontWeight: 700, color: "white" }}>
-                Winners of {giveaway.name}                               .!
+                Winners of {giveaway.name}!
             </DialogTitle>
 
+
             <ThemeProvider theme={theme}>
+                <div style={{ height: 400, width: '100%' }}>
                 <DataGrid 
                     rows={rows} 
                     columns={columns}
@@ -92,8 +94,9 @@ const WinnersDialog = ({ giveaway, setDialogOpen, wallet }) => {
                     checkboxSelection
                     disableSelectionOnClick
                 />
+                </div>
 
-                <Button variant="contained" color="info" endIcon={<CakeIcon />}>
+                <Button fullWidth variant="contained" color="info" endIcon={<CakeIcon />}>
                     Enter
                 </Button>
             </ThemeProvider>
