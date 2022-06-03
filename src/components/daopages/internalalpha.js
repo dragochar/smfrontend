@@ -30,6 +30,8 @@ const TWITTER_HANDLE = 'realsolmints';
 const TWITTER_LINK = `https://twitter.com/${TWITTER_HANDLE}`;
 const pageName = 'internalalpha';
 const dao = '';
+const [userDBID, setUserDBID] = useState(JSON.parse(localStorage.getItem('user2')));
+
 
 
 
@@ -145,8 +147,7 @@ const Home = () => {
                         
                     </div>
                     <PrintPubKey setPublicKey={setWalletAddress} />
-                    {!AdminWallets.includes(user.data.id) && user!==null && renderConnectedContainer()}
-                    {AdminWallets.includes(user.data.id) && renderAdminContainer()}
+                    {renderAdminContainer()}
                     
                 </div>
             </div>
