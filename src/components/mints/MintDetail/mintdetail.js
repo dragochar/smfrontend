@@ -27,7 +27,7 @@ import TwitterStats from '../../twitter/TwitterStats.js';
 
 
 
-const DetailContent = ({ mint, walletAddress }) => {
+const DetailContent = ({ mint, walletAddress, user }) => {
 
   const dispatch = useDispatch();
 
@@ -69,7 +69,7 @@ const DetailContent = ({ mint, walletAddress }) => {
         <br></br>
           
         </DialogContent>
-        <CommentSection mint={mint} walletAddress={walletAddress} />
+        <CommentSection mint={mint} walletAddress={walletAddress} user={user} />
 
 
     </div>

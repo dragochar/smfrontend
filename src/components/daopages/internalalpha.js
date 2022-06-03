@@ -53,8 +53,9 @@ const Home = () => {
   const history = useHistory();
   const page = query.get('page') || 1;
   const [sort, setSort] = useState('Upcoming');
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+  const [user, setUser] = useState(null);
   const [userDBID, setUserDBID] = useState(JSON.parse(localStorage.getItem('user2')));
+
 
 
   const AdminWallets = ["680887038916165827", "484894692987633686"]
@@ -67,10 +68,14 @@ const Home = () => {
   const provider = new Provider(connection, walletContext, opts.preflightCommitment);
   const userAccount = new Wallet(connection, provider.wallet);
 
-  const address = userAccount.publicKey;
-  if (walletContext.publicKey) {
-    //console.log(walletContext.publicKey.toBase58());
-  }
+
+
+  useEffect(async () => {
+    if (localStorage.getItem('user2') !==null) {
+    const ourUser = await dispatch(getOneUserWithID(userDBID.data));
+    setUser(ourUser);
+    }
+}, []);
 
 
 
@@ -109,31 +114,6 @@ const Home = () => {
 
 
 
-  // UseEffects
-  useEffect(() => {
-    const onLoad = async () => {
-      //await checkIfWalletIsConnected();
-    };
-    window.addEventListener('load', onLoad);
-    return () => window.removeEventListener('load', onLoad);
-  }, []);
-
-  const PrintPubKey = ({ setPublicKey }) => {
-    const wallet = useWallet();
-    //if (!publicKey) throw new WalletNotConnectedError();
-    if (wallet.publicKey) {
-    setPublicKey(wallet.publicKey.toBase58())
-    }
-    if (!wallet.publicKey) {
-        setPublicKey(null);
-    }
-
-    return (
-        <div></div>
-    );
-};
-
-
     return (
         <div className="App">
             <div className={walletAddress ? 'authed-container' : 'container'}>
@@ -146,8 +126,8 @@ const Home = () => {
                     <div>
                         
                     </div>
-                    <PrintPubKey setPublicKey={setWalletAddress} />
-                    {renderAdminContainer()}
+                    {!AdminWallets.includes(user.data.id) && user!==null && renderConnectedContainer()}
+                    {AdminWallets.includes(user.data.id) && renderAdminContainer()}
                     
                 </div>
             </div>

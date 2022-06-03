@@ -264,7 +264,7 @@ const Mint = ({ mint, AdminWallets, user }) => {
             open={dialogOpen}
             onClose={handleDialogClose}
           >
-            <DetailContent mint={mint} walletAddress={user.data.discordID} />
+            <DetailContent mint={mint} walletAddress={user.data.discordID} user={user} />
           </Dialog>
           <Dialog
             open={editDialogOpen}
