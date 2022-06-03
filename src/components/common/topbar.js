@@ -42,7 +42,7 @@ export default function TopBar() {
     const data = useSelector((state) => state.data)
 
     //Our User stuff
-    const [userDBID, setUserDBID] = useState(JSON.parse(localStorage.getItem('user')));
+    const [userDBID, setUserDBID] = useState(JSON.parse(localStorage.getItem('user2')));
     const dispatch = useDispatch();
     const [user, setUser] = useState(null);
 
