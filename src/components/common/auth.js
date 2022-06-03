@@ -38,7 +38,6 @@ const Auth = () => {
 
         try {
             let userData = await dispatch(getUser(code));
-            console.log('auth returned', userData);
             await sleep(600);
             console.log(userData);
             try {
