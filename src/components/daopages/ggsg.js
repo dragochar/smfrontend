@@ -137,7 +137,7 @@ const Home = () => {
   }, []);
 
   useEffect(async () => {
-    if (localStorage.getItem('user') !==null) {
+    if (localStorage.getItem('user2') !==null) {
     const ourUser = await dispatch(getOneUserWithID(userDBID.data));
     setUser(ourUser);
     }

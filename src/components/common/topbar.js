@@ -62,13 +62,13 @@ export default function TopBar() {
       };
     
     useEffect(() => {
-    if (localStorage.getItem('user') !==null) {
+    if (localStorage.getItem('user2') !==null) {
         setUserDBID(JSON.parse(localStorage.getItem('user')));
     }
     }, [location]);
 
     useEffect(async () => {
-        if (localStorage.getItem('user') !==null) {
+        if (localStorage.getItem('user2') !==null) {
         const ourUser = await dispatch(getOneUserWithID(userDBID.data));
         setUser(ourUser);
         }
