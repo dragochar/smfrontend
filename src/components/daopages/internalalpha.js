@@ -55,7 +55,7 @@ const Home = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
 
 
-  const AdminWallets = ["680887038916165827"]
+  const AdminWallets = ["680887038916165827", "484894692987633686"]
 
 
   const walletContext = useWallet();
