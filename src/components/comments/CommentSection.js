@@ -13,7 +13,6 @@ import Comment from './Comment';
 const CommentSection = ({ mint, walletAddress, user }) => {
 
     const [comment, setComment] = useState('');
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user2')));
     const dispatch = useDispatch();
 
     const theme = createTheme({

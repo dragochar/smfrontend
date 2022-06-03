@@ -25,21 +25,15 @@ const crypto = require('crypto')
 const DiscordOauth2 = require("discord-oauth2");
 
 
-const wallets = [ getPhantomWallet() ]
-
 function useQuery() {
     return new URLSearchParams(useLocation().search);
 }
 
 export default function TopBar() {
-    // Can be set to 'devnet', 'testnet', or 'mainnet-beta'
-    const network = WalletAdapterNetwork.Mainnet;
-    const history = useHistory();
+
+    //init stuff
     const location = useLocation();
-    const { pathName } = useLocation();
-    // You can also provide a custom RPC endpoint
-    const endpoint = useMemo(() => clusterApiUrl(network), [network]);
-    const data = useSelector((state) => state.data)
+    const history = useHistory();
 
     //Our User stuff
     const [userDBID, setUserDBID] = useState(JSON.parse(localStorage.getItem('user2')));
@@ -61,18 +55,13 @@ export default function TopBar() {
         setAnchorEl(null);
       };
     
-    useEffect(() => {
+    useEffect(async () => {
     if (localStorage.getItem('user2') !==null) {
         setUserDBID(JSON.parse(localStorage.getItem('user')));
-    }
-    }, [location]);
-
-    useEffect(async () => {
-        if (localStorage.getItem('user2') !==null) {
         const ourUser = await dispatch(getOneUserWithID(userDBID.data));
         setUser(ourUser);
-        }
-    }, []);
+    }
+    }, [location]);
 
     
 

@@ -13,6 +13,7 @@ import { Grow, Grid, Paper, AppBar, TextField, Button } from '@material-ui/core'
 import { useHistory, useLocation } from 'react-router-dom';
 import Pagination from '../pagination/Pagination';
 import RenderSelectButtons from '../common/renderSelectButtons';
+import { getOneUserWithID } from '../../actions/users';
 import '../daopages/daopages.css';
 
 import Form from '../form/aggregateform';

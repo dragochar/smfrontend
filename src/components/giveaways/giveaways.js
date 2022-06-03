@@ -10,7 +10,7 @@ const Giveaways = ({dao, AdminWallets, setSort, wallet, user}) => {
 
     const { giveaways, isLoading } = useSelector((state) => state.giveaways);
 
-     return <Typography variant="h5" color="white" sx={{fontWeight: 700}} >There Are No Whitelist Giveaways For Your DAO</Typography>;
+    if (giveaways.length===0) return <Typography variant="h5" color="white" sx={{fontWeight: 700}} >There Are No Whitelist Giveaways For Your DAO</Typography>;
 
 
 

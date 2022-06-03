@@ -40,12 +40,6 @@ const dao = 'ggsgDAO';
 
 
 
-const opts = {
-	preflightCommitment: "processed"
-};
-
-const wallets = [getPhantomWallet(), getLedgerWallet()]
-
 function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
@@ -59,14 +53,6 @@ const Home = () => {
   const history = useHistory();
   const [userDBID, setUserDBID] = useState(JSON.parse(localStorage.getItem('user2')));
   const [user, setUser] = useState(null);
-
-
-  const walletContext = useWallet();
-
-  const network = "http://api.mainnet-beta.solana.com/";
-  const connection = new Connection(network, 'processed');
-  const provider = new Provider(connection, walletContext, opts.preflightCommitment);
-  const userAccount = new Wallet(connection, provider.wallet);
 
 
   const date = new Date();
@@ -94,7 +80,7 @@ const Home = () => {
   const renderUnauthenticatedContainer = () => (
     <div>
         <Card>
-          <h2>Please make sure you connect with a wallet that holds a Galactic Gecko NFT.</h2>
+          <h2>Please make sure you connect a Discord account with the proper role.</h2>
         </Card>
         <br></br>
     </div>
@@ -127,15 +113,6 @@ const Home = () => {
 
 
 
-  // UseEffects
-  useEffect(() => {
-    const onLoad = async () => {
-      //await checkIfWalletIsConnected();
-    };
-    window.addEventListener('load', onLoad);
-    return () => window.removeEventListener('load', onLoad);
-  }, []);
-
   useEffect(async () => {
     if (localStorage.getItem('user2') !==null) {
     const ourUser = await dispatch(getOneUserWithID(userDBID.data));
@@ -143,21 +120,6 @@ const Home = () => {
     }
 }, []);
 
-
-  const PrintPubKey = ({ setPublicKey }) => {
-    const wallet = useWallet();
-    //if (!publicKey) throw new WalletNotConnectedError();
-    if (wallet.publicKey) {
-    setPublicKey(wallet.publicKey.toBase58())
-    }
-    if (!wallet.publicKey) {
-        setPublicKey(null);
-    }
-
-    return (
-        <div></div>
-    );
-};
 
 
     return (

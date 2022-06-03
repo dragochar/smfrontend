@@ -122,7 +122,7 @@ const Giveaway = ({ giveaway, wallet }) => {
                 <Typography variant="h5" color="white" sx={{fontWeight: 400}} >{giveaway.numSpots} Spots</Typography>
                 <Typography variant="h6" color="white" sx={{fontWeight: 200}} >{giveaway.entries.length} Entered</Typography>
                 
-                <Button variant="contained" color="secondary" onClick={handleDialogOpen}>View Winners</Button>
+                <Button variant="contained" color="secondary" onClick={handleWinnerDialogOpen}>View Winners</Button>
 
               </CardContent>
               <Dialog
