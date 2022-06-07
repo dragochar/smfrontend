@@ -73,6 +73,7 @@ const Home = () => {
 
   useEffect(async () => {
     if (localStorage.getItem('user2') !==null) {
+    setUserDBID(JSON.parse(localStorage.getItem('user2')));
     const ourUser = await dispatch(getOneUserWithID(userDBID.data));
     setUser(ourUser);
     }
@@ -127,6 +128,7 @@ const Home = () => {
                     <div>
                         
                     </div>
+                    {console.log(user)}
                     {!AdminWallets.includes(user.data.id) && user!==null && renderConnectedContainer()}
                     {AdminWallets.includes(user.data.id) && renderAdminContainer()}
                     

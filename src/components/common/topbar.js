@@ -55,7 +55,7 @@ export default function TopBar() {
     
     useEffect(async() => {
     if (localStorage.getItem('user2') !==null) {
-        setUserDBID(JSON.parse(localStorage.getItem('user')));
+        await setUserDBID(JSON.parse(localStorage.getItem('user')));
         const ourUser = await dispatch(getOneUserWithID(userDBID.data));
         setUser(ourUser);
     }
