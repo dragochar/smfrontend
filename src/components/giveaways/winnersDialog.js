@@ -11,11 +11,14 @@ import Button from '@mui/material/Button';
 import CakeIcon from '@mui/icons-material/Cake';
 import { DataGrid } from '@mui/x-data-grid';
 import './giveaway.css';
+import Typography from '@mui/material/Typography';
+
 
 
 const WinnersDialog = ({ giveaway, setDialogOpen, wallet }) => {
 
     const dispatch = useDispatch();
+    const [rows, setRows] = useState([]);
 
     const theme = createTheme({
         palette: {
@@ -29,48 +32,59 @@ const WinnersDialog = ({ giveaway, setDialogOpen, wallet }) => {
     });
 
     const columns = [
-        { field: 'id', headerName: 'ID', width: 90 },
+        { field: 'id', headerName: '#', width: 90, hide: true },
         {
-          field: 'firstName',
-          headerName: 'First name',
+          field: 'userName',
+          headerName: 'Discord',
+          width: 200,
+          editable: true,
+        },
+        {
+          field: 'twitter',
+          headerName: 'Twitter',
           width: 150,
           editable: true,
+          hide: true,
         },
         {
-          field: 'lastName',
-          headerName: 'Last name',
-          width: 150,
+          field: 'wallet',
+          headerName: 'Wallet',
+          width: 500,
           editable: true,
-        },
-        {
-          field: 'age',
-          headerName: 'Age',
-          type: 'number',
-          width: 110,
-          editable: true,
-        },
-        {
-          field: 'fullName',
-          headerName: 'Full name',
-          description: 'This column has a value getter and is not sortable.',
-          sortable: false,
-          width: 160,
-          valueGetter: (params) =>
-            `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+          hide: true,
         },
       ];
 
 
-    const rows = [
-        { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-        { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-        { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-        { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-        { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-        { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-        { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-        { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-        { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+    useEffect(() => {
+        let foundRows = [];
+        for (let i=0; i<giveaway.winners.length; i++) {
+            foundRows.push({
+                id: i+1,
+                userName: `<@${giveaway.winners[i][0]}>`,
+                twitter: giveaway.winners[i][1],
+                wallet: giveaway.winners[i][2],
+            })
+            setRows(foundRows);
+            console.log(foundRows);
+
+        }
+
+    }, []);
+
+    
+
+
+    const rows2 = [
+        { id: 1, userName: 'Snow', twitter: 'Jon', wallet: '35' },
+        { id: 2, userName: 'Lannister', twitter: 'Cersei', wallet: '42' },
+        { id: 3, userName: 'Lannister', twitter: 'Jaime', wallet: '45' },
+        { id: 4, userName: 'Stark', twitter: 'Arya', wallet: '16' },
+        { id: 5, userName: 'Targaryen', twitter: 'Daenerys', wallet: 'nu' },
+        { id: 6, userName: 'Melisandre', twitter: 'yo', wallet: '15' },
+        { id: 7, userName: 'Clifford', twitter: 'Ferrara', wallet: '44' },
+        { id: 8, userName: 'Frances', twitter: 'Rossini', wallet: '36' },
+        { id: 9, userName: 'Roxie', twitter: 'Harvey', wallet: '65' },
     ];
 
 
@@ -83,22 +97,24 @@ const WinnersDialog = ({ giveaway, setDialogOpen, wallet }) => {
                 Winners of {giveaway.name}!
             </DialogTitle>
 
+           
+
 
             <ThemeProvider theme={theme}>
                 <div style={{ height: 400, width: '100%' }}>
+                {rows.length>1 ?
                 <DataGrid 
-                    rows={rows} 
+                    rows={rows}
                     columns={columns}
-                    pageSize={5}
-                    rowsPerPageOptions={[5]}
+                    pageSize={100}
+                    rowsPerPageOptions={[100]}
                     checkboxSelection
                     disableSelectionOnClick
                 />
+                : (<></>)
+                }
                 </div>
 
-                <Button fullWidth variant="contained" color="info" endIcon={<CakeIcon />}>
-                    Enter
-                </Button>
             </ThemeProvider>
         </div>
     );

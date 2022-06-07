@@ -13,6 +13,7 @@ import './giveaway.css';
 import { enterGiveaway } from '../../actions/mints';
 
 
+
 const GiveawayDialog = ({ giveaway, setDialogOpen, wallet, setAlreadyVoted }) => {
 
     const [entryData, setEntryData] = useState({
@@ -51,6 +52,7 @@ const GiveawayDialog = ({ giveaway, setDialogOpen, wallet, setAlreadyVoted }) =>
             <DialogTitle sx={{ fontSize: 30, fontWeight: 700, color: "white" }}>
                 Enter Raffle For {giveaway.name}
             </DialogTitle>
+
 
             <ThemeProvider theme={theme}>
                 <form autoComplete="off" noValidate onSubmit={handleSubmit}>

@@ -13,6 +13,8 @@ import WinnersDialog from './winnersDialog';
 import cx from 'clsx';
 import Dialog from '@mui/material/Dialog';
 import Countdown from './countdown';
+import axios from 'axios';
+import DetailContent from '../mints/MintDetail/mintdetail';
 
 
 
@@ -33,11 +35,13 @@ const useStyles = makeStyles(() => ({
   }));
 
 
-const Giveaway = ({ giveaway, wallet }) => {
+const Giveaway = ({ giveaway, wallet, user }) => {
     const shadowStyles = useSoftRiseShadowStyles();
     const [dialogOpen, setDialogOpen] = React.useState(false);
     const [winnerDialogOpen, setWinnerDialogOpen] = React.useState(false);
+    const [detailDialogOpen, setDetailDialogOpen] = React.useState(false);
     const [alreadyVoted, setAlreadyVoted] = React.useState(false);
+    const [mint, setMint] = React.useState(null);
 
     const numEntered = giveaway.entries.length;
     const winTime = new Date(giveaway.createdAt);
@@ -68,10 +72,34 @@ const Giveaway = ({ giveaway, wallet }) => {
       setWinnerDialogOpen(false);
   };
 
+  const handleDetailDialogOpen = async () => {
+      setDetailDialogOpen(true);
+      
+    };
+
+const handleDetailDialogClose = () => {
+    setDetailDialogOpen(false);
+};
+
+function sleep (milliseconds) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds))
+}
+
 
     useEffect(() => {
+      
+      async function asyncFunction() {
+        await axios.get(`https://daospot.herokuapp.com/mints/getMint/${giveaway.mintID}`)
+        .then(async(response) => {
+        setMint(response.data);
+        })
+        }
+
+      asyncFunction();
+
       for (let i = 0; i < giveaway.entries.length; i++) {  
         if (giveaway.entries[i].includes(wallet)) {
+          console.log(wallet);
           setAlreadyVoted(true); 
         }
       }
@@ -83,11 +111,15 @@ const Giveaway = ({ giveaway, wallet }) => {
       return (
         <div>
            <Card className={cx(styles.root, shadowStyles.root)} sx={{ maxWidth: 345, borderColor: '#2b384e', borderRadius: 5, backgroundColor: 'rgba(240, 248, 255, 0)' }} variant="outlined">
+            <CardActionArea onClick={handleDetailDialogOpen}>
             <CardMedia sx={{ borderRadius: 5 }}component="img" height="260" image={giveaway.selectedFile} alt="Giveaway" />
             <CardContent className="card-content" sx={{ backgroundColor: 'rgba(240, 248, 255, 0)' }}>
                 <Typography variant="h5" color="white" sx={{fontWeight: 700}} >{giveaway.name}</Typography>
                 <Typography variant="h5" color="white" sx={{fontWeight: 400}} >{giveaway.numSpots} Spots</Typography>
                 <Typography variant="h6" color="white" sx={{fontWeight: 200}} >{numEntered-1} Entered</Typography>
+            </CardContent>
+            </CardActionArea>
+            <CardContent>
                 <div><Countdown winTime={winTime} timeInHours={giveaway.timeInHours} startTime={giveaway.createdAt} /></div>
                 { !alreadyVoted ? <Button variant="contained" onClick={handleDialogOpen}>Enter Raffle</Button> : (
                   <Button variant="contained" color="success">Already Entered</Button> 
@@ -100,6 +132,14 @@ const Giveaway = ({ giveaway, wallet }) => {
                 maxWidth='xl'
             >
                 <GiveawayDialog giveaway={giveaway} setDialogOpen={setDialogOpen} wallet={wallet} setAlreadyVoted={setAlreadyVoted} />
+            </Dialog>
+            <Dialog
+                open={detailDialogOpen}
+                onClose={handleDetailDialogClose}
+                fullWidth
+                maxWidth='lg'
+            >
+                <DetailContent mint={mint} walletAddress={user.data.discordID} user={user} />
             </Dialog>
         </Card>
         </div>
@@ -117,19 +157,21 @@ const Giveaway = ({ giveaway, wallet }) => {
       return (
         <div>
             <Card className={cx(styles.root, shadowStyles.root)} sx={{ maxWidth: 345, borderColor: '#2b384e', borderRadius: 5, backgroundColor: 'rgba(240, 248, 255, 0)' }} variant="outlined">
-              <Typography variant="h5" color="white" sx={{fontWeight: 700}} >Only Admins Can See This.</Typography>
+              <CardActionArea onClick={console.log}>
               <CardMedia sx={{ borderRadius: 5 }}component="img" height="260" image={giveaway.selectedFile} alt="Giveaway" />
               <CardContent className="card-content" sx={{ backgroundColor: 'rgba(240, 248, 255, 0)' }}>
                 <Typography variant="h5" color="white" sx={{fontWeight: 700}} >{giveaway.name}</Typography>
                 <Typography variant="h5" color="white" sx={{fontWeight: 400}} >{giveaway.numSpots} Spots</Typography>
                 <Typography variant="h6" color="white" sx={{fontWeight: 200}} >{giveaway.entries.length} Entered</Typography>
-                
                 <Button variant="contained" color="secondary" onClick={handleWinnerDialogOpen}>View Winners</Button>
 
               </CardContent>
+              </CardActionArea>
               <Dialog
                 open={winnerDialogOpen}
                 onClose={handleWinnerDialogClose}
+                fullWidth
+                maxWidth='lg'
               >
                 <WinnersDialog giveaway={giveaway} setDialogOpen={setWinnerDialogOpen} wallet={wallet} />
               </Dialog>

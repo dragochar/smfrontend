@@ -21,7 +21,7 @@ const Giveaways = ({dao, AdminWallets, setSort, wallet, user}) => {
                     <Grid container spacing={3}>
                     {giveaways.map((giveaway) => (
                         <Grid item xs={6} sm={3} key={giveaway._id}>
-                            <Giveaway giveaway={giveaway} wallet={wallet}/>
+                            <Giveaway giveaway={giveaway} wallet={wallet} user={user} />
                         </Grid>
                     ))}
                     </Grid>
