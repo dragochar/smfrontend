@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useHistory, useLocation } from 'react-router-dom';
@@ -22,7 +22,8 @@ const CheckDiscord = () => {
     const dispatch = useDispatch();
     const query = useQuery();
     const code = query.get('code') || '';
-    const { currentUser } = useSelector((state) => state.user);
+    const [returnToPage, setReturnToPage] = useState(JSON.parse(localStorage.getItem('mostRecentDAO')).pageName);
+
     
     const history = useHistory();
 
@@ -35,7 +36,7 @@ const CheckDiscord = () => {
             console.log(userData);
 
             try {
-                history.push('/');
+                history.push(`/${returnToPage}?view=giveaways`);
             } catch (error) {
                 console.log(error);
             }

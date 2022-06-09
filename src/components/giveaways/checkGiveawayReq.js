@@ -57,7 +57,7 @@ const CheckGiveawayReq = ({ giveaways, pageName }) => {
       const oauth = new DiscordOauth2({
         clientId: "978019233021706302",
         clientSecret: "PXIjC2_mgELNFjHkJR00gsewv40Su3MD",
-        redirectUri: `http://localhost:3000/checkdiscord`,
+        redirectUri: `https://solmints.io/checkdiscord`,
     });
 
     const url = oauth.generateAuthUrl({
@@ -76,8 +76,8 @@ const CheckGiveawayReq = ({ giveaways, pageName }) => {
                 const boolean = response.data;
                 if (boolean===true) {
                 approvedTwitter.push(giveaways[i].name)
-                let resp = await dispatch(updateFollowingTwitter(currentUser._id, giveaways[i]._id, boolean));
                 }
+                let resp = await dispatch(updateFollowingTwitter(currentUser._id, giveaways[i]._id, boolean));
             })
         }
         
