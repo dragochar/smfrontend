@@ -15,6 +15,7 @@ import BitBearAlpha from './components/daopages/bitbearalpha';
 import InternalAlpha from './components/daopages/internalalpha';
 import trustDAO from './components/daopages/trustdao';
 import Auth from './components/common/auth';
+import CheckDiscord from './components/giveaways/checkDiscord';
 import MintNavbar from './components/navbar/navbar';
 import BasicLayout from './components/common/basiclayout';
 import ReactGA from 'react-ga4';
@@ -60,6 +61,7 @@ const App = () => {
           {/*<Route path="/" exact component={() => <Redirect to="/mints" />} /> */}
           <Route path="/" exact component={Home}/>
           <Route path="/auth" exact component={Auth} />
+          <Route path="/checkdiscord" exact component={CheckDiscord} />
           <Route path="/caa" exact component={CAA}/>
           <Route path="/monkedao" exact component={MonkeDAO}/>
           <Route path="/ggsg" exact component={GGSG}/>

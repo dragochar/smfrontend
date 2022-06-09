@@ -51,8 +51,8 @@ const Home = () => {
   const page = query.get('page') || 1;
   const [sort, setSort] = useState('Upcoming');
   const history = useHistory();
-  const [userDBID, setUserDBID] = useState(JSON.parse(localStorage.getItem('user2')));
-  const [user, setUser] = useState(null);
+  const view = query.get('view') || '';
+  const { currentUser } = useSelector((state) => state.user);
 
 
   const date = new Date();
@@ -63,9 +63,9 @@ const Home = () => {
   const renderConnectedContainer = () => (
     <div>
         <div>
-        {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminUsers} user={user} /> : <></>}
-        {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminUsers} setSort={setSort} user={user} /> : <></>}
-        {sort==="Giveaways" ?  <Giveaways dao={dao} AdminWallets={AdminUsers} setSort={setSort} user={user} /> : <></>}
+        {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminUsers} /> : <></>}
+        {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminUsers} setSort={setSort} /> : <></>}
+        {sort==="Giveaways" ?  <Giveaways dao={dao} AdminWallets={AdminUsers} setSort={setSort} wallet={currentUser.discordID} pageName={pageName} /> : <></>}
 
 
         <div className="paginationContainer">
@@ -96,9 +96,9 @@ const Home = () => {
     return (
       <div>
         <div>
-      {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminUsers} user={user} /> : <></>}
-      {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminUsers} setSort={setSort} user={user} /> : <></>}
-      {sort==="Giveaways" ?  <Giveaways dao={dao} AdminWallets={AdminUsers} setSort={setSort} wallet={user.data.discordID} user={user} /> : <></>}
+      {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminUsers} /> : <></>}
+      {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminUsers} setSort={setSort} /> : <></>}
+      {sort==="Giveaways" ?  <Giveaways dao={dao} AdminWallets={AdminUsers} setSort={setSort} wallet={currentUser.discordID} pageName={pageName} /> : <></>}
 
       <div className="paginationContainer">
         {sort==="Explore" ? <Pagination page={page} pageName={pageName} dao={dao} AdminWallets={AdminUsers} /> : <></>}
@@ -111,38 +111,36 @@ const Home = () => {
     );
 };
 
+    useEffect(() => {
+      if (view==='giveaways') {
+        setSort('Giveaways');
+      }
 
-
-  useEffect(async () => {
-    if (localStorage.getItem('user2') !==null) {
-    const ourUser = await dispatch(getOneUserWithID(userDBID.data));
-    setUser(ourUser);
-    }
-}, []);
-
+    }, [])
+    
 
 
     return (
         <div className="App">
-            <div className={user!==null ? 'authed-container' : 'container'}>
+            <div className={currentUser!==null ? 'authed-container' : 'container'}>
                 <div className="header-container">
                     <div>
                         <img alt="DAO Logo" src={brandLogo} width='100' height='100'></img>
                         <p className="header main-text-logo">GeckoMints</p>
                     </div>
                     <div>
-                      {user!==null && renderSelectButtons()}
+                      {currentUser!==null && renderSelectButtons()}
                     </div>
                     <div>
-                    {user!==null ? <div className="sub-text"><p>View upcoming mints, and vote on your favourites ✨</p>
+                    {currentUser!==null ? <div className="sub-text"><p>View upcoming mints, and vote on your favourites ✨</p>
                     {/*<div className="time-text"><Typography variant="caption">(Times in {timezone})</Typography></div>*/}
                     </div> :
                     <p className="sub-text">Login with your Discord to get started! 🦎</p>
                     }
                     
                     </div>
-                    {user!==null && !AdminUsers.includes(user.data.discordID) && renderConnectedContainer()}
-                    {user!==null && AdminUsers.includes(user.data.discordID) && renderAdminContainer()}
+                    {currentUser!==null && !AdminUsers.includes(currentUser.discordID) && renderConnectedContainer()}
+                    {currentUser!==null && AdminUsers.includes(currentUser.discordID) && renderAdminContainer()}
                     
                 </div>
             </div>

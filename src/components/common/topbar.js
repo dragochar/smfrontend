@@ -18,6 +18,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
+import Dialog from '@mui/material/Dialog';
+import ProfileView from './profileView';
 import './common.css';
 
 
@@ -37,6 +39,8 @@ export default function TopBar() {
     const [userDBID, setUserDBID] = useState(JSON.parse(localStorage.getItem('user2')));
     const dispatch = useDispatch();
     const [user, setUser] = useState(null);
+    const [dialogOpen, setDialogOpen] = React.useState(false);
+
 
     //Discord Stuff
     
@@ -69,6 +73,14 @@ export default function TopBar() {
         }
     }, []);
 
+    const handleDialogOpen = () => {
+        setDialogOpen(true);
+    };
+
+    const handleDialogClose = () => {
+        setDialogOpen(false);
+    };
+
     
 
     const theme = createTheme({
@@ -97,16 +109,6 @@ export default function TopBar() {
         const useroauth = new DiscordOauth2();
 
 
-        const params = new URLSearchParams();
-        params.append('client_id', CLIENT_ID);
-        params.append('client_secret', CLIENT_SECRET);
-        params.append('grant_type', 'authorization_code');
-        params.append('code', code);
-        params.append('redirect_uri', REDIRECT_URI);
-
-        const headers = {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        }
         
 
     }
@@ -181,8 +183,18 @@ export default function TopBar() {
                                 horizontal: 'right',
                             }}
                         >
+                            <MenuItem onClick={handleDialogOpen}>Profile</MenuItem>
                             <MenuItem onClick={logout}>Logout</MenuItem>
+
                         </Menu>
+                        <Dialog
+                            open={dialogOpen}
+                            onClose={handleDialogClose}
+                            fullWidth
+                            maxWidth='md'
+                        >
+                            <ProfileView setDialogOpen={setDialogOpen} />
+                        </Dialog>
                         </ThemeProvider>
                         </>
                     )

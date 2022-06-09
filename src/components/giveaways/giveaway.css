@@ -28,3 +28,17 @@
 .dialog {
     background-color: #1a202c;
 }
+
+@media screen and (max-width: 1300px) {
+    .chip-block {
+        display: inline-flex;
+        vertical-align: middle;
+    }
+  }
+
+.chip-block {
+    display: inline-flex;
+    align-content: space-between;
+    margin-top: 3px;
+    margin-bottom: 10px;
+}

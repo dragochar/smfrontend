@@ -3,13 +3,14 @@ import '../mints/mints.css';
 import Stack from '@mui/material/Stack';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
+import { useHistory } from 'react-router-dom';
 
 
 
 
 const RenderSelectButtons = ({ sort, setSort , pageName}) => {
 
-
+    const history = useHistory();
 
     const theme = createTheme({
         palette: {
@@ -29,6 +30,11 @@ const RenderSelectButtons = ({ sort, setSort , pageName}) => {
         }
       });
 
+      const clickGiveaway = () => {
+        setSort('Giveaways');
+        history.push('?view=giveaways');
+      }
+
 
     return (
         <ThemeProvider theme={theme}>
@@ -41,7 +47,7 @@ const RenderSelectButtons = ({ sort, setSort , pageName}) => {
                 <Button onClick={() => {setSort('Explore')}} className="sort-button" color="mostLiked" variant="outlined">Explore</Button>
             )}
             {sort=='Giveaways' ? <Button className="sort-button" variant="contained" color="explore">Giveaways</Button> : (
-                <Button onClick={() => {setSort('Giveaways')}} className="sort-button" variant="outlined" color="explore">Giveaways</Button>
+                <Button onClick={() => {clickGiveaway()}} className="sort-button" variant="outlined" color="explore">Giveaways</Button>
             )}
         </Stack>
         </div>
