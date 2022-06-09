@@ -16,6 +16,13 @@
   text-align: left;
 }
 
+.chrono-text {
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  text-align: left;
+}
+
   .cta-button {
     height: 45px;
     border: 0;
@@ -47,6 +54,9 @@
   border-width: 3px;
   border: #00FFA3;
 }
-.today-icon {
-  margin-bottom: 15px;
+
+.center-on-mints {
+  margin: auto;
+  max-width: 1650px;
 }
+

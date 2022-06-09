@@ -11,67 +11,69 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import './mint.css';
 import IconButton from '@mui/material/IconButton';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import solanaLogo from '../../../assets/sol.svg';
 import { useBouncyShadowStyles } from '@mui-treasury/styles/shadow/bouncy';
 import cx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import DetailContent from '../MintDetail/mintdetail';
+import EditContent from '../MintEdit/mintedit';
+import AlertContent from '../MintAlert/mintalert';
 import CircularProgress from '@mui/material/CircularProgress';
+import Chip from '@mui/material/Chip';
 import Dialog from '@mui/material/Dialog';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { format, compareAsc } from 'date-fns'
+import { useSoftRiseShadowStyles } from '@mui-treasury/styles/shadow/softRise';
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import EditIcon from '@mui/icons-material/Edit';
+import AddAlertIcon from '@mui/icons-material/AddAlert';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
+
+
+const useStyles = makeStyles(() => ({
+  root: {
+    maxWidth: 304,
+    margin: 'auto',
+    boxShadow: 'none',
+    borderRadius: 0,
+  },
+  content: {
+    padding: 24,
+  },
+  cta: {
+    marginTop: 24,
+    textTransform: 'initial',
+  },
+}));
+
 
 const family = 'Rubik';
 
-const Mint = ({ mint }) => {
+const Mint = ({ mint, AdminWallets  }) => {
+    const shadowStyles = useSoftRiseShadowStyles();
     const dispatch = useDispatch();
-    const [walletAddress, setWalletAddress] = useState(null);
     const [progressNow, setProgressNow] = useState(null);
-    const [open, setOpen] = React.useState(false);
     const [dialogOpen, setDialogOpen] = React.useState(false);
-    const [youLiked, setYouLiked] = React.useState(false);
-
-    const day = Date.parse(mint.mintDate);
-
-    const [likeLoading, setLikeLoading] = useState(false);
+    const [editDialogOpen, setEditDialogOpen] = React.useState(false);
+    const [giveawayDialogOpen, setGiveawayDialogOpen] = React.useState(false);
+    const { currentUser } = useSelector((state) => state.user);
 
 
-    const checkIfWalletIsConnected = async () => {
-        try {
-          const { solana } = window;
-    
-          if (solana) {
-            if (solana.isPhantom) {
-              const response = await solana.connect({ onlyIfTrusted: true });
 
-              setWalletAddress(response.publicKey.toString());
-            }
-          } else {
-            alert('Solana object not found! Get a Phantom Wallet 👻');
-          }
-        } catch (error) {
-          console.error(error);
-        }
-        //hi there
-    };
+
 
     useEffect(() => {
-        checkIfWalletIsConnected();
         setProgressNow(((mint.likes.length)/((mint.likes.length)+(mint.dislikes.length))*100));
 
       }, []);
 
     const getLiked = () => {
-      console.log(mint.likes);
-      return mint.likes.includes(walletAddress)
+      return mint.likes.includes(currentUser.discordID)
 
     }
     
-    
-
-
-
 
     const useStyles = makeStyles({
       root: {
@@ -79,15 +81,29 @@ const Mint = ({ mint }) => {
     });
 
   const styles = useStyles();
-  const shadowStyles = useBouncyShadowStyles();
 
   const handleDialogOpen = () => {
     setDialogOpen(true);
+  };
 
+  const handleGiveawayDialogOpen = () => {
+    setGiveawayDialogOpen(true);
+  };
+
+  const handleGiveawayDialogClose = () => {
+    setGiveawayDialogOpen(false);
   };
 
   const handleDialogClose = () => {
     setDialogOpen(false);
+  };
+
+  const handleEditDialogOpen = () => {
+    setEditDialogOpen(true);
+  };
+
+  const handleEditDialogClose = () => {
+    setEditDialogOpen(false);
   };
 
   const renderSupply = (mint) => (
@@ -113,8 +129,8 @@ const Mint = ({ mint }) => {
   )
   
 
-  const Likes = ({ setYouLiked }) => {
-    return mint.likes.find((like) => like === (walletAddress))
+  const Likes = () => {
+    return mint.likes.find((like) => like === (currentUser.discordID))
       ? (
 
         <><HandThumbsUpFill />&nbsp;{mint.likes.length}</>
@@ -124,7 +140,7 @@ const Mint = ({ mint }) => {
   }
 
   const Dislikes = () => {
-    return mint.dislikes.find((dislike) => dislike === (walletAddress))
+    return mint.dislikes.find((dislike) => dislike === (currentUser.discordID))
 
       ? (
         <><HandThumbsDownFill />&nbsp;{mint.dislikes.length}</>
@@ -133,8 +149,81 @@ const Mint = ({ mint }) => {
       );
   }
 
+  const changeRatioLike = () => {
+
+    return mint.likes.find((like) => like === (currentUser.discordID))
+      ? (
+
+        <>{setProgressNow(((mint.likes.length-1)/((mint.likes.length-1)+(mint.dislikes.length))*100))}</>
+      ) : (
+        <>{setProgressNow(((mint.likes.length+1)/((mint.likes.length+1)+(mint.dislikes.length))*100))}</>
+      );
+  }
+
+  const changeRatioDislike = () => {
+    return mint.dislikes.find((dislike) => dislike === (currentUser.discordID))
+
+      ? (
+        <>{setProgressNow(((mint.likes.length)/((mint.likes.length)+(mint.dislikes.length-1))*100))}</>
+      ) : (
+        <>{setProgressNow(((mint.likes.length)/((mint.likes.length)+(mint.dislikes.length+1))*100))}</>
+      );
+  }
+
+
+  const renderMintDate = () => {
+    const theme = createTheme({
+      palette: {
+        mode: 'dark',
+          date: {
+              main: '#ffefed',
+              contrastText: '#000000',
+          },
+          upcoming: {
+            main: '#ff867c',
+            contrastText: '#000000',
+        },
+      }
+    });
+    if (mint.mintDate===null) return (
+        <ThemeProvider theme={theme}>
+        <Chip label="Date TBA" icon={<CalendarMonthIcon />} color="date" variant="outlined" />
+        </ThemeProvider>
+    )
+
+    let date = new Date(mint.mintDate.toString());
+    const timezoneOffset = ((new Date()).getTimezoneOffset()/60);
+    date.setTime(date.getTime() - timezoneOffset * 60 * 60 * 1000);
+    let day = date.getDay();
+    let formatDatePending = new Intl.DateTimeFormat("en-GB", {
+      month: "long",
+      day: "2-digit",
+      hour: 'numeric',
+      minute: 'numeric',
+    }).format(date)
+
+
     return (
-        <Card sx={{ maxWidth: 345, borderColor: '#2b384e', borderRadius: 5, backgroundColor: 'rgba(240, 248, 255, 0)' }} variant="outlined">
+    <ThemeProvider theme={theme}>
+    <Chip label={formatDatePending} icon={<CalendarMonthIcon />} color="date" variant="outlined" />
+    </ThemeProvider>
+    )
+  }
+
+  const renderEditButton = (mint) => (
+    <IconButton sx={{ color: "white", float: "right" }} aria-label="edit" onClick={handleEditDialogOpen}>
+      <EditIcon />
+    </IconButton>
+  )
+
+  const renderGiveawayButton = (mint) => (
+    <IconButton sx={{ color: "white", float: "right" }} aria-label="giveaway" onClick={handleGiveawayDialogOpen}>
+      <AddAlertIcon />
+    </IconButton>
+  )
+
+    return (
+        <Card className={cx(styles.root, shadowStyles.root)} sx={{ maxWidth: 345, borderColor: '#2b384e', borderRadius: 5, backgroundColor: 'rgba(240, 248, 255, 0)' }} variant="outlined">
           <CardActionArea onClick={handleDialogOpen}>
           
             <CardMedia sx={{ borderRadius: 5 }}component="img" height="200" image={mint.selectedFile} alt="mint" />
@@ -145,23 +234,27 @@ const Mint = ({ mint }) => {
                 {mint.price==null && renderNullPrice()} 
                 {mint.supply!=null && renderSupply(mint)}
                 {mint.supply==null && renderNullSupply()}
+                {renderMintDate()}
+
 
 
                 </CardContent>
                 </CardActionArea>
+                <div>{AdminWallets.includes(currentUser.discordID) && renderEditButton(mint)}</div>
+                <div>{AdminWallets.includes(currentUser.discordID) && renderGiveawayButton(mint)}</div>
                 <CardContent>
                 <div className="votes-block">
                 <IconButton size='small' color='primary' onClick={() => {
-                  dispatch(likeMint(mint._id, walletAddress));
-                  setProgressNow(((mint.likes.length)/((mint.likes.length)+(mint.dislikes.length))*100));
+                  dispatch(likeMint(mint._id, currentUser.discordID));
+                  changeRatioLike();
                   }}>
                   <Likes />
                 </IconButton>
 
                 <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <IconButton color="warning" size='small' onClick={() => {
-                  dispatch(dislikeMint(mint._id, walletAddress));
-                  setProgressNow(((mint.likes.length)/((mint.likes.length)+(mint.dislikes.length))*100));
+                <IconButton color="error" size='small' onClick={() => {
+                  dispatch(dislikeMint(mint._id, currentUser.discordID));
+                  changeRatioDislike();
                   }}>
                   <Dislikes />
                 </IconButton>
@@ -173,11 +266,22 @@ const Mint = ({ mint }) => {
             open={dialogOpen}
             onClose={handleDialogClose}
           >
-            <DetailContent mint={mint} walletAddress={walletAddress} />
+            <DetailContent mint={mint} walletAddress={currentUser.discordID} />
+          </Dialog>
+          <Dialog
+            open={editDialogOpen}
+            onClose={handleEditDialogClose}
+          >
+            <EditContent mint={mint} walletAddress={currentUser.discordID} AdminWallets={AdminWallets} />
+          </Dialog>
+          <Dialog
+            open={giveawayDialogOpen}
+            onClose={handleGiveawayDialogClose}
+          >
+            <AlertContent mint={mint} walletAddress={currentUser.discordID} AdminWallets={AdminWallets} setGiveawayDialogOpen={setGiveawayDialogOpen} />
           </Dialog>
         </Card>
     );
 }
 
 export default Mint;
-

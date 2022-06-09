@@ -14,11 +14,14 @@ import Link from '@mui/material/Link';
 import solanaLogo from '../../../assets/sol.svg';
 import Divider from '@mui/material/Divider';
 import discordLogo from '../../../assets/discord.svg';
+import twitterLogo from '../../../assets/twitter.svg';
 import IconButton from '@mui/material/IconButton';
 import DeleteOutlineIcon from '@mui/icons-material/Delete';
 import { useDispatch } from 'react-redux';
 import { deleteMint } from '../../../actions/mints';
 import AdminWallets from '../../../wallets/adminwallets';
+import CommentSection from '../../comments/CommentSection';
+import TwitterStats from '../../twitter/TwitterStats.js';
 
 
 
@@ -28,11 +31,6 @@ const DetailContent = ({ mint, walletAddress }) => {
 
   const dispatch = useDispatch();
 
-  const renderDeleteButton = (mint) => (
-    <IconButton color="info" aria-label="delete" onClick={()=>{dispatch(deleteMint(mint._id))}}>
-      <DeleteOutlineIcon />
-    </IconButton>
-  )
 
   return (
     <div className="dialog">
@@ -43,15 +41,19 @@ const DetailContent = ({ mint, walletAddress }) => {
         <div className="center">
         <CardMedia sx={{ borderRadius: 5, maxWidth: 300, maxHeight: 300, border: 1, marginLeft: 'auto', marginRight: 'auto'}} component="img" width="300" height="300" image={mint.selectedFile} alt="mint" />
         </div>
-        <DialogContent sx={{ width: 550, maxWidth: 550 }}>
+        <DialogContent sx={{ width: 600, maxWidth: 600 }}>
 
         <div className="links">
           <div className="votes-block">
-            <img className="inline-logo" src={discordLogo} alt="Discord" width="12" height="12"></img>
-            <Link href={mint.discord}>&nbsp;Discord</Link>
+            <img className="discord-inline-logo" src={discordLogo} alt="Discord" width="12" height="12"></img>
+            <Link href={mint.discord} target="_blank">&nbsp;Discord</Link>
           </div>
-          
+          <div className="votes-block">
+            <img className="twitter-inline-logo" src={twitterLogo} alt="Twitter" width="12" height="12"></img>
+            <Link href={mint.twitter} target="_blank">&nbsp;Twitter</Link>
+          </div>
         </div>
+      
 
 
         <div className="votes-block">
@@ -60,17 +62,14 @@ const DetailContent = ({ mint, walletAddress }) => {
         </div>
         <Typography variant="body2" sx={{ color: '#e6e6e6', fontWeight: 900 }}>{mint.supply} Supply</Typography>
 
-        
+        <div className="description-box">
           <DialogContentText sx={{ color: '#e6e6e6' }}>{mint.description}</DialogContentText>
+        </div>
 
         <br></br>
-        {AdminWallets.includes(walletAddress) && renderDeleteButton(mint)}
-
           
         </DialogContent>
-
-        <Divider />
-        {/*<Typography variant="body2" sx={{ color: '#FFFFFF', fontWeight: 900 }}>Comments</Typography>*/}
+        <CommentSection mint={mint} walletAddress={walletAddress} />
 
 
     </div>

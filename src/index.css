@@ -67,3 +67,13 @@ header > .top-bar > div {
 .footer {
   background-color: azure;
 }
+
+::-moz-selection {
+  background: #14F195;
+}
+::-webkit-selection {
+  background: #14F195;
+}
+::selection {
+  background: #14F195;
+}

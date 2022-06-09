@@ -1,0 +1,49 @@
+.votes-block {
+    display: inline-flex;
+    padding-bottom: 10px;
+
+}
+
+.mint-card {
+    margin-bottom: 30px;
+    border-radius: 10px 10px 10px 10px;
+    border-color: rgb(41, 53, 76);
+}
+
+.card-content {
+    background-color: #2b384e;
+    color: rgba(0, 0, 0, 0);
+
+}
+
+.vote-bar {
+    color:aqua;
+}
+
+.inline-logo {
+    position: relative;
+    top: 3px;
+}
+
+.dialog {
+    background-color: #1a202c;
+}
+
+@media screen and (max-width: 1300px) {
+    .chip-block {
+        display: inline-flex;
+        vertical-align: middle;
+    }
+  }
+
+.chip-block {
+    display: inline-flex;
+    align-content: space-between;
+    margin-top: 3px;
+    margin-bottom: 10px;
+}
+
+.links {
+    margin-top: -15px;
+    margin-bottom: 4px;
+}

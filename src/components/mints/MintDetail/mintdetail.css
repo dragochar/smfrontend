@@ -10,5 +10,20 @@
 
 .dialog {
     background-color: #1a202c;
+}
 
+.twitter-inline-logo {
+    position: relative;
+    margin-left: 7px;
+    top: 6px;
+}
+
+.discord-inline-logo {
+    position: relative;
+    top: 5px;
+}
+
+.description-box {
+    max-width: 350px;
+    width: 500px;
 }
