@@ -31,11 +31,7 @@ const CheckDiscord = () => {
     useEffect(async () => {
 
         try {
-            await sleep(2000);
-            while (currentUser.length > 0) {
-            console.log(code, "and", currentUser)
-            let userData = await dispatch(updateInDiscord(code, currentUser._id));
-            await sleep(600);
+            let userData = await dispatch(updateInDiscord(code));
             console.log(userData);
 
             try {
@@ -43,7 +39,6 @@ const CheckDiscord = () => {
             } catch (error) {
                 console.log(error);
             }
-        }
 
         } catch (error) {
             console.log(error);

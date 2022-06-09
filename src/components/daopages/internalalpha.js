@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getMints } from '../../actions/mints';
 import { Container, Row, Col } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Mints from '../mints/mints';
 import TodayMints from '../mints/todayMints';
@@ -54,30 +54,11 @@ const Home = () => {
   const history = useHistory();
   const page = query.get('page') || 1;
   const [sort, setSort] = useState('Upcoming');
-  const [user, setUser] = useState(null);
-  const [userDBID, setUserDBID] = useState(JSON.parse(localStorage.getItem('user2')));
+  const { currentUser } = useSelector((state) => state.user);
 
 
 
   const AdminWallets = ["680887038916165827", "484894692987633686"]
-
-
-  const walletContext = useWallet();
-
-  const network = "http://api.mainnet-beta.solana.com/";
-  const connection = new Connection(network, 'processed');
-  const provider = new Provider(connection, walletContext, opts.preflightCommitment);
-  const userAccount = new Wallet(connection, provider.wallet);
-
-
-
-  useEffect(async () => {
-    if (localStorage.getItem('user2') !==null) {
-    setUserDBID(JSON.parse(localStorage.getItem('user2')));
-    const ourUser = await dispatch(getOneUserWithID(userDBID.data));
-    setUser(ourUser);
-    }
-}, []);
 
 
 
@@ -128,9 +109,8 @@ const Home = () => {
                     <div>
                         
                     </div>
-                    {console.log(user)}
-                    {!AdminWallets.includes(user.data.id) && user!==null && renderConnectedContainer()}
-                    {AdminWallets.includes(user.data.id) && renderAdminContainer()}
+                    {!AdminWallets.includes(currentUser.discordID) && currentUser!==null && renderConnectedContainer()}
+                    {AdminWallets.includes(currentUser.discordID) && renderAdminContainer()}
                     
                 </div>
             </div>

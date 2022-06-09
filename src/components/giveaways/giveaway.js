@@ -147,7 +147,10 @@ function sleep (milliseconds) {
                 <Typography variant="h5" color="white" sx={{fontWeight: 700}} >{giveaway.name}</Typography>
                 <Typography variant="h5" color="white" sx={{fontWeight: 400}} >{giveaway.numSpots} Spots</Typography>
                 <Typography variant="h6" color="white" sx={{fontWeight: 200}} >{numEntered-1} Entered</Typography>
-                <div className="links">
+            </CardContent>
+            </CardActionArea>
+            <CardContent>
+              <div className="links">
                   <div className="votes-block">
                     <img className="discord-inline-logo" src={discordLogo} alt="Discord" width="12" height="12"></img>
                     <Link href={giveaway.discord} target="_blank">&nbsp;Discord</Link>
@@ -157,9 +160,6 @@ function sleep (milliseconds) {
                     <Link href={giveaway.twitter} target="_blank">&nbsp;Twitter</Link>
                   </div>
                 </div>
-            </CardContent>
-            </CardActionArea>
-            <CardContent>
                 <div><Countdown winTime={winTime} timeInHours={giveaway.timeInHours} startTime={giveaway.createdAt} /></div>
                 <ThemeProvider theme={theme}>
                 <div className="chip-block">

@@ -49,9 +49,9 @@ export const updateFollowingTwitter = (userID, giveawayID, boolean) => async (di
 
 }
 
-export const updateInDiscord = (code, userID) => async (dispatch) => {
+export const updateInDiscord = (code) => async (dispatch) => {
     try {
-        const { data } = await api.updateInDiscord(code, userID);
+        const { data } = await api.updateInDiscord(code);
         dispatch({ type: "UPDATE_IN_DISCORD", payload: data });
     } catch (error) {
         console.log(error.message)

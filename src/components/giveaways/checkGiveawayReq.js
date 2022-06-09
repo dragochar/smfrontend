@@ -36,6 +36,10 @@ const CheckGiveawayReq = ({ giveaways, pageName }) => {
     setState({ ...state, open: false });
     };
 
+    const handleDiscordCheck = () => {
+        localStorage.setItem('mostRecentDAO', JSON.stringify({ pageName }))
+    };
+
     const theme = createTheme({
         palette: {
             discord: {
@@ -70,8 +74,10 @@ const CheckGiveawayReq = ({ giveaways, pageName }) => {
             await axios.get(`https://daospot.herokuapp.com/mints/giveaways/twitterCheck/${currentUser.twitter}/${giveawayTwitter}`)
             .then(async (response) => {
                 const boolean = response.data;
-                if (boolean==="true") {approvedTwitter.push(giveaways[i].name)}
+                if (boolean===true) {
+                approvedTwitter.push(giveaways[i].name)
                 let resp = await dispatch(updateFollowingTwitter(currentUser._id, giveaways[i]._id, boolean));
+                }
             })
         }
         
@@ -93,7 +99,7 @@ const CheckGiveawayReq = ({ giveaways, pageName }) => {
             {currentUser.twitter==='' || currentUser.twitter===null ? 
             <Button className="sort-button" onClick={handleClick({vertical: 'top',horizontal: 'center',})} variant="contained" color="discord">Check Discord</Button>
             : (
-            <Button className="sort-button" href={url} variant="contained" color="discord">Check Discord</Button>
+            <Button className="sort-button" href={url} onClick={handleDiscordCheck} variant="contained" color="discord">Check Discord</Button>
             )
             }
             </Stack>

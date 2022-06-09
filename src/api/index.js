@@ -25,6 +25,6 @@ export const deleteGiveaway = (id) => API.delete(`/mints/giveaways/${id}`);
 export const getUser = (id) => API.get(`/mints/user/${id}`);
 export const updateUserTwitterWallet = (id, twitter, wallet) => API.get(`/mints/users/updateTwitterWallet/${id}/${twitter}/${wallet}`);
 export const updateFollowingTwitter = (userID, giveawayID, boolean) => API.get(`/mints/users/updateFollowingTwitter/${userID}/${giveawayID}/${boolean}`);
-export const updateInDiscord = (code, userID) => API.get(`/mints/giveaways/updateInDiscord/${code}/${userID}`);
+export const updateInDiscord = (code) => API.get(`/mints/giveaways/updateInDiscord/${code}`);
 
 
