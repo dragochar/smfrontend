@@ -24,6 +24,10 @@ import twitterLogo from '../../assets/twitter.svg';
 import discordLogo from '../../assets/discord.svg';
 import Link from '@mui/material/Link';
 import useWindowDimensions from '../common/useWindowDimensions';
+import IconButton from '@mui/material/IconButton';
+import DeleteOutlineIcon from '@mui/icons-material/Delete';
+import { useDispatch } from 'react-redux';
+import { deleteGiveaway } from '../../actions/mints';
 
 
 
@@ -51,6 +55,7 @@ const Giveaway = ({ giveaway, wallet, AdminWallets }) => {
     const [winnerDialogOpen, setWinnerDialogOpen] = React.useState(false);
     const [detailDialogOpen, setDetailDialogOpen] = React.useState(false);
     const [alreadyVoted, setAlreadyVoted] = React.useState(false);
+    const dispatch = useDispatch();
     const [mint, setMint] = React.useState(null);
     const { currentUser } = useSelector((state) => state.user);
     const { height, width } = useWindowDimensions();
@@ -111,6 +116,12 @@ function sleep (milliseconds) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds))
 }
 
+const renderDeleteButton = (mint) => (
+  <IconButton color="info" aria-label="delete" onClick={()=>{dispatch(deleteGiveaway(giveaway._id))}}>
+    <DeleteOutlineIcon />
+  </IconButton>
+)
+
 
     useEffect(() => {
       
@@ -129,12 +140,31 @@ function sleep (milliseconds) {
         }
       }
 
-
-
       asyncGetMintForDetail();
 
-
     }, []);
+
+    const renderTwitterChip = () => {
+
+      return(
+        <>
+        {!currentUser.twitterApprovedGiveaways.includes(giveaway._id) ? <Chip icon={<DoNotDisturbAltIcon />} color="twitter" variant="outlined" label="Not Following" />
+        : (
+          <Chip icon={<CheckIcon />} color="twitter" variant="contained" label="Following" />
+        )}
+        </>
+      );
+    }
+
+    const renderDiscordChip = () => {
+
+      return(
+        <>
+          {!currentUser.discordApprovedGiveaways.includes(giveaway.guildID) ? <Chip icon={<DoNotDisturbAltIcon />} color="discord" variant="outlined" label="Not In Discord" /> 
+            : (<Chip icon={<CheckIcon />} color="discord" variant="contained" label="Joined" />)}
+        </>
+      );
+    }
 
     const renderGiveawayActive = () => {
 
@@ -159,16 +189,16 @@ function sleep (milliseconds) {
                     <img className="twitter-inline-logo" src={twitterLogo} alt="Twitter" width="12" height="12"></img>
                     <Link href={giveaway.twitter} target="_blank">&nbsp;Twitter</Link>
                   </div>
+                  <div className="delete-giveaway">
+                    {AdminWallets.includes(currentUser.discordID) && renderDeleteButton()}
+                  </div>
                 </div>
                 <div><Countdown winTime={winTime} timeInHours={giveaway.timeInHours} startTime={giveaway.createdAt} /></div>
                 <ThemeProvider theme={theme}>
                 <div className="chip-block">
-                  {!currentUser.twitterApprovedGiveaways.includes(giveaway._id) ? <Chip icon={<DoNotDisturbAltIcon />} color="twitter" variant="outlined" label="Not Following" />
-                  : (
-                    <Chip icon={<CheckIcon />} color="twitter" variant="contained" label="Following" />
-                  )}
-                  {!currentUser.discordApprovedGiveaways.includes(giveaway.guildID) ? <Chip icon={<DoNotDisturbAltIcon />} color="discord" variant="outlined" label="Not In Discord" /> 
-                  : (<Chip icon={<CheckIcon />} color="discord" variant="contained" label="Joined" />)}
+                  {renderTwitterChip()}
+                  <p>&nbsp;&nbsp;</p>
+                  {renderDiscordChip()}
                 </div>
                 <br></br>
                 </ThemeProvider>

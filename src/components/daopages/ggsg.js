@@ -63,7 +63,7 @@ const Home = () => {
   const renderConnectedContainer = () => (
     <div>
         <div>
-        {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminUsers} /> : <></>}
+        {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminUsers} dao={dao} pageName={pageName} /> : <></>}
         {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminUsers} setSort={setSort} /> : <></>}
         {sort==="Giveaways" ?  <Giveaways dao={dao} AdminWallets={AdminUsers} setSort={setSort} wallet={currentUser.discordID} pageName={pageName} /> : <></>}
 
@@ -96,7 +96,7 @@ const Home = () => {
     return (
       <div>
         <div>
-      {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminUsers} /> : <></>}
+      {sort==="Explore" ?  <Mints page={page} AdminWallets={AdminUsers} dao={dao} pageName={pageName} /> : <></>}
       {sort==="Upcoming" ?  <TodayMints dao={dao} AdminWallets={AdminUsers} setSort={setSort} /> : <></>}
       {sort==="Giveaways" ?  <Giveaways dao={dao} AdminWallets={AdminUsers} setSort={setSort} wallet={currentUser.discordID} pageName={pageName} /> : <></>}
 
@@ -114,6 +114,12 @@ const Home = () => {
     useEffect(() => {
       if (view==='giveaways') {
         setSort('Giveaways');
+      }
+      if (view==='upcoming') {
+        setSort('Upcoming');
+      }
+      if (view==='explore') {
+        setSort('Explore');
       }
 
     }, [])

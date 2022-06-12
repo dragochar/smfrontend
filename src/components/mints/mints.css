@@ -60,3 +60,11 @@
   max-width: 1650px;
 }
 
+.search-container {
+  margin-bottom: 10px;
+  display: inline-block;
+}
+
+.search-button {
+  padding-left: 10px;  
+}

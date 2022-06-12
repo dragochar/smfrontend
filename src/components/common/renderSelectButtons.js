@@ -34,6 +34,14 @@ const RenderSelectButtons = ({ sort, setSort , pageName}) => {
         setSort('Giveaways');
         history.push('?view=giveaways');
       }
+      const clickExplore = () => {
+        setSort('Explore');
+        history.push('?view=explore');
+      }
+      const clickUpcoming = () => {
+        setSort('Upcoming');
+        history.push('?view=upcoming');
+      }
 
 
     return (
@@ -41,10 +49,10 @@ const RenderSelectButtons = ({ sort, setSort , pageName}) => {
         <div className="center-on-mints">
         <Stack spacing={2} direction="row" sx={{ float: 'right' }}>
             {sort=='Upcoming' ? <Button className="sort-button" variant="contained" color="upcoming">Upcoming</Button> : (
-                <Button onClick={() => {setSort('Upcoming')}} className="sort-button" variant="outlined" color="upcoming">Upcoming</Button>
+                <Button onClick={() => {clickUpcoming()}} className="sort-button" variant="outlined" color="upcoming">Upcoming</Button>
             )}
             {sort=='Explore' ? <Button className="sort-button" variant="contained" color="mostLiked">Explore</Button> : (
-                <Button onClick={() => {setSort('Explore')}} className="sort-button" color="mostLiked" variant="outlined">Explore</Button>
+                <Button onClick={() => {clickExplore()}} className="sort-button" color="mostLiked" variant="outlined">Explore</Button>
             )}
             {sort=='Giveaways' ? <Button className="sort-button" variant="contained" color="explore">Giveaways</Button> : (
                 <Button onClick={() => {clickGiveaway()}} className="sort-button" variant="outlined" color="explore">Giveaways</Button>

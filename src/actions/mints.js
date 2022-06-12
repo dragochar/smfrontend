@@ -14,6 +14,17 @@ export const getMints = (dao, page) => async (dispatch) => {
 
 };
 
+export const getMintsBySearch = (searchQuery, dao) => async (dispatch) => {
+    try {
+        dispatch({ type: 'START_LOADING' });
+        const { data: { data } } = await api.fetchMintsBySearch(searchQuery, dao);
+        dispatch({ type: 'FETCH_BY_SEARCH', payload: { data } });
+        dispatch({ type: 'END_LOADING' });
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
 export const getGiveaways = (dao, page) => async (dispatch) => {
     try {
         dispatch({ type: 'START_LOADING' });

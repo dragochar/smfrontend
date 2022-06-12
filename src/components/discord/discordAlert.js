@@ -28,7 +28,11 @@ const DiscordAlert = async (mint, giveawayData) => {
                         },
                         {
                             "name": ":tickets: **Enter Raffle:**",
-                            "value": `https://solmints.io/ggsg/`
+                            "value": `https://solmints.io/ggsg?view=giveaways`
+                        },
+                        {
+                            "name": ":microphone2: Hosted by:",
+                            "value": `<@${giveawayData.creator}>`
                         },
                     ],
             

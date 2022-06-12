@@ -13,6 +13,12 @@ export default (state = { isLoading: true, mints: [], todayMints: [], tomorrowMi
                 currentPage: action.payload.currentPage,
                 numberOfPages: action.payload.numberOfPages,
             };
+        case "FETCH_BY_SEARCH":
+            console.log("calling reducer");
+            return {
+                ...state,
+                mints: action.payload.data
+            };
         case FETCH_TODAY:
             return { ...state, todayMints: action.payload.data };
         case FETCH_TOMORROW:
