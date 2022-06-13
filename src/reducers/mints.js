@@ -1,6 +1,6 @@
 import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE, DISLIKE, START_LOADING, END_LOADING, FETCH_TODAY, FETCH_TOMORROW, FETCH_TWO_DAYS, COMMENT, FETCH_ALL_GIVEAWAYS, CREATE_GIVEAWAY } from '../constants/actionTypes';
 
-export default (state = { isLoading: true, mints: [], todayMints: [], tomorrowMints: [], twoDaysMints: [] }, action) => {
+export default (state = { isLoading: true, mints: [], todayMints: [], tomorrowMints: [], twoDaysMints: [], oldMints: [] }, action) => {
     switch (action.type) {
         case START_LOADING:
             return { ...state, isLoading: true };
@@ -12,6 +12,12 @@ export default (state = { isLoading: true, mints: [], todayMints: [], tomorrowMi
                 mints: action.payload.data,
                 currentPage: action.payload.currentPage,
                 numberOfPages: action.payload.numberOfPages,
+            };
+        case "FETCH_OLD":
+            console.log('yo in actions eh', action.payload);
+            return {
+                ...state,
+                oldMints: action.payload,
             };
         case "FETCH_BY_SEARCH":
             console.log("calling reducer");

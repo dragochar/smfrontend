@@ -102,7 +102,6 @@ const Form = ({ dao }) => {
 
     return (
         <div>
-            <h2 style={{ color:'azure' }}>Admin Zone</h2>
             <ThemeProvider theme={theme}>
             <form autoComplete="off" noValidate onSubmit={handleSubmit}>
                 

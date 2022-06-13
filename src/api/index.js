@@ -6,6 +6,7 @@ const twitterAPI = axios.create({ baseURL: 'https://api.twitter.com/2/users/by/u
 
 
 export const fetchMints = (dao, page) => API.get(`/mints/get/${dao}?page=${page}`);
+export const fetchOldMints = (dao) => API.get(`/mints/getOldMints/${dao}`);
 export const fetchMintsBySearch = (searchQuery, dao) => API.get(`/mints/getBySearch/${dao}?searchQuery=${searchQuery}`);
 export const fetchMintsBySort = (sortQuery) => API.get(`/mints/sort?sortQuery=${sortQuery.sort || 'none'}`);
 export const fetchTodayMints = (dao) => API.get(`/mints/todayMints/${dao}`);

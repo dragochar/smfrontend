@@ -185,7 +185,7 @@ return (
 
                 </div>
                 
-                    <Button color="primary" onClick={handleSubmit}>
+                    <Button variant="contained" color="primary" onClick={handleSubmit}>
                         Send
                     </Button>
 

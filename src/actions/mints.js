@@ -14,6 +14,16 @@ export const getMints = (dao, page) => async (dispatch) => {
 
 };
 
+export const getOldMints = (dao) => async (dispatch) => {
+    try {
+        const { data: { data } } = await api.fetchOldMints(dao);
+        dispatch({ type: 'FETCH_OLD', payload: { data } });
+    } catch (error) {
+        console.log(error.message);
+    }
+
+};
+
 export const getMintsBySearch = (searchQuery, dao) => async (dispatch) => {
     try {
         dispatch({ type: 'START_LOADING' });
