@@ -86,66 +86,6 @@ const Home = () => {
   });
 
 
-  const renderConnectedContainer = () => (
-    <div>
-        <Mints page={page} />
-            <div className="paginationContainer">
-            <Pagination page={page} />
-            </div>
-        <br></br>
-    </div>
-  );
-
-  const renderUnauthenticatedContainer = () => (
-    <div>
-        <Card>
-          <h2>Please make sure you connect with a wallet that holds a Cyber Ape.</h2>
-        </Card>
-        <br></br>
-    </div>
-  );
-
-  const renderAdminContainer = () => (
-    <div>
-      <Mints />
-      <div className="paginationContainer">
-        <Pagination page={page} />
-      </div>
-      <br></br>
-      <br></br>
-      <Form />
-      <br></br>
-      <br></br>
-      <br></br>
-    </div>
-  );
-
-
-
-  // UseEffects
-  useEffect(() => {
-    const onLoad = async () => {
-      //await checkIfWalletIsConnected();
-    };
-    window.addEventListener('load', onLoad);
-    return () => window.removeEventListener('load', onLoad);
-  }, []);
-
-  const PrintPubKey = ({ setPublicKey }) => {
-    const wallet = useWallet();
-    //if (!publicKey) throw new WalletNotConnectedError();
-    if (wallet.publicKey) {
-    setPublicKey(wallet.publicKey.toBase58())
-    }
-    if (!wallet.publicKey) {
-        setPublicKey(null);
-    }
-
-    return (
-        <div></div>
-    );
-};
-
     const onboardedDAOs = [
       {label: 'CyberApeAge', },
     ]
@@ -169,9 +109,7 @@ const Home = () => {
                     </div>
                     <br></br>
                     <Showcases />
-                    {/*AdminWallets.includes(walletAddress) && renderAdminContainer()*/}
-                    {/*<div className="explainer-text">Check out some of our DAO Partners!</div>*/}
-                     
+       
                 </div>
             </div>
             </ThemeProvider>

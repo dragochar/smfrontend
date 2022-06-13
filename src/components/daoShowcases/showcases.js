@@ -19,8 +19,8 @@ const Showcases = () => {
 
     return (
         <>
-            <div className="center">
-            <Grid container spacing={10}>
+            <div className="our-showcases-yo">
+            <Grid container spacing={6}>
                 <Grid item xs={6} sm={3}>
                     <DAOShowcase logo={geckoLogo} name='Galactic Gecko Space Garage' link={geckoLink} />
                 </Grid>
