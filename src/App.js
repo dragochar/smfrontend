@@ -40,11 +40,11 @@ const App = () => {
           <Route path="/auth" exact component={Auth} />
           <Route path="/checkdiscord" exact component={CheckDiscord} />
           <Route path="/ggsg" exact><DAOPage brandLogo={Master.ggsg.brandLogo} pageName={Master.ggsg.pageName}
-          dao={Master.ggsg.dao} AdminUsers={Master.ggsg.AdminUsers} /></Route>
+          dao={Master.ggsg.dao} AdminUsers={Master.ggsg.AdminUsers} textName={Master.ggsg.textName} /></Route>
           <Route path="/bitbearalpha" exact><DAOPage brandLogo={Master.bitbearalpha.brandLogo} pageName={Master.bitbearalpha.pageName}
-          dao={Master.bitbearalpha.dao} AdminUsers={Master.bitbearalpha.AdminUsers} /></Route>
+          dao={Master.bitbearalpha.dao} AdminUsers={Master.bitbearalpha.AdminUsers} textName={Master.bitbearalpha.textName}/></Route>
           <Route path="/tD" exact><DAOPage brandLogo={Master.tD.brandLogo} pageName={Master.tD.pageName}
-          dao={Master.tD.dao} AdminUsers={Master.tD.AdminUsers} /></Route>
+          dao={Master.tD.dao} AdminUsers={Master.tD.AdminUsers} textName={Master.tD.textName} /></Route>
           <Route path="/internalalpha" exact component={InternalAlpha}/>
           <Route path="/noot" exact component={Noot}/>
           <Route path="/ggsg" exact component={GGSG} />

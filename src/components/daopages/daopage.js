@@ -33,7 +33,7 @@ function useQuery() {
   return new URLSearchParams(useLocation().search);
 }
 
-const Home = ({ brandLogo, pageName, dao, AdminUsers }) => {
+const Home = ({ brandLogo, pageName, dao, AdminUsers, textName }) => {
 
   const dispatch = useDispatch();
   const query = useQuery();
@@ -120,8 +120,11 @@ const Home = ({ brandLogo, pageName, dao, AdminUsers }) => {
             <div className={currentUser!==null ? 'authed-container' : 'container'}>
                 <div className="header-container">
                     <div>
+                    {textName==='BBA' ? <img alt="DAO Logo" src={brandLogo} width='300' height='300'></img>
+                         : (<>
                         <img alt="DAO Logo" src={brandLogo} width='100' height='100'></img>
-                        <p className="header main-text-logo">GeckoMints</p>
+                        <p className="header main-text-logo">{textName}Mints</p></>)
+                      }
                     </div>
                     <div>
                       {currentUser!==null && renderSelectButtons()}

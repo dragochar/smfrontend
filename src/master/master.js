@@ -10,15 +10,15 @@ import tdAU from '../wallets/tdwallets';
 
 
 const ggsg = {
-    brandLogo: ggsgBL, pageName: 'ggsg', dao: 'ggsgDAO', AdminUsers: ggsgAU
+    brandLogo: ggsgBL, pageName: 'ggsg', dao: 'ggsgDAO', AdminUsers: ggsgAU, textName: 'Gecko'
 }
 
 const bitbearalpha = {
-    brandLogo: bbaBL, pageName: 'bitbearalpha', dao: 'bbaDAO', AdminUsers: bbaAU
+    brandLogo: bbaBL, pageName: 'bitbearalpha', dao: 'bbaDAO', AdminUsers: bbaAU, textName: 'BBA'
 }
 
 const tD = {
-    brandLogo: tdBL, pageName: 'tD', dao: 'tDAO', AdminUsers: tdAU
+    brandLogo: tdBL, pageName: 'tD', dao: 'tDAO', AdminUsers: tdAU, textName: 'Trust'
 }
 
 

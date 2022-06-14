@@ -287,7 +287,7 @@ const Admin = ({ dao }) => {
                 rows={rows}
                 columns={columns}
                 //pageSize={100}
-                rowsPerPageOptions={[100]}
+                rowsPerPageOptions={[20]}
                 checkboxSelection
                 disableSelectionOnClick
             />
