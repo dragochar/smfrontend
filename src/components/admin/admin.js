@@ -70,7 +70,7 @@ const Admin = ({ dao }) => {
             let percentString;
             //here we calculate the percentage change from floor price
             if (ourMints[i].floorPrice > ourMints[i].price) {
-                percentCalcValue = Math.round((((ourMints[i].floorPrice / ourMints[i].price)*100)*100)/100);
+                percentCalcValue = (Math.round((((ourMints[i].floorPrice / ourMints[i].price)*100)*100)/100)-100);
                 percentString = `(+${percentCalcValue}%)`;
             }
             else if (ourMints[i].floorPrice < ourMints[i].price) {
