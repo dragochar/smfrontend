@@ -5,3 +5,15 @@
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
+.center-in-dialog {
+    width: 800px;
+    margin: auto;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+
+
+.dialog {
+    background-color: #1a202c;
+}

@@ -14,6 +14,8 @@ export const fetchTomorrowMints = (dao) => API.get(`/mints/tomorrowMints/${dao}`
 export const fetchTwoDaysMints = (dao) => API.get(`/mints/twoDaysMints/${dao}`);
 export const createMint = (newMint) => API.post('/mints', newMint);
 export const updateMint = (id, updatedMint) => API.patch(`/mints/${id}`, updatedMint);
+export const updateMintSymbol = (id, symbol) => API.get(`/mints/updateMintSymbol/${id}/${symbol}`);
+export const updateMintWithME = (id, symbol) => API.get(`/mints/updateMintWithME/${id}/${symbol}`);
 export const likeMint = (id, walletId) => API.patch(`/mints/${id}/${walletId}/likeMint`);
 export const dislikeMint = (id, walletId) => API.patch(`/mints/${id}/${walletId}/dislikeMint`);
 export const comment = (value, id) => API.post(`/mints/${id}/commentPost`, { value });

@@ -245,7 +245,9 @@ const renderDeleteButton = (mint) => (
                 <Typography variant="h5" color="white" sx={{fontWeight: 400}} >{giveaway.numSpots} Spots</Typography>
                 <Typography variant="h6" color="white" sx={{fontWeight: 200}} >{giveaway.entries.length} Entered</Typography>
                 <Button variant="contained" color="secondary" onClick={handleWinnerDialogOpen}>View Winners</Button>
-
+                <div className="delete-giveaway">
+                    {AdminWallets.includes(currentUser.discordID) && renderDeleteButton()}
+                  </div>
               </CardContent>
               </CardActionArea>
               <Dialog

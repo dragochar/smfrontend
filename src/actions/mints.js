@@ -125,6 +125,16 @@ export const updateMint = (id, mint) => async (dispatch) => {
 
 };
 
+export const updateMintSymbol = (id, symbol) => async (dispatch) => {
+    try {
+        const { data } = await api.updateMintSymbol(id, symbol);
+
+    } catch (error) {
+        console.log(error.message);
+
+    }
+};
+
 export const likeMint = (id, wallet) => async (dispatch) => {
 
     try {

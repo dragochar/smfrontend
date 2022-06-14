@@ -9,7 +9,7 @@ const DiscordAlert = async (mint, giveawayData) => {
     let formatDescription = giveawayData.description;
     if (formatDescription=='') {formatDescription='Enter Giveaway'}
 
-    axios.post('https://discord.com/api/webhooks/979803617416597604/Mn82ZldZghiPDYja97yQw0dyqqtksEEQkN_mKnR0kOpC735CZCr4yHWYfnXMK4j0lb1k',
+    axios.post('https://discord.com/api/webhooks/986079763179401236/yfhl9JPS6Wm064YZ5M5sxc96oDSgw6Fe6mIMK2kCMG1su-9j2Wg85lvdaYflL-FPjNou',
         {
             "embeds": [
                 {
@@ -38,7 +38,7 @@ const DiscordAlert = async (mint, giveawayData) => {
             
                 }
             ],
-            "content": "<@&935914877447458926>"
+            "content": "<@&986080066742140928>"
         }
     )
 
