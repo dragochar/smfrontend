@@ -48,7 +48,11 @@ const Admin = ({ dao }) => {
     
       const theme2 = createTheme({
         palette: {
-            mode: "dark"
+            mode: "dark",
+            magiceden: {
+                main: '#EB1F69',
+                contrastText: '#130F17',
+            }
         }
       });
     
@@ -200,9 +204,11 @@ const Admin = ({ dao }) => {
                 setOpen(true);
               };
             {console.log(nowRow)}
-            if(typeof(nowRow.symbol)==="undefined") return <Button variant="contained" onClick={onClick}>Add</Button>
+            if(typeof(nowRow.symbol)==="undefined") return <Button variant="contained" onClick={onClick}>Create</Button>
             if(typeof(nowRow.symbol)!=="undefined") return (
-                <Button variant="contained" color="success" onClick={onClick}>Edit</Button>
+                <ThemeProvider theme={theme2}>
+                <Button variant="contained" color="magiceden" onClick={onClick}>Update</Button>
+                </ThemeProvider>
             );
 
             }

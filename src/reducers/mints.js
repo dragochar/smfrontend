@@ -14,7 +14,6 @@ export default (state = { isLoading: true, mints: [], todayMints: [], tomorrowMi
                 numberOfPages: action.payload.numberOfPages,
             };
         case "FETCH_OLD":
-            console.log('yo in actions eh', action.payload);
             return {
                 ...state,
                 oldMints: action.payload,

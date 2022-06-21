@@ -45,6 +45,8 @@ const App = () => {
           dao={Master.bitbearalpha.dao} AdminUsers={Master.bitbearalpha.AdminUsers} textName={Master.bitbearalpha.textName}/></Route>
           <Route path="/tD" exact><DAOPage brandLogo={Master.tD.brandLogo} pageName={Master.tD.pageName}
           dao={Master.tD.dao} AdminUsers={Master.tD.AdminUsers} textName={Master.tD.textName} /></Route>
+          <Route path="/monkedao" exact><DAOPage brandLogo={Master.monkedao.brandLogo} pageName={Master.monkedao.pageName}
+          dao={Master.monkedao.dao} AdminUsers={Master.monkedao.AdminUsers} textName={Master.monkedao.textName} /></Route>
           <Route path="/internalalpha" exact component={InternalAlpha}/>
           <Route path="/noot" exact component={Noot}/>
           <Route path="/ggsg" exact component={GGSG} />

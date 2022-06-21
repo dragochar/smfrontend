@@ -9,8 +9,8 @@ import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { CardActionArea } from '@mui/material';
-import GiveawayDialog from './giveawayDialog';
 import WinnersDialog from './winnersDialog';
+import ProfileView from '../common/profileView';
 import cx from 'clsx';
 import Dialog from '@mui/material/Dialog';
 import Countdown from './countdown';
@@ -26,6 +26,7 @@ import Link from '@mui/material/Link';
 import useWindowDimensions from '../common/useWindowDimensions';
 import IconButton from '@mui/material/IconButton';
 import DeleteOutlineIcon from '@mui/icons-material/Delete';
+import { enterGiveaway } from '../../actions/mints';
 import { useDispatch } from 'react-redux';
 import { deleteGiveaway } from '../../actions/mints';
 
@@ -59,6 +60,10 @@ const Giveaway = ({ giveaway, wallet, AdminWallets }) => {
     const [mint, setMint] = React.useState(null);
     const { currentUser } = useSelector((state) => state.user);
     const { height, width } = useWindowDimensions();
+    const [haveProfile, setHaveProfile] = React.useState(false);
+    const [entryData, setEntryData] = useState({
+      wallet: currentUser.wallet, twitter: currentUser.twitter, discord: currentUser.discordID
+  });
 
     const numEntered = giveaway.entries.length;
     const winTime = new Date(giveaway.createdAt);
@@ -141,6 +146,12 @@ const renderDeleteButton = (mint) => (
       }
 
       asyncGetMintForDetail();
+      if (typeof(currentUser.twitter)!=="undefined") {
+        setHaveProfile(true);
+      }
+      if (typeof(currentUser.discord)!=="undefined") {
+        setHaveProfile(true);
+      }
 
     }, []);
 
@@ -164,6 +175,16 @@ const renderDeleteButton = (mint) => (
             : (<Chip icon={<CheckIcon />} color="discord" variant="contained" label="Joined" />)}
         </>
       );
+    }
+
+    async function enterRaffle() {
+      let fullEntry = [];
+      fullEntry = [currentUser.wallet, currentUser.twitter, currentUser.discordID];
+      console.log('full entry is', fullEntry);
+      await dispatch(enterGiveaway(fullEntry, giveaway._id));
+      setAlreadyVoted(true);
+
+
     }
 
     const renderGiveawayActive = () => {
@@ -202,8 +223,18 @@ const renderDeleteButton = (mint) => (
                 </div>
                 <br></br>
                 </ThemeProvider>
-                { !alreadyVoted ? <Button variant="contained" color="success" onClick={handleDialogOpen}>Enter Raffle</Button> : (<></>)}
-                { alreadyVoted ? <Button variant="contained" color="success">Already Entered</Button> : (<></>)}
+                {/*  if you still need to add your wallet / twitter */}
+                {console.log(currentUser.twitter)}
+                { (haveProfile===false
+                ) ? <Button variant="contained" color="secondary">Add Profile</Button> : (<></>)}
+                {/*  if you still need to follow on twitter / join discord */}
+                { ((!alreadyVoted) && haveProfile && (!currentUser.discordApprovedGiveaways.includes(giveaway.guildID) || !currentUser.twitterApprovedGiveaways.includes(giveaway._id))
+                ) ? <Button variant="contained" color="error">Can't Enter</Button> : (<></>)}
+                {/* //If you are eligible to enter the raffle */}
+                { ((!alreadyVoted) && haveProfile && (currentUser.discordApprovedGiveaways.includes(giveaway.guildID) && currentUser.twitterApprovedGiveaways.includes(giveaway._id))
+                ) ? <Button variant="contained" color="primary" onClick={enterRaffle}>Enter Raffle</Button> : (<></>)}
+                {/* //If you've already entered */}
+                { alreadyVoted ? <Button variant="contained" color="success">Entered</Button> : (<></>)}
                 
             </CardContent>
             <Dialog
@@ -212,7 +243,7 @@ const renderDeleteButton = (mint) => (
                 fullWidth
                 maxWidth='xl'
             >
-                <GiveawayDialog giveaway={giveaway} setDialogOpen={setDialogOpen} wallet={wallet} setAlreadyVoted={setAlreadyVoted} />
+              <ProfileView setDialogOpen={setDialogOpen} />
             </Dialog>
             <Dialog
                 open={detailDialogOpen}
