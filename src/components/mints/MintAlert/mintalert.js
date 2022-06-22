@@ -44,8 +44,7 @@ const AlertContent = ({ mint, walletAddress, AdminWallets, setGiveawayDialogOpen
             setTwitterChecked(true);
             setGiveawayData({ ...giveawayData, reqTwitter: true })
             setGiveawayData({ ...giveawayData, twitter: '' })
-        }
-        if (twitterChecked===true) {
+        } else {
             setTwitterChecked(false);
             setGiveawayData({ ...giveawayData, reqTwitter: false })
             setGiveawayData({ ...giveawayData, twitter: mint.twitter })
@@ -54,10 +53,10 @@ const AlertContent = ({ mint, walletAddress, AdminWallets, setGiveawayDialogOpen
 
     const handleDiscordCheck = () => {
         if (discordChecked===false) {
-            setDiscordChecked(true)
+            setDiscordChecked(true);
+            console.log('checked it')
             setGiveawayData({ ...giveawayData, reqDiscord: true })
-        }
-        if (discordChecked===true) {
+        }   else {
             setDiscordChecked(false)
             setGiveawayData({ ...giveawayData, reqDiscord: false })
         }

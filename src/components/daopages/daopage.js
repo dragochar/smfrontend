@@ -137,9 +137,9 @@ const Home = ({ brandLogo, pageName, dao, AdminUsers, textName }) => {
                     }
                     
                     </div>
-                    {currentUser!==null && (dao==='monkeDAO') && !AdminUsers.includes(currentUser.discordID) && renderConnectedContainer()}
-                    {currentUser!==null && (dao==='monkeDAO') && AdminUsers.includes(currentUser.discordID) && renderAdminContainer()}
-                    {currentUser!==null && (dao!=='monkeDAO') && renderUnauthenticatedContainer()}
+                    {currentUser!==null && !AdminUsers.includes(currentUser.discordID) && renderConnectedContainer()}
+                    {currentUser!==null && AdminUsers.includes(currentUser.discordID) && renderAdminContainer()}
+                    {currentUser!==null && renderUnauthenticatedContainer()}
                     
                 </div>
             </div>

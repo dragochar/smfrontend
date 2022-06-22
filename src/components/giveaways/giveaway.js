@@ -224,7 +224,7 @@ const renderDeleteButton = (mint) => (
                 <br></br>
                 </ThemeProvider>
                 {/*  if you still need to add your wallet / twitter */}
-                {console.log(currentUser.twitter)}
+                {console.log(giveaway.reqTwitter)}
                 { (haveProfile===false
                 ) ? <Button variant="contained" color="secondary">Add Profile</Button> : (<></>)}
                 {/*  if you still need to follow on twitter / join discord */}
